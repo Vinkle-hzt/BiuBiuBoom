@@ -6,7 +6,10 @@ using BiuBiuBoom.Utils;
 
 public class PlayerAimWeapon : MonoBehaviour
 {
-    public event EventHandler OnShoot;
+    [Header("攻击间隔")]
+    public float attackTime = 0.5f;
+
+    public event EventHandler<OnShootEventArgs> OnShoot;
     public class OnShootEventArgs : EventArgs
     {
         public Vector3 gunEndPointPosition;
@@ -16,18 +19,21 @@ public class PlayerAimWeapon : MonoBehaviour
     private Transform aimTransform;
     private Transform aimGunEndPointTransform; // 子弹发射位置
     private Animator animator;
+    [SerializeField] private float curTime;
 
     private void Awake()
     {
         aimTransform = transform.Find("Aim");
-        aimGunEndPointTransform = transform.Find("GunEndPointPosition");
+        aimGunEndPointTransform = aimTransform.Find("GunEndPointPosition");
         animator = aimTransform.Find("Visual").GetComponent<Animator>();
+        curTime = attackTime;
     }
 
     private void Update()
     {
         HandleAiming();
         HandleShooting();
+
     }
 
     private void HandleAiming()
@@ -50,15 +56,20 @@ public class PlayerAimWeapon : MonoBehaviour
 
     private void HandleShooting()
     {
+        curTime += Time.deltaTime;
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
-            animator.SetTrigger("Shoot");
-            OnShoot?.Invoke(this, new OnShootEventArgs
+            if (curTime >= attackTime)
             {
-                gunEndPointPosition = aimGunEndPointTransform.position,
-                shootPosition = mousePosition
-            });
+                curTime = 0;
+                Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
+                animator.SetTrigger("Shoot");
+                OnShoot?.Invoke(this, new OnShootEventArgs
+                {
+                    gunEndPointPosition = aimGunEndPointTransform.position,
+                    shootPosition = mousePosition,
+                });
+            }
         }
     }
 }
