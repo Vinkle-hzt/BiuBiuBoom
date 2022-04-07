@@ -18,6 +18,7 @@ public class PlayerAimWeapon : MonoBehaviour
 
     private Transform aimTransform;
     private Transform aimGunEndPointTransform; // 子弹发射位置
+    private Transform bodyTransform;
     private Animator animator;
     [SerializeField] private float curTime;
 
@@ -26,6 +27,7 @@ public class PlayerAimWeapon : MonoBehaviour
         aimTransform = transform.Find("Aim");
         aimGunEndPointTransform = aimTransform.Find("GunEndPointPosition");
         animator = aimTransform.Find("Visual").GetComponent<Animator>();
+        bodyTransform = transform.Find("Body");
         curTime = attackTime;
     }
 
@@ -49,8 +51,9 @@ public class PlayerAimWeapon : MonoBehaviour
             aimLocalScale.y = -1f;
         else
             aimLocalScale.y = 1f;
-
+        
         aimTransform.localScale = aimLocalScale;
+        setPlayerLookAt(mouseWorldPosition);
     }
 
 
@@ -71,5 +74,16 @@ public class PlayerAimWeapon : MonoBehaviour
                 });
             }
         }
+    }
+
+    // 使人物和鼠标方向相同
+    private void setPlayerLookAt(Vector3 position)
+    {
+        float lookAtDir = (position.x - bodyTransform.position.x) < 0 ? -1 : 1;
+        Vector3 localScale = bodyTransform.localScale;
+
+
+        if (localScale.x * lookAtDir < 0)
+            bodyTransform.localScale = new Vector3(localScale.x * -1, localScale.y, localScale.z);
     }
 }
