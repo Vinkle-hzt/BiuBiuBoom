@@ -6,26 +6,32 @@ using BiuBiuBoom.Utils;
 
 public class PlayerAimWeapon : MonoBehaviour
 {
-    [Header("攻击间隔")]
-    public float attackTime = 0.5f;
 
     public event EventHandler<OnShootEventArgs> OnShoot;
     public class OnShootEventArgs : EventArgs
     {
         public Vector3 gunEndPointPosition;
         public Vector3 shootPosition;
+        public PlayerInfo playerInfo;
     }
 
+    [SerializeField] [Header("攻击间隔")]
+    private float attackTime;
     private Transform aimTransform;
     private Transform aimGunEndPointTransform; // 子弹发射位置
+    private Transform bodyTransform;
     private Animator animator;
     [SerializeField] private float curTime;
+    private PlayerInfo pInfo;
 
     private void Awake()
     {
         aimTransform = transform.Find("Aim");
         aimGunEndPointTransform = aimTransform.Find("GunEndPointPosition");
         animator = aimTransform.Find("Visual").GetComponent<Animator>();
+        bodyTransform = transform.Find("Body");
+        pInfo = transform.GetComponent<PlayerInfo>();
+        attackTime = 1.0f / pInfo.attackSpeed;
         curTime = attackTime;
     }
 
@@ -49,8 +55,9 @@ public class PlayerAimWeapon : MonoBehaviour
             aimLocalScale.y = -1f;
         else
             aimLocalScale.y = 1f;
-
+        
         aimTransform.localScale = aimLocalScale;
+        setPlayerLookAt(mouseWorldPosition);
     }
 
 
@@ -68,8 +75,20 @@ public class PlayerAimWeapon : MonoBehaviour
                 {
                     gunEndPointPosition = aimGunEndPointTransform.position,
                     shootPosition = mousePosition,
+                    playerInfo = pInfo
                 });
             }
         }
+    }
+
+    // 使人物和鼠标方向相同
+    private void setPlayerLookAt(Vector3 position)
+    {
+        float lookAtDir = (position.x - bodyTransform.position.x) < 0 ? -1 : 1;
+        Vector3 localScale = bodyTransform.localScale;
+
+
+        if (localScale.x * lookAtDir < 0)
+            bodyTransform.localScale = new Vector3(localScale.x * -1, localScale.y, localScale.z);
     }
 }
