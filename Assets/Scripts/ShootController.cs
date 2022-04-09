@@ -18,7 +18,7 @@ public class ShootController : MonoBehaviour
         Transform bulletTransform = Instantiate(pfBullet, e.gunEndPointPosition, Quaternion.identity);
 
         Vector3 shootDir = (e.shootPosition - bulletTransform.position).normalized;
-        bulletTransform.GetComponent<Bullet>().Setup(shootDir);
+        bulletTransform.GetComponent<Bullet>().Setup(shootDir, e.playerInfo);
     }
 
 }

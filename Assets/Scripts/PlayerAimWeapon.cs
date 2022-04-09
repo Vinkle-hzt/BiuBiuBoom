@@ -6,21 +6,23 @@ using BiuBiuBoom.Utils;
 
 public class PlayerAimWeapon : MonoBehaviour
 {
-    [Header("攻击间隔")]
-    public float attackTime = 0.5f;
 
     public event EventHandler<OnShootEventArgs> OnShoot;
     public class OnShootEventArgs : EventArgs
     {
         public Vector3 gunEndPointPosition;
         public Vector3 shootPosition;
+        public PlayerInfo playerInfo;
     }
 
+    [SerializeField] [Header("攻击间隔")]
+    private float attackTime;
     private Transform aimTransform;
     private Transform aimGunEndPointTransform; // 子弹发射位置
     private Transform bodyTransform;
     private Animator animator;
     [SerializeField] private float curTime;
+    private PlayerInfo pInfo;
 
     private void Awake()
     {
@@ -28,6 +30,8 @@ public class PlayerAimWeapon : MonoBehaviour
         aimGunEndPointTransform = aimTransform.Find("GunEndPointPosition");
         animator = aimTransform.Find("Visual").GetComponent<Animator>();
         bodyTransform = transform.Find("Body");
+        pInfo = transform.GetComponent<PlayerInfo>();
+        attackTime = 1.0f / pInfo.attackSpeed;
         curTime = attackTime;
     }
 
@@ -71,6 +75,7 @@ public class PlayerAimWeapon : MonoBehaviour
                 {
                     gunEndPointPosition = aimGunEndPointTransform.position,
                     shootPosition = mousePosition,
+                    playerInfo = pInfo
                 });
             }
         }
