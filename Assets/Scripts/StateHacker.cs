@@ -46,7 +46,7 @@ public class StateHacker : State
     {
         if (horizontalMove != 0)
         {
-            rb.velocity = new Vector2(horizontalMove * pInfo.speed * Time.deltaTime, rb.velocity.y);
+            rb.velocity = new Vector2(horizontalMove * pInfo.speed, rb.velocity.y);
         }
 
         Jump();
@@ -67,7 +67,7 @@ public class StateHacker : State
     {
         if (isJump)
         {
-            rb.velocity = new Vector2(rb.velocity.x, pInfo.jumpforce * Time.deltaTime);
+            rb.velocity = new Vector2(rb.velocity.x, pInfo.jumpforce);
             isJump = false;
         }
     }
@@ -86,5 +86,17 @@ public class StateHacker : State
             isGround = false;
         }
         //或者用Physics2D.OverlapBox();
+    }
+
+    // TO-DO 自动回复能量逻辑
+    void RecoveryEnergy()
+    {
+
+    }
+
+    public override void Reset()
+    {
+        rb.gravityScale = 1;
+        pInfo.canShoot = true;
     }
 }

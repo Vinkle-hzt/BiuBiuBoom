@@ -8,6 +8,10 @@ public class Bullet : MonoBehaviour
     private Vector3 shootDir;
     private float shootSpeed;
     private PlayerInfo pInfo;
+
+    [SerializeField][Header ("爆炸效果")]
+    private Transform pfHit;
+
     public void Setup(Vector3 shootDir, PlayerInfo pInfo)
     {
         this.pInfo = pInfo;
@@ -24,7 +28,13 @@ public class Bullet : MonoBehaviour
 
     // TO-DO: 当打击到怪物时更新pInfo中的能量
     // note: 可以调用 pInfo.AddEnergy
-
-
-    // TO-DO: 碰撞检测，碰撞后销毁(应该实例化一个爆炸特效)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+            Debug.Log(collision.name);
+            Instantiate(pfHit, transform.position, Quaternion.identity);
+        }
+    }
 }

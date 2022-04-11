@@ -64,7 +64,7 @@ public class PlayerAimWeapon : MonoBehaviour
     private void HandleShooting()
     {
         curTime += Time.deltaTime;
-        if (Input.GetMouseButtonDown(0))
+        if (pInfo.canShoot && Input.GetButtonDown("Fire1"))
         {
             if (curTime >= attackTime)
             {

@@ -19,6 +19,15 @@ public class PlayerInfo : MonoBehaviour
     [Header("能量")]
     public float energy;
 
+    [Header("能量损失速度")]
+    public float energyLoss;
+
+    [Header("变身所需要的能量")]
+    public float changeStateEnergy;
+
+    [Header("变身冷却时间")]
+    public float changeStateTime;
+
     [Header("移速")]
     public float speed;
 
@@ -30,6 +39,10 @@ public class PlayerInfo : MonoBehaviour
 
     [Header("子弹速度")]
     public float shootSpeed;
+
+    [Header("能否射击")]
+    public bool canShoot = true;
+
 
     public void AddEnergy(float x)
     {
