@@ -654,7 +654,17 @@ PrefabInstance:
     - target: {fileID: 2500532186031077448, guid: 834a35d581e037b4eac0580115e16e63,
         type: 3}
       propertyPath: speed
-      value: 300
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500532186031077448, guid: 834a35d581e037b4eac0580115e16e63,
+        type: 3}
+      propertyPath: energy
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500532186031077448, guid: 834a35d581e037b4eac0580115e16e63,
+        type: 3}
+      propertyPath: health
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2500532186031077448, guid: 834a35d581e037b4eac0580115e16e63,
         type: 3}
@@ -664,7 +674,22 @@ PrefabInstance:
     - target: {fileID: 2500532186031077448, guid: 834a35d581e037b4eac0580115e16e63,
         type: 3}
       propertyPath: jumpforce
-      value: 300
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500532186031077448, guid: 834a35d581e037b4eac0580115e16e63,
+        type: 3}
+      propertyPath: maxEnergy
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500532186031077448, guid: 834a35d581e037b4eac0580115e16e63,
+        type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500532186031077448, guid: 834a35d581e037b4eac0580115e16e63,
+        type: 3}
+      propertyPath: energyLoss
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2500532186031077448, guid: 834a35d581e037b4eac0580115e16e63,
         type: 3}
@@ -675,6 +700,16 @@ PrefabInstance:
         type: 3}
       propertyPath: attackSpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500532186031077448, guid: 834a35d581e037b4eac0580115e16e63,
+        type: 3}
+      propertyPath: changeStateTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500532186031077448, guid: 834a35d581e037b4eac0580115e16e63,
+        type: 3}
+      propertyPath: changeStateEnergy
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2500532186031077449, guid: 834a35d581e037b4eac0580115e16e63,
         type: 3}
