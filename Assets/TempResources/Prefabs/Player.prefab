@@ -182,12 +182,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2500532186031077449}
+  - component: {fileID: 995553884}
   - component: {fileID: 2500532186031077450}
   - component: {fileID: 2500532186031077451}
   - component: {fileID: 2500532186031077452}
   - component: {fileID: 995553883}
   - component: {fileID: 995553882}
-  - component: {fileID: 995553884}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -211,6 +211,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &995553884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500532186031077431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a1c7631c7e90ac47bf86aa6a9715e39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  templateData: {fileID: 11400000, guid: 1b3b2fe156b0e4648a257e5f9b8bc1b1, type: 2}
+  characterData: {fileID: 0}
 --- !u!114 &2500532186031077450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,20 +303,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.008713007, y: 0.10492885}
   m_Size: {x: 0.85432816, y: 1.2982185}
   m_Direction: 0
---- !u!114 &995553884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2500532186031077431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a1c7631c7e90ac47bf86aa6a9715e39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  templateData: {fileID: 11400000, guid: 1b3b2fe156b0e4648a257e5f9b8bc1b1, type: 2}
-  characterData: {fileID: 0}
 --- !u!1 &2500532186130218720
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ public class PlayerAimWeapon : MonoBehaviour
     [SerializeField] private float curTime;
     private InfoController pInfo;
 
-    private void Awake()
+    private void Start()
     {
         aimTransform = transform.Find("Aim");
         aimGunEndPointTransform = aimTransform.Find("GunEndPointPosition");
