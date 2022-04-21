@@ -21,7 +21,7 @@ public class StateHacker : State
 
     private float horizontalMove;
 
-    public StateHacker(Transform transform, PlayerInfo pinfo) : base(transform, pinfo)
+    public StateHacker(Transform transform, InfoController pinfo) : base(transform, pinfo)
     {
         rb = transform.GetComponent<Rigidbody2D>();
         groundCheck1 = transform.Find("Body").Find("GroundCheck1");
@@ -35,6 +35,7 @@ public class StateHacker : State
     {
         Movement();
         GroundCheck();
+        RecoveryEnergy();
     }
 
     public override void Update()
@@ -46,7 +47,7 @@ public class StateHacker : State
     {
         if (horizontalMove != 0)
         {
-            rb.velocity = new Vector2(horizontalMove * pInfo.speed * Time.deltaTime, rb.velocity.y);
+            rb.velocity = new Vector2(horizontalMove * pInfo.characterData.speed, rb.velocity.y);
         }
 
         Jump();
@@ -67,7 +68,7 @@ public class StateHacker : State
     {
         if (isJump)
         {
-            rb.velocity = new Vector2(rb.velocity.x, pInfo.jumpforce * Time.deltaTime);
+            rb.velocity = new Vector2(rb.velocity.x, pInfo.characterData.jumpforce);
             isJump = false;
         }
     }
@@ -86,5 +87,17 @@ public class StateHacker : State
             isGround = false;
         }
         //或者用Physics2D.OverlapBox();
+    }
+
+    void RecoveryEnergy()
+    {
+        pInfo.GetEnergy(Time.fixedDeltaTime);
+    }
+
+    public override void Reset()
+    {
+        rb.gravityScale = 1;
+        pInfo.characterData.canShoot = true;
+        transform.Find("Aim").gameObject.SetActive(true);
     }
 }

@@ -6,10 +6,10 @@ public abstract class State
 {
     protected Transform transform;
 
-    protected PlayerInfo pInfo;
+    protected InfoController pInfo;
 
-    protected State(Transform transform, PlayerInfo pInfo) 
-    { 
+    protected State(Transform transform, InfoController pInfo)
+    {
         this.transform = transform;
         this.pInfo = pInfo;
     }
@@ -18,6 +18,8 @@ public abstract class State
     {
         this.transform = transform;
     }
+    // note: 转变形态的时候要 reset 一下
+    public abstract void Reset();
 
     public abstract void Update();
 

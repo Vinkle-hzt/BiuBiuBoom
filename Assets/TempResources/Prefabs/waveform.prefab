@@ -114,4 +114,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08bd43ecc08e204dbbac64112996b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootSpeed: 10
+  pfHit: {fileID: 3458480233886119567, guid: 393a650c893e68d4283c0315877b4010, type: 3}
