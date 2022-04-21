@@ -7,7 +7,7 @@ public class StateShadow : State
 {
     private Rigidbody2D rb;
     private Vector3 position;
-    public StateShadow(Transform body, PlayerInfo pInfo) : base(body, pInfo)
+    public StateShadow(Transform body, InfoController pInfo) : base(body, pInfo)
     {
         rb = transform.GetComponent<Rigidbody2D>();
     }
@@ -25,7 +25,7 @@ public class StateShadow : State
 
     void Movement()
     {
-        transform.position += position * pInfo.speed * Time.deltaTime * 1.5f;
+        transform.position += position * pInfo.characterData.speed * Time.deltaTime * pInfo.characterData.speedRatio;
     }
 
     void MoveCheck()
@@ -36,7 +36,7 @@ public class StateShadow : State
 
     void LossEnergy()
     {
-        pInfo.energy = Mathf.Max(pInfo.energy - pInfo.energyLoss * Time.fixedDeltaTime, 0);
+        pInfo.LossEnergy(Time.fixedDeltaTime);
     }
 
     public override void Reset()
@@ -44,6 +44,7 @@ public class StateShadow : State
         // 重力和速度均设为0
         rb.velocity = Vector3.zero;
         rb.gravityScale = 0;
-        pInfo.canShoot = false;
+        pInfo.characterData.canShoot = false;
+        transform.Find("Aim").gameObject.SetActive(false);
     }
 }

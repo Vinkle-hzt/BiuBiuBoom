@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
     State hacker;
     State shadow;
 
-    PlayerInfo pInfo;
+    // PlayerInfo pInfo;
+    // PlayerInfo curpInfo;
+    InfoController pInfo;
 
     [SerializeField]
     float curTime;
@@ -16,7 +18,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pInfo = GetComponent<PlayerInfo>();
+        // pInfo = Resources.Load<PlayerInfo>("PlayerData/BaseInfo");
+        // curpInfo = Instantiate(pInfo);
+        pInfo = GetComponent<InfoController>();
         hacker = new StateHacker(transform, pInfo);
         shadow = new StateShadow(transform, pInfo);
         state = hacker;
@@ -47,12 +51,12 @@ public class PlayerController : MonoBehaviour
         // 检查按键是否按下
         if (Input.GetButtonDown("ChangeState"))
         {
-            if (pInfo.energy >= pInfo.changeStateEnergy
+            if (pInfo.characterData.energy >= pInfo.characterData.changeStateEnergy
                 && curTime <= 0
                 && state is StateHacker)
             {
-                curTime = pInfo.changeStateTime; // 进入冷却
-                pInfo.energy -= pInfo.changeStateEnergy; // 减少能量
+                curTime = pInfo.characterData.changeStateTime; // 进入冷却
+                pInfo.characterData.energy -= pInfo.characterData.changeStateEnergy; // 减少能量
 
                 state = shadow;
                 state.Reset();
@@ -65,11 +69,10 @@ public class PlayerController : MonoBehaviour
         }
 
         // 能量 <= 0 强制回到骇客模式
-        if (pInfo.energy <= 0)
+        if (pInfo.characterData.energy <= 0 && state is StateShadow)
         {
             state = hacker;
             state.Reset();
         }
     }
-
 }
