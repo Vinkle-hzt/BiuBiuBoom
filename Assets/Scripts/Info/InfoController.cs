@@ -58,6 +58,7 @@ public class InfoController : MonoBehaviour
 
     bool isFallDown()
     {
+        // test
         return characterData.health <= characterData.health * characterData.perFallDown;
     }
 }
