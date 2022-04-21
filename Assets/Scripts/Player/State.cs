@@ -6,10 +6,10 @@ public abstract class State
 {
     protected Transform transform;
 
-    protected PlayerInfo pInfo;
+    protected InfoController pInfo;
 
-    protected State(Transform transform, PlayerInfo pInfo) 
-    { 
+    protected State(Transform transform, InfoController pInfo)
+    {
         this.transform = transform;
         this.pInfo = pInfo;
     }

@@ -185,10 +185,12 @@ GameObject:
   - component: {fileID: 2500532186031077450}
   - component: {fileID: 2500532186031077451}
   - component: {fileID: 2500532186031077452}
-  - component: {fileID: 2500532186031077448}
+  - component: {fileID: 995553883}
+  - component: {fileID: 995553882}
+  - component: {fileID: 995553884}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,7 +251,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f7df0e55cb6e14e84ef1718285b157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2500532186031077448
+  curTime: 0
+--- !u!50 &995553883
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500532186031077431}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!70 &995553882
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500532186031077431}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.008713007, y: 0.10492885}
+  m_Size: {x: 0.85432816, y: 1.2982185}
+  m_Direction: 0
+--- !u!114 &995553884
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,12 +298,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2500532186031077431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2195a1e9169863c4cac0c33fe9cf659c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a1c7631c7e90ac47bf86aa6a9715e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  speed: 5
-  jumpForce: 5
+  templateData: {fileID: 11400000, guid: 1b3b2fe156b0e4648a257e5f9b8bc1b1, type: 2}
+  characterData: {fileID: 0}
 --- !u!1 &2500532186130218720
 GameObject:
   m_ObjectHideFlags: 0

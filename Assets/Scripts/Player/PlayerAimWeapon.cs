@@ -12,17 +12,18 @@ public class PlayerAimWeapon : MonoBehaviour
     {
         public Vector3 gunEndPointPosition;
         public Vector3 shootPosition;
-        public PlayerInfo playerInfo;
+        public InfoController playerInfo;
     }
 
-    [SerializeField] [Header("攻击间隔")]
+    [SerializeField]
+    [Header("攻击间隔")]
     private float attackTime;
     private Transform aimTransform;
     private Transform aimGunEndPointTransform; // 子弹发射位置
     private Transform bodyTransform;
     private Animator animator;
     [SerializeField] private float curTime;
-    private PlayerInfo pInfo;
+    private InfoController pInfo;
 
     private void Awake()
     {
@@ -30,8 +31,8 @@ public class PlayerAimWeapon : MonoBehaviour
         aimGunEndPointTransform = aimTransform.Find("GunEndPointPosition");
         animator = aimTransform.Find("Visual").GetComponent<Animator>();
         bodyTransform = transform.Find("Body");
-        pInfo = transform.GetComponent<PlayerInfo>();
-        attackTime = 1.0f / pInfo.attackSpeed;
+        pInfo = transform.GetComponent<InfoController>();
+        attackTime = 1.0f / pInfo.characterData.attackSpeed;
         curTime = attackTime;
     }
 
@@ -55,7 +56,7 @@ public class PlayerAimWeapon : MonoBehaviour
             aimLocalScale.y = -1f;
         else
             aimLocalScale.y = 1f;
-        
+
         aimTransform.localScale = aimLocalScale;
         setPlayerLookAt(mouseWorldPosition);
     }
@@ -64,7 +65,7 @@ public class PlayerAimWeapon : MonoBehaviour
     private void HandleShooting()
     {
         curTime += Time.deltaTime;
-        if (pInfo.canShoot && Input.GetButtonDown("Fire1"))
+        if (pInfo.characterData.canShoot && Input.GetButtonDown("Fire1"))
         {
             if (curTime >= attackTime)
             {
