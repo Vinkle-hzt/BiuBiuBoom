@@ -30,4 +30,10 @@ public class EnemyInfoController : MonoBehaviour
             characterData.minResumePercent
             );
     }
+
+    public void Rusume()
+    {
+        addFallDownTime();
+        subResumePercent();
+    }
 }

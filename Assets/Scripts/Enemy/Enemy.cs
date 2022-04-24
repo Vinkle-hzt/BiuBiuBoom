@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         eInfo = GetComponent<InfoController>();
+        enemyInfo = GetComponent<EnemyInfoController>();
     }
 
     // Start is called before the first frame update
@@ -42,6 +43,8 @@ public class Enemy : MonoBehaviour
                 curTime = enemyInfo.characterData.fallDownTime;
                 isFallDown = true;
                 //TODO: 瘫痪的表现
+                //用枪消失替代美术表现
+                transform.Find("Aim").gameObject.SetActive(false);
             }
 
             if (curTime <= 0)
@@ -59,6 +62,9 @@ public class Enemy : MonoBehaviour
 
     void Resume()
     {
-        eInfo.Resume(eInfo.characterData.health * enemyInfo.characterData.resumePercent);
+        //用枪消失替代美术表现
+        transform.Find("Aim").gameObject.SetActive(true);
+        enemyInfo.Rusume();
+        eInfo.Resume(eInfo.characterData.maxHealth * enemyInfo.characterData.resumePercent);
     }
 }
