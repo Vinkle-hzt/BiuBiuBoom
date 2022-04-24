@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    State state;
-    State hacker;
-    State shadow;
+    PlayerState state;
+    PlayerState hacker;
+    PlayerState shadow;
 
     // PlayerInfo pInfo;
     // PlayerInfo curpInfo;

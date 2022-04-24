@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // TO-DO：完成入侵和处决 (入侵键位 Fire1, 处决键位 Fire2)
-public class StateShadow : State
+public class StateShadow : PlayerState
 {
     private Rigidbody2D rb;
     private Vector3 position;

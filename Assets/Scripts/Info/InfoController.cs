@@ -41,7 +41,6 @@ public class InfoController : MonoBehaviour
     {
         //被攻击者血量减少
         defender.SubHealth(attacker.characterData.damage);
-        Debug.Log(defender.characterData.health);
         //攻击者获取能量
         attacker.AddEnergy(attacker.characterData.energyAttack);
     }
@@ -56,9 +55,14 @@ public class InfoController : MonoBehaviour
         AddEnergy(characterData.energyGet * deltaTime);
     }
 
-    bool isFallDown()
+    public bool isFallDown()
     {
         // test
-        return characterData.health <= characterData.health * characterData.perFallDown;
+        return characterData.health <= 0;
+    }
+
+    public void Resume(float resumeHealth)
+    {
+        AddHealth(resumeHealth);
     }
 }

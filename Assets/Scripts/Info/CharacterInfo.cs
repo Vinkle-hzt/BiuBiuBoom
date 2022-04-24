@@ -17,9 +17,6 @@ public class CharacterInfo : ScriptableObject
     [Header("血量")]
     public float health;
 
-    [Header("瘫痪血量百分比")]
-    public float perFallDown;
-
     [Header("最大能量")]
     public float maxEnergy;
 
