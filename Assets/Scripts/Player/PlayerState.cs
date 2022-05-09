@@ -18,6 +18,10 @@ public abstract class PlayerState
     {
         this.transform = transform;
     }
+
+    // note: 离开该形态的时候要调用此方法
+    public abstract void Leave();
+
     // note: 转变形态的时候要 reset 一下
     public abstract void Reset();
 

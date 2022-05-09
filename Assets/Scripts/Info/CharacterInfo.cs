@@ -58,4 +58,7 @@ public class CharacterInfo : ScriptableObject
 
     [Header("能否射击")]
     public bool canShoot = true;
+
+    [Header("斩杀和骇入半径")]
+    public float hackDis;
 }

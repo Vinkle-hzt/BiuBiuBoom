@@ -58,11 +58,13 @@ public class PlayerController : MonoBehaviour
                 curTime = pInfo.characterData.changeStateTime; // 进入冷却
                 pInfo.characterData.energy -= pInfo.characterData.changeStateEnergy; // 减少能量
 
+                state.Leave();
                 state = shadow;
                 state.Reset();
             }
             else if (state is StateShadow)
             {
+                state.Leave();
                 state = hacker;
                 state.Reset();
             }
@@ -71,6 +73,7 @@ public class PlayerController : MonoBehaviour
         // 能量 <= 0 强制回到骇客模式
         if (pInfo.characterData.energy <= 0 && state is StateShadow)
         {
+            state.Leave();
             state = hacker;
             state.Reset();
         }

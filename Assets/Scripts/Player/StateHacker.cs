@@ -100,4 +100,9 @@ public class StateHacker : PlayerState
         pInfo.characterData.canShoot = true;
         transform.Find("Aim").gameObject.SetActive(true);
     }
+
+    public override void Leave()
+    {
+        return;
+    }
 }
