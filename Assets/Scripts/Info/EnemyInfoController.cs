@@ -31,7 +31,7 @@ public class EnemyInfoController : MonoBehaviour
             );
     }
 
-    public void Rusume()
+    public void Resume()
     {
         addFallDownTime();
         subResumePercent();

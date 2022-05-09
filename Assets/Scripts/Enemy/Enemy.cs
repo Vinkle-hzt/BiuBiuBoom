@@ -123,7 +123,7 @@ public class Enemy : MonoBehaviour
         transform.Find("Aim").gameObject.SetActive(true);
         // 更改 layer(用于实现斩杀和骇入)
         UtilsClass.ChangeLayer(transform, LayerMask.NameToLayer("Enemy"));
-        enemyInfo.Rusume();
+        enemyInfo.Resume();
         eInfo.Resume(eInfo.characterData.maxHealth * enemyInfo.characterData.resumePercent);
     }
     #endregion

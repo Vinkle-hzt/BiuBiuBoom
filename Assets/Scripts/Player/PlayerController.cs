@@ -7,9 +7,6 @@ public class PlayerController : MonoBehaviour
     PlayerState state;
     PlayerState hacker;
     PlayerState shadow;
-
-    // PlayerInfo pInfo;
-    // PlayerInfo curpInfo;
     InfoController pInfo;
 
     [SerializeField]
@@ -18,8 +15,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // pInfo = Resources.Load<PlayerInfo>("PlayerData/BaseInfo");
-        // curpInfo = Instantiate(pInfo);
         pInfo = GetComponent<InfoController>();
         hacker = new StateHacker(transform, pInfo);
         shadow = new StateShadow(transform, pInfo);
