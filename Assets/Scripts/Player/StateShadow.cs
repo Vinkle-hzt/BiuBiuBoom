@@ -90,9 +90,9 @@ public class StateShadow : PlayerState
             var enemy = findNearestEnemy();
             if (enemy != null)
             {
-                if (Input.GetButtonDown("Fire1"))
+                if (Input.GetKeyDown(InputController.instance.kill))
                     Kill(enemy);
-                else if (Input.GetButtonDown("Fire2"))
+                else if (Input.GetKeyDown(InputController.instance.hack))
                     Hack(enemy);
             }
         }
@@ -120,7 +120,7 @@ public class StateShadow : PlayerState
         Debug.Log("control");
         hackEnemy.GetComponent<Enemy>().Control(Time.deltaTime);
         // 再次按下骇入键，怪物死亡
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetKeyDown(InputController.instance.hack))
             LeaveHack();
     }
 
