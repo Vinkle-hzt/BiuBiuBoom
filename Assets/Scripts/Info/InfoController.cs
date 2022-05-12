@@ -8,6 +8,9 @@ public class InfoController : MonoBehaviour
     public CharacterInfo templateData;
     public CharacterInfo characterData;
 
+    public float HackDis { get { return characterData.hackDis; } }
+    public float Speed { get { return characterData.speed; } }
+
     private void Awake()
     {
         if (templateData != null)

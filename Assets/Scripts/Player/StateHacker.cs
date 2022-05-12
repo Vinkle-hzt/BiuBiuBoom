@@ -21,7 +21,7 @@ public class StateHacker : PlayerState
 
     private float horizontalMove;
 
-    public StateHacker(Transform transform, InfoController pinfo) : base(transform, pinfo)
+    public StateHacker(Transform transform, InfoController pInfo) : base(transform, pInfo)
     {
         rb = transform.GetComponent<Rigidbody2D>();
         groundCheck1 = transform.Find("Body").Find("GroundCheck1");
@@ -99,5 +99,10 @@ public class StateHacker : PlayerState
         rb.gravityScale = 1;
         pInfo.characterData.canShoot = true;
         transform.Find("Aim").gameObject.SetActive(true);
+    }
+
+    public override void Leave()
+    {
+        return;
     }
 }

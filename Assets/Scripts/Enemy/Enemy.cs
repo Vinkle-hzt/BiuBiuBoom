@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using BiuBiuBoom.Utils;
 
 public class Enemy : MonoBehaviour
 {
+    // TODO: 更改EnemyState相关的代码--增加了control
     public enum EnemyState
     {
-        normal, fallDown
+        normal, fallDown, control
     }
 
     private InfoController eInfo;
@@ -39,6 +41,24 @@ public class Enemy : MonoBehaviour
         (state == EnemyState.normal ? (Action)NormalMovement : FallDownAttack)();
         (state == EnemyState.normal ? (Action)NormalAttack : FallDownAttack)();
     }
+
+    #region 被控制
+    public void Control(float time)
+    {
+        state = EnemyState.control;
+        Vector3 position = new Vector3();
+        position.x = Input.GetAxis("Horizontal");
+        transform.position += position * eInfo.Speed * time;
+    }
+    #endregion
+
+    #region 死亡
+    public void Dead()
+    {
+        // 死亡动画
+        Destroy(gameObject);
+    }
+    #endregion
 
     #region 移动
     void NormalMovement()
@@ -76,6 +96,8 @@ public class Enemy : MonoBehaviour
                 curTime = enemyInfo.characterData.fallDownTime;
                 isFallDown = true;
                 state = EnemyState.fallDown;
+                // 更改 layer(用于实现斩杀和骇入)
+                UtilsClass.ChangeLayer(transform, LayerMask.NameToLayer("EnemyFall"));
                 //TODO: 瘫痪的美术表现
                 //用枪消失替代美术表现
                 transform.Find("Aim").gameObject.SetActive(false);
@@ -99,7 +121,9 @@ public class Enemy : MonoBehaviour
     {
         //用枪消失替代美术表现
         transform.Find("Aim").gameObject.SetActive(true);
-        enemyInfo.Rusume();
+        // 更改 layer(用于实现斩杀和骇入)
+        UtilsClass.ChangeLayer(transform, LayerMask.NameToLayer("Enemy"));
+        enemyInfo.Resume();
         eInfo.Resume(eInfo.characterData.maxHealth * enemyInfo.characterData.resumePercent);
     }
     #endregion

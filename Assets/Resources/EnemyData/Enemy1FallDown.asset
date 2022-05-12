@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Enemy1FallDown
   m_EditorClassIdentifier: 
   fallDownTime: 2
-  plusFallDownTime: 0
-  maxFallDownTime: 0
-  resumePercent: 0.8
+  plusFallDownTime: 0.5
+  maxFallDownTime: 5
+  resumePercent: 10
   plusResumePercent: 0
   minResumePercent: 0
