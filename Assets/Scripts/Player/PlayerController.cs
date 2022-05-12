@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // 检查按键是否按下
-        if (Input.GetButtonDown("ChangeState"))
+        if (Input.GetKeyDown(InputController.instance.changState))
         {
             if (pInfo.characterData.energy >= pInfo.characterData.changeStateEnergy
                 && curTime <= 0

@@ -58,7 +58,7 @@ public class StateHacker : PlayerState
         horizontalMove = Input.GetAxis("Horizontal");
 
         // check jump
-        if (Input.GetButtonDown("Jump") && isGround)
+        if (Input.GetKeyDown(InputController.instance.jump) && isGround)
         {
             isJump = true;
         }

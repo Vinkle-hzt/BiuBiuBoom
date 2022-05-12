@@ -8,7 +8,10 @@ public class InputController : MonoBehaviour
 
     [Header("跳跃")]
     public KeyCode jump;
-
+    [Header("切换形态")]
+    public KeyCode changState;
+    [Header("开枪")]
+    public KeyCode fire;
 
     private void Awake()
     {
