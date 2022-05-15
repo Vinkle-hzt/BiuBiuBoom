@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // TO-DO: 动画处理
-public class StateHacker : State
+public class StateHacker : PlayerState
 {
     private Rigidbody2D rb;
 
@@ -21,7 +21,7 @@ public class StateHacker : State
 
     private float horizontalMove;
 
-    public StateHacker(Transform transform, InfoController pinfo) : base(transform, pinfo)
+    public StateHacker(Transform transform, InfoController pInfo) : base(transform, pInfo)
     {
         rb = transform.GetComponent<Rigidbody2D>();
         groundCheck1 = transform.Find("Body").Find("GroundCheck1");
@@ -58,7 +58,7 @@ public class StateHacker : State
         horizontalMove = Input.GetAxis("Horizontal");
 
         // check jump
-        if (Input.GetButtonDown("Jump") && isGround)
+        if (Input.GetKeyDown(InputController.instance.jump) && isGround)
         {
             isJump = true;
         }
@@ -99,5 +99,10 @@ public class StateHacker : State
         rb.gravityScale = 1;
         pInfo.characterData.canShoot = true;
         transform.Find("Aim").gameObject.SetActive(true);
+    }
+
+    public override void Leave()
+    {
+        return;
     }
 }

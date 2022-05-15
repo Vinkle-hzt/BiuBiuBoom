@@ -17,9 +17,6 @@ public class CharacterInfo : ScriptableObject
     [Header("血量")]
     public float health;
 
-    [Header("瘫痪血量百分比")]
-    public float perFallDown;
-
     [Header("最大能量")]
     public float maxEnergy;
 
@@ -61,4 +58,7 @@ public class CharacterInfo : ScriptableObject
 
     [Header("能否射击")]
     public bool canShoot = true;
+
+    [Header("斩杀和骇入半径")]
+    public float hackDis;
 }
