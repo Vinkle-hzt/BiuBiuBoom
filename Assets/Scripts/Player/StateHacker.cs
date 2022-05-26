@@ -13,11 +13,18 @@ public class StateHacker : PlayerState
 
     private bool isJump;
     private bool isGround;
+    private bool isRunning;
 
     private Transform groundCheck1;
     private Transform groundCheck2;
     private float checkDistance;
     private LayerMask layer;
+
+    // 动画相关
+    private Animator anim;
+    int groundedID;
+    int runningID;
+    int verticalVelID;
 
     private float horizontalMove;
 
@@ -29,6 +36,12 @@ public class StateHacker : PlayerState
         layer = 1 << LayerMask.NameToLayer("Ground");
         isJump = false;
         isGround = false;
+
+        // 初始化动画
+        anim = transform.Find("Body").GetComponent<Animator>();
+        groundedID = Animator.StringToHash("Grounded");
+        runningID = Animator.StringToHash("Running");
+        verticalVelID = Animator.StringToHash("VerticalVel");
     }
 
     public override void FixedUpdate()
@@ -41,15 +54,20 @@ public class StateHacker : PlayerState
     public override void Update()
     {
         MoveCheck();
+        UpdateAnim();
     }
 
     void Movement()
     {
         if (horizontalMove != 0)
         {
+            isRunning = true;
             rb.velocity = new Vector2(horizontalMove * pInfo.characterData.speed, rb.velocity.y);
         }
-
+        else
+        {
+            isRunning = false;
+        }
         Jump();
     }
 
@@ -104,5 +122,12 @@ public class StateHacker : PlayerState
     public override void Leave()
     {
         return;
+    }
+
+    void UpdateAnim()
+    {
+        anim.SetBool(groundedID, isGround);
+        anim.SetBool(runningID, isRunning);
+        anim.SetFloat(verticalVelID, rb.velocity.y);
     }
 }
