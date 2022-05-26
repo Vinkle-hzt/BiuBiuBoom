@@ -73,4 +73,9 @@ public class PlayerController : MonoBehaviour
             state.Reset();
         }
     }
+
+    public InfoController GetInfo()
+    {
+        return pInfo;
+    }
 }
