@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
         normal, fallDown, control
     }
 
-    private InfoController eInfo;
+    public InfoController eInfo;
     private EnemyInfoController enemyInfo;
     private bool isFallDown;
 
