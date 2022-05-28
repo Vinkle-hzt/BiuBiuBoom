@@ -19,7 +19,6 @@ public class StateHacker : PlayerState
     private Transform groundCheck2;
     private float checkDistance;
     private LayerMask layer;
-    private Animator anim;
 
     // 动画相关
     private Animator anim;
@@ -56,43 +55,20 @@ public class StateHacker : PlayerState
 
     public override void Update()
     {
-        AnimSwitch();
-        FaceDirection();
         MoveCheck();
         UpdateAnim();
-    }
-
-    void AnimSwitch()
-    {
-        if (Mathf.Abs(rb.velocity.x) >= 0.1f)
-        {
-            anim.Play("run");
-        }
-        else
-        {
-            anim.Play("idle");
-        }
-    }
-
-    void FaceDirection()
-    {
-        if (faceDirection != 0)
-        {
-            transform.localScale = new Vector3(-faceDirection, 1, 1);
-        }
     }
 
     void Movement()
     {
         if (horizontalMove != 0)
-        {
-            isRunning = true;
             rb.velocity = new Vector2(horizontalMove * pInfo.characterData.speed, rb.velocity.y);
-        }
+
+        if (Mathf.Abs(horizontalMove) > 0.1f)
+            isRunning = true;
         else
-        {
             isRunning = false;
-        }
+
         Jump();
     }
 

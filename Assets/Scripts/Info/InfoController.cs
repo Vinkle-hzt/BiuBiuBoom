@@ -10,7 +10,8 @@ public class InfoController : MonoBehaviour
 
     public float HackDis { get { return characterData.hackDis; } }
     public float Speed { get { return characterData.speed; } }
-
+    public float AttackSpeed { get { return characterData.attackSpeed; } }
+    public float ShootSpeed { get { return characterData.shootSpeed; } }
     private void Awake()
     {
         if (templateData != null)

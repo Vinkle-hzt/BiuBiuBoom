@@ -15,6 +15,7 @@ MonoBehaviour:
   CharacterTag: Player
   maxHealth: 100
   health: 100
+  defence: 0
   maxEnergy: 10
   energy: 0
   energyAttack: 1
@@ -25,8 +26,8 @@ MonoBehaviour:
   speed: 5
   speedRatio: 1.2
   jumpforce: 5
-  attackSpeed: 3
-  shootSpeed: 10
+  attackSpeed: 4
+  shootSpeed: 15
   damage: 2
   canShoot: 1
   hackDis: 2
