@@ -79,6 +79,7 @@ public class StateShadow : PlayerState
             return ret;
         }
     }
+
     void Attack()
     {
         if (inHack)

@@ -40,10 +40,32 @@ public class InfoController : MonoBehaviour
         characterData.health = Mathf.Max(0, characterData.health - x);
     }
 
+    private void AddSpeed(float x)
+    {
+
+    }
+
+    private void SubSpeed(float x)
+    {
+
+    }
+
+    private void AddDefence(float x)
+    {
+
+    }
+
+    private void SubDefence(float x)
+    {
+
+    }
+
     public void TakeDamage(InfoController attacker, InfoController defender)
     {
         //被攻击者血量减少
-        defender.SubHealth(attacker.characterData.damage);
+        float damage = attacker.characterData.damage - defender.characterData.defence;
+        damage = damage <= 0 ? 0 : damage;
+        defender.SubHealth(damage);
         //攻击者获取能量
         attacker.AddEnergy(attacker.characterData.energyAttack);
     }
@@ -67,5 +89,25 @@ public class InfoController : MonoBehaviour
     public void Resume(float resumeHealth)
     {
         AddHealth(resumeHealth);
+    }
+
+    public void DefenceBuff(float defence)
+    {
+        AddDefence(defence);
+    }
+
+    public void DefenceDebuff(float defence)
+    {
+        SubDefence(defence);
+    }
+
+    public void SpeedBuff(float speed)
+    {
+        AddSpeed(speed);
+    }
+
+    public void SpeedDebuff(float speed)
+    {
+        SubSpeed(speed);
     }
 }

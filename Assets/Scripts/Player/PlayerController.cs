@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    PlayerState state;
-    PlayerState hacker;
-    PlayerState shadow;
-    InfoController pInfo;
+    private PlayerState state;
+    private PlayerState hacker;
+    private PlayerState shadow;
+    private InfoController pInfo;
 
     [SerializeField]
     float curTime;

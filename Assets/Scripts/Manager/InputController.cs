@@ -16,6 +16,8 @@ public class InputController : MonoBehaviour
     public KeyCode kill;
     [Header("骇入")]
     public KeyCode hack;
+    [Header("使用权限")]
+    public KeyCode skill;
 
     private void Awake()
     {

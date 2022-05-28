@@ -19,6 +19,7 @@ public class StateHacker : PlayerState
     private Transform groundCheck2;
     private float checkDistance;
     private LayerMask layer;
+    private Animator anim;
 
     // 动画相关
     private Animator anim;
@@ -27,6 +28,7 @@ public class StateHacker : PlayerState
     int verticalVelID;
 
     private float horizontalMove;
+    private float faceDirection;
 
     public StateHacker(Transform transform, InfoController pInfo) : base(transform, pInfo)
     {
@@ -34,6 +36,7 @@ public class StateHacker : PlayerState
         groundCheck1 = transform.Find("Body").Find("GroundCheck1");
         groundCheck2 = transform.Find("Body").Find("GroundCheck2");
         layer = 1 << LayerMask.NameToLayer("Ground");
+        anim = transform.GetComponent<Animator>();
         isJump = false;
         isGround = false;
 
@@ -53,8 +56,30 @@ public class StateHacker : PlayerState
 
     public override void Update()
     {
+        AnimSwitch();
+        FaceDirection();
         MoveCheck();
         UpdateAnim();
+    }
+
+    void AnimSwitch()
+    {
+        if (Mathf.Abs(rb.velocity.x) >= 0.1f)
+        {
+            anim.Play("run");
+        }
+        else
+        {
+            anim.Play("idle");
+        }
+    }
+
+    void FaceDirection()
+    {
+        if (faceDirection != 0)
+        {
+            transform.localScale = new Vector3(-faceDirection, 1, 1);
+        }
     }
 
     void Movement()
@@ -74,6 +99,7 @@ public class StateHacker : PlayerState
     void MoveCheck()
     {
         horizontalMove = Input.GetAxis("Horizontal");
+        faceDirection = Input.GetAxisRaw("Horizontal");
 
         // check jump
         if (Input.GetKeyDown(InputController.instance.jump) && isGround)
