@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: CharacterInfo
   m_EditorClassIdentifier: 
   CharacterTag: Player
-  maxHealth: 0
-  health: 0
+  maxHealth: 100
+  health: 100
+  defence: 0
   maxEnergy: 10
   energy: 0
   energyAttack: 1
@@ -24,9 +25,9 @@ MonoBehaviour:
   changeStateTime: 0
   speed: 5
   speedRatio: 1.2
-  jumpforce: 0
-  attackSpeed: 3
-  shootSpeed: 10
+  jumpforce: 5
+  attackSpeed: 4
+  shootSpeed: 15
   damage: 2
   canShoot: 1
   hackDis: 2

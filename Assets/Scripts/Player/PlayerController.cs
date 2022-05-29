@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    PlayerState state;
-    PlayerState hacker;
-    PlayerState shadow;
-    InfoController pInfo;
+    private PlayerState state;
+    private PlayerState hacker;
+    private PlayerState shadow;
+    public InfoController pInfo;
+
+    [SerializeField]
+    private Transform pfAimer;
 
     [SerializeField]
     float curTime;
@@ -17,7 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         pInfo = GetComponent<InfoController>();
         hacker = new StateHacker(transform, pInfo);
-        shadow = new StateShadow(transform, pInfo);
+        shadow = new StateShadow(transform, pInfo, pfAimer);
         state = hacker;
         curTime = 0;
     }
@@ -72,5 +75,10 @@ public class PlayerController : MonoBehaviour
             state = hacker;
             state.Reset();
         }
+    }
+
+    public InfoController GetInfo()
+    {
+        return pInfo;
     }
 }

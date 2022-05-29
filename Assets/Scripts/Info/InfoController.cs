@@ -8,9 +8,15 @@ public class InfoController : MonoBehaviour
     public CharacterInfo templateData;
     public CharacterInfo characterData;
 
+    public Skill skill;
+
+    private float tempDefence;
+    private float tempSpeed;
+
     public float HackDis { get { return characterData.hackDis; } }
     public float Speed { get { return characterData.speed; } }
-
+    public float AttackSpeed { get { return characterData.attackSpeed; } }
+    public float ShootSpeed { get { return characterData.shootSpeed; } }
     private void Awake()
     {
         if (templateData != null)
@@ -18,6 +24,9 @@ public class InfoController : MonoBehaviour
             //生成的方法
             characterData = Instantiate(templateData);
         }
+        tempDefence = characterData.defence;
+        tempSpeed = characterData.speed;
+        skill = null;
     }
 
     private void AddEnergy(float x)
@@ -40,10 +49,45 @@ public class InfoController : MonoBehaviour
         characterData.health = Mathf.Max(0, characterData.health - x);
     }
 
+    private void AddSpeed(float x)
+    {
+        Debug.Log(characterData.speed);
+        characterData.speed += x;
+        Debug.Log(characterData.speed);
+    }
+
+    private void SubSpeed(float x)
+    {
+        characterData.speed = Mathf.Max(0, characterData.speed - x);
+    }
+
+    private void ResumeSpeed()
+    {
+        characterData.speed = tempSpeed;
+        Debug.Log(characterData.speed);
+    }
+
+    private void AddDefence(float x)
+    {
+        characterData.defence += x;
+    }
+
+    private void SubDefence(float x)
+    {
+        characterData.defence = Mathf.Max(0, characterData.defence - x);
+    }
+
+    private void ResumeDefence()
+    {
+        characterData.defence = tempDefence;
+    }
+
     public void TakeDamage(InfoController attacker, InfoController defender)
     {
         //被攻击者血量减少
-        defender.SubHealth(attacker.characterData.damage);
+        float damage = attacker.characterData.damage - defender.characterData.defence;
+        damage = damage <= 0 ? 0 : damage;
+        defender.SubHealth(damage);
         //攻击者获取能量
         attacker.AddEnergy(attacker.characterData.energyAttack);
     }
@@ -67,5 +111,50 @@ public class InfoController : MonoBehaviour
     public void Resume(float resumeHealth)
     {
         AddHealth(resumeHealth);
+    }
+
+    public void DefenceBuff(float defence)
+    {
+        AddDefence(defence);
+    }
+
+    public void DefenceDebuff(float defence)
+    {
+        SubDefence(defence);
+    }
+
+    public void DefenceResume()
+    {
+        ResumeDefence();
+    }
+
+    public void SpeedBuff(float speed)
+    {
+        AddSpeed(speed);
+    }
+
+    public void SpeedDebuff(float speed)
+    {
+        SubSpeed(speed);
+    }
+
+    public void SpeedResume()
+    {
+        ResumeSpeed();
+    }
+
+    public void GetSkill(string skillName)
+    {
+        switch (skillName)
+        {
+            case "RCE":
+                skill = new RCE(transform);
+                break;
+            case "Flash":
+                skill = new Flash(transform, 5f, 3f);
+                break;
+            default:
+                break;
+        }
     }
 }

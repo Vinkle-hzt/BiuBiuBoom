@@ -9,10 +9,13 @@ public class StateShadow : PlayerState
     private Vector3 position;
     private bool inHack; // 是否在hack
     private GameObject hackEnemy; // hack的对象
-    public StateShadow(Transform body, InfoController pInfo) : base(body, pInfo)
+    private Transform pfAimer;
+    public StateShadow(Transform body, InfoController pInfo, Transform pfAimer) : base(body, pInfo)
     {
         rb = transform.GetComponent<Rigidbody2D>();
         inHack = false;
+        this.pfAimer = Object.Instantiate(pfAimer, transform.position, Quaternion.identity);
+        resetAimer();
     }
 
     public override void Update()
@@ -29,11 +32,15 @@ public class StateShadow : PlayerState
 
     void Movement()
     {
-        transform.position += position * pInfo.characterData.speed * Time.deltaTime * pInfo.characterData.speedRatio;
+        if (!inHack)
+            transform.position += position * pInfo.characterData.speed * Time.deltaTime * pInfo.characterData.speedRatio;
+        else
+            transform.position = hackEnemy.transform.position;
     }
 
     void MoveCheck()
     {
+
         position.x = Input.GetAxis("Horizontal");
         position.y = Input.GetAxis("Vertical");
     }
@@ -59,7 +66,7 @@ public class StateShadow : PlayerState
         int num = Physics2D.OverlapCircleNonAlloc(transform.position, pInfo.HackDis, enemies, LayerMask.GetMask("EnemyFall"));
         if (num == 0)
         {
-            Debug.Log("Notfind");
+            //Debug.Log("Notfind");
             return null;
         }
         else
@@ -75,10 +82,11 @@ public class StateShadow : PlayerState
             }
             // 绘制矩形表示选中
             UtilsClass.Debug.DrawRect2D(ret.transform.position, 0.5f, Color.red);
-            Debug.Log("Find, position = " + ret.transform.position);
+            //Debug.Log("Find, position = " + ret.transform.position);
             return ret;
         }
     }
+
     void Attack()
     {
         if (inHack)
@@ -90,16 +98,20 @@ public class StateShadow : PlayerState
             var enemy = findNearestEnemy();
             if (enemy != null)
             {
+                setAimer(enemy.transform.position);
                 if (Input.GetKeyDown(InputController.instance.kill))
                     Kill(enemy);
                 else if (Input.GetKeyDown(InputController.instance.hack))
                     Hack(enemy);
             }
+            else
+                resetAimer();
         }
     }
 
     void Kill(GameObject enemy)
     {
+        resetAimer();
         Debug.Log("Kill");
         enemy.GetComponent<Enemy>().Dead();
         // 应该要有个瞬移的动画，我这直接瞬移了
@@ -108,6 +120,7 @@ public class StateShadow : PlayerState
 
     void Hack(GameObject enemy)
     {
+        resetAimer();
         inHack = true;
         hackEnemy = enemy;
         // 取消碰撞体积，隐藏角色
@@ -117,7 +130,7 @@ public class StateShadow : PlayerState
 
     void Control()
     {
-        Debug.Log("control");
+        //Debug.Log("control");
         hackEnemy.GetComponent<Enemy>().Control(Time.deltaTime);
         // 再次按下骇入键，怪物死亡
         if (Input.GetKeyDown(InputController.instance.hack))
@@ -126,7 +139,7 @@ public class StateShadow : PlayerState
 
     void LeaveHack()
     {
-        Debug.Log("leave hack");
+        //Debug.Log("leave hack");
         inHack = false;
         // 角色到怪物位置
         transform.position = hackEnemy.transform.position;
@@ -134,12 +147,27 @@ public class StateShadow : PlayerState
         // 取消碰撞体积，隐藏角色
         transform.GetComponent<CapsuleCollider2D>().enabled = true;
         transform.Find("Body").gameObject.SetActive(true);
+
+        //获取权限
+        transform.GetComponent<PlayerController>().pInfo.GetSkill(hackEnemy.GetComponent<Enemy>().GetSkill());
     }
 
     public override void Leave()
     {
         if (inHack)
             LeaveHack();
+        resetAimer();
+    }
+
+    private void setAimer(Vector3 position)
+    {
+        pfAimer.position = position;
+        pfAimer.gameObject.SetActive(true);
+    }
+
+    private void resetAimer()
+    {
+        pfAimer.gameObject.SetActive(false);
     }
     #endregion
 }

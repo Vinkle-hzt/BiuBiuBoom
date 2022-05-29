@@ -6,44 +6,48 @@ using BiuBiuBoom.Utils;
 
 public class Enemy : MonoBehaviour
 {
+
     // TODO: 更改EnemyState相关的代码--增加了control
     public enum EnemyState
     {
         normal, fallDown, control
     }
 
-    private InfoController eInfo;
-    private EnemyInfoController enemyInfo;
+    public InfoController eInfo;
+    public EnemyInfoController enemyInfo;
     private bool isFallDown;
-
     private float curTime;
-    private EnemyState state;
-
-    private void Awake()
-    {
-        eInfo = GetComponent<InfoController>();
-        enemyInfo = GetComponent<EnemyInfoController>();
-
-        //正常状态
-        state = EnemyState.normal;
-    }
+    protected EnemyState state;
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        eInfo = GetComponent<InfoController>();
+        enemyInfo = GetComponent<EnemyInfoController>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        //正常状态
+        state = EnemyState.normal;
     }
 
     // Update is called once per frame
     void Update()
     {
-        FallDown();
-        (state == EnemyState.normal ? (Action)NormalMovement : FallDownAttack)();
-        (state == EnemyState.normal ? (Action)NormalAttack : FallDownAttack)();
+        if (state != EnemyState.control)
+        {
+            FallDown();
+            (state == EnemyState.normal ? (Action)NormalMovement : FallDownAttack)();
+            (state == EnemyState.normal ? (Action)NormalAttack : FallDownAttack)();
+        }
+    }
+
+    public virtual String GetSkill()
+    {
+        return null;
     }
 
     #region 被控制
-    public void Control(float time)
+    public virtual void Control(float time)
     {
         state = EnemyState.control;
         Vector3 position = new Vector3();
@@ -61,25 +65,25 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region 移动
-    void NormalMovement()
+    virtual protected void NormalMovement()
     {
         //AI移动
         //不同敌人有不同的移动方法，此处为父类，实现为空方法
     }
 
-    void FallDownMovement()
+    virtual protected void FallDownMovement()
     {
         //TODO:瘫痪统一不能移动
     }
     #endregion
 
     #region 攻击
-    void NormalAttack()
+    virtual protected void NormalAttack()
     {
         //同移动为空方法
     }
 
-    void FallDownAttack()
+    virtual protected void FallDownAttack()
     {
         //同瘫痪移动
     }
@@ -100,7 +104,7 @@ public class Enemy : MonoBehaviour
                 UtilsClass.ChangeLayer(transform, LayerMask.NameToLayer("EnemyFall"));
                 //TODO: 瘫痪的美术表现
                 //用枪消失替代美术表现
-                transform.Find("Aim").gameObject.SetActive(false);
+                spriteRenderer.color = UtilsClass.HexToColor("FF8A8AFF");
             }
 
             if (curTime <= 0)
@@ -119,8 +123,7 @@ public class Enemy : MonoBehaviour
 
     void Resume()
     {
-        //用枪消失替代美术表现
-        transform.Find("Aim").gameObject.SetActive(true);
+        spriteRenderer.color = new Color(1, 1, 1, 1);
         // 更改 layer(用于实现斩杀和骇入)
         UtilsClass.ChangeLayer(transform, LayerMask.NameToLayer("Enemy"));
         enemyInfo.Resume();

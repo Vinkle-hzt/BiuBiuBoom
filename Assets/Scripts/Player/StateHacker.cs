@@ -13,13 +13,23 @@ public class StateHacker : PlayerState
 
     private bool isJump;
     private bool isGround;
+    private bool isRunning;
 
     private Transform groundCheck1;
     private Transform groundCheck2;
     private float checkDistance;
     private LayerMask layer;
 
+    // 动画相关
+    private Animator anim;
+    int groundedID;
+    int runningID;
+    int verticalVelID;
+
     private float horizontalMove;
+    private float faceDirection;
+
+    private float curSkillCD;
 
     public StateHacker(Transform transform, InfoController pInfo) : base(transform, pInfo)
     {
@@ -27,8 +37,15 @@ public class StateHacker : PlayerState
         groundCheck1 = transform.Find("Body").Find("GroundCheck1");
         groundCheck2 = transform.Find("Body").Find("GroundCheck2");
         layer = 1 << LayerMask.NameToLayer("Ground");
+        anim = transform.GetComponent<Animator>();
         isJump = false;
         isGround = false;
+
+        // 初始化动画
+        anim = transform.Find("Body").GetComponent<Animator>();
+        groundedID = Animator.StringToHash("Grounded");
+        runningID = Animator.StringToHash("Running");
+        verticalVelID = Animator.StringToHash("VerticalVel");
     }
 
     public override void FixedUpdate()
@@ -41,14 +58,19 @@ public class StateHacker : PlayerState
     public override void Update()
     {
         MoveCheck();
+        UpdateAnim();
+        SkillActive();
     }
 
     void Movement()
     {
         if (horizontalMove != 0)
-        {
             rb.velocity = new Vector2(horizontalMove * pInfo.characterData.speed, rb.velocity.y);
-        }
+
+        if (Mathf.Abs(horizontalMove) > 0.1f)
+            isRunning = true;
+        else
+            isRunning = false;
 
         Jump();
     }
@@ -56,6 +78,7 @@ public class StateHacker : PlayerState
     void MoveCheck()
     {
         horizontalMove = Input.GetAxis("Horizontal");
+        faceDirection = Input.GetAxisRaw("Horizontal");
 
         // check jump
         if (Input.GetKeyDown(InputController.instance.jump) && isGround)
@@ -104,5 +127,50 @@ public class StateHacker : PlayerState
     public override void Leave()
     {
         return;
+    }
+
+    void UpdateAnim()
+    {
+        anim.SetBool(groundedID, isGround);
+        anim.SetBool(runningID, isRunning);
+        anim.SetFloat(verticalVelID, rb.velocity.y);
+    }
+
+    void SkillActive()
+    {
+        if (pInfo.skill == null)
+            return;
+
+        if (pInfo.skill.isFirst)
+        {
+            curSkillCD = pInfo.skill.initialCoolDown;
+            pInfo.skill.isFirst = false;
+        }
+
+        if (curSkillCD <= 0)
+        {
+            if (pInfo.skill != null)
+            {
+                if (Input.GetKeyDown(InputController.instance.skill))
+                {
+                    //还有数用次数
+                    if (pInfo.skill.times > 0)
+                    {
+                        //触发技能
+                        pInfo.skill.SkillActive();
+                        curSkillCD = pInfo.skill.coolDown;
+                    }
+
+                    if (pInfo.skill.times <= 0)
+                    {
+                        pInfo.skill = null;
+                    }
+                }
+            }
+        }
+        else
+        {
+            curSkillCD -= Time.deltaTime;
+        }
     }
 }
