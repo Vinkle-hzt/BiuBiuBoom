@@ -71,19 +71,19 @@ public class Enemy : MonoBehaviour
         //不同敌人有不同的移动方法，此处为父类，实现为空方法
     }
 
-    void FallDownMovement()
+    virtual protected void FallDownMovement()
     {
         //TODO:瘫痪统一不能移动
     }
     #endregion
 
     #region 攻击
-    void NormalAttack()
+    virtual protected void NormalAttack()
     {
         //同移动为空方法
     }
 
-    void FallDownAttack()
+    virtual protected void FallDownAttack()
     {
         //同瘫痪移动
     }

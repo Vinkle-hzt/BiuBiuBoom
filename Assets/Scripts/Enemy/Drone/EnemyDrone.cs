@@ -55,7 +55,10 @@ public class EnemyDrone : Enemy
                 anim.SetTrigger("Turn");
             }
         }
+    }
 
+    protected override void NormalAttack()
+    {
         shootCurTime += Time.deltaTime;
         if (shootCurTime > 1 / eInfo.AttackSpeed)
         {

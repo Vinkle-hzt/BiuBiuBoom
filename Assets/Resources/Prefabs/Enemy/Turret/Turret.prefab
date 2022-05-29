@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 606354451}
   - component: {fileID: 606354452}
   - component: {fileID: 606354453}
+  - component: {fileID: 606354457}
+  - component: {fileID: 606354458}
   m_Layer: 10
   m_Name: Turret
   m_TagString: Enemy
@@ -30,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 7664240104989540620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -122,6 +124,8 @@ MonoBehaviour:
   target: {fileID: 0}
   pfBullet: {fileID: 5508322711988092284, guid: b4c1c35efb1a812488de7cf60f06bd1f,
     type: 3}
+  pfAimLine: {fileID: 3002765991414920205, guid: ce0d82ce88c563846b000371d1f92e1e,
+    type: 3}
 --- !u!114 &606354452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,3 +154,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templateData: {fileID: 11400000, guid: 6cb2ee8e3d1d0674b8df9baf052e01c7, type: 2}
   characterData: {fileID: 0}
+--- !u!50 &606354457
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7664240104989540620}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!70 &606354458
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7664240104989540620}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0027546287, y: 0}
+  m_Size: {x: 0.17050931, y: 0.25}
+  m_Direction: 0
