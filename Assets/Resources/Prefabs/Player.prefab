@@ -1,5 +1,48 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1278094923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1278094924}
+  - component: {fileID: 1278094925}
+  m_Layer: 0
+  m_Name: BuffController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1278094924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278094923}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2500532186031077449}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1278094925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278094923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73eff6a4e3dd604ab782330104902d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1571375537111236760
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,6 +229,7 @@ GameObject:
   - component: {fileID: 2500532186031077450}
   - component: {fileID: 2500532186031077451}
   - component: {fileID: 2500532186031077452}
+  - component: {fileID: 7080259962559804068}
   - component: {fileID: 995553883}
   - component: {fileID: 995553882}
   m_Layer: 0
@@ -208,6 +252,7 @@ Transform:
   m_Children:
   - {fileID: 2500532185741901110}
   - {fileID: 2500532186130218721}
+  - {fileID: 1278094924}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -265,7 +310,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f7df0e55cb6e14e84ef1718285b157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pInfo: {fileID: 0}
   curTime: 0
+--- !u!114 &7080259962559804068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500532186031077431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5248db9365237ec4ca8f34140adc6728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &995553883
 Rigidbody2D:
   serializedVersion: 4

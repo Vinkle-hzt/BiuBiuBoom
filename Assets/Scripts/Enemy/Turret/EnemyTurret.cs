@@ -66,4 +66,9 @@ public class EnemyTurret : Enemy
 
         bulletTransform.GetComponent<Bullet>().Setup(shootDir, eInfo);
     }
+
+    public override String GetSkill()
+    {
+        return "RCE";
+    }
 }

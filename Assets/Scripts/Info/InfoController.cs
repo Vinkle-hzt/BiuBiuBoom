@@ -8,6 +8,11 @@ public class InfoController : MonoBehaviour
     public CharacterInfo templateData;
     public CharacterInfo characterData;
 
+    public Skill skill;
+
+    private float tempDefence;
+    private float tempSpeed;
+
     public float HackDis { get { return characterData.hackDis; } }
     public float Speed { get { return characterData.speed; } }
     public float AttackSpeed { get { return characterData.attackSpeed; } }
@@ -19,6 +24,9 @@ public class InfoController : MonoBehaviour
             //生成的方法
             characterData = Instantiate(templateData);
         }
+        tempDefence = characterData.defence;
+        tempSpeed = characterData.speed;
+        skill = null;
     }
 
     private void AddEnergy(float x)
@@ -43,22 +51,35 @@ public class InfoController : MonoBehaviour
 
     private void AddSpeed(float x)
     {
-
+        Debug.Log(characterData.speed);
+        characterData.speed += x;
+        Debug.Log(characterData.speed);
     }
 
     private void SubSpeed(float x)
     {
+        characterData.speed = Mathf.Max(0, characterData.speed - x);
+    }
 
+    private void ResumeSpeed()
+    {
+        characterData.speed = tempSpeed;
+        Debug.Log(characterData.speed);
     }
 
     private void AddDefence(float x)
     {
-
+        characterData.defence += x;
     }
 
     private void SubDefence(float x)
     {
+        characterData.defence = Mathf.Max(0, characterData.defence - x);
+    }
 
+    private void ResumeDefence()
+    {
+        characterData.defence = tempDefence;
     }
 
     public void TakeDamage(InfoController attacker, InfoController defender)
@@ -102,6 +123,11 @@ public class InfoController : MonoBehaviour
         SubDefence(defence);
     }
 
+    public void DefenceResume()
+    {
+        ResumeDefence();
+    }
+
     public void SpeedBuff(float speed)
     {
         AddSpeed(speed);
@@ -110,5 +136,25 @@ public class InfoController : MonoBehaviour
     public void SpeedDebuff(float speed)
     {
         SubSpeed(speed);
+    }
+
+    public void SpeedResume()
+    {
+        ResumeSpeed();
+    }
+
+    public void GetSkill(string skillName)
+    {
+        switch (skillName)
+        {
+            case "RCE":
+                skill = new RCE(transform);
+                break;
+            case "Flash":
+                skill = new Flash(transform, 5f, 3f);
+                break;
+            default:
+                break;
+        }
     }
 }

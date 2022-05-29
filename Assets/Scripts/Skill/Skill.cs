@@ -5,9 +5,10 @@ using UnityEngine;
 public abstract class Skill
 {
     protected int level;
-    protected float coolDown;
-    protected int times;
-    protected float initialCoolDown;
+    public float coolDown;
+    public int times;
+    public float initialCoolDown;
+    public bool isFirst;
     protected Transform transform;
 
     protected Skill(Transform transform)
@@ -15,6 +16,7 @@ public abstract class Skill
         this.transform = transform;
         this.times = 3;
         this.initialCoolDown = 1f;
+        this.isFirst = true;
     }
 
     protected void GetCoolDown()
