@@ -138,6 +138,9 @@ public class StateHacker : PlayerState
 
     void SkillActive()
     {
+        if (pInfo.skill == null)
+            return;
+
         if (pInfo.skill.isFirst)
         {
             curSkillCD = pInfo.skill.initialCoolDown;
