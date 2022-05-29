@@ -9,10 +9,13 @@ public class StateShadow : PlayerState
     private Vector3 position;
     private bool inHack; // 是否在hack
     private GameObject hackEnemy; // hack的对象
-    public StateShadow(Transform body, InfoController pInfo) : base(body, pInfo)
+    private Transform pfAimer;
+    public StateShadow(Transform body, InfoController pInfo, Transform pfAimer) : base(body, pInfo)
     {
         rb = transform.GetComponent<Rigidbody2D>();
         inHack = false;
+        this.pfAimer = Object.Instantiate(pfAimer, transform.position, Quaternion.identity);
+        resetAimer();
     }
 
     public override void Update()
@@ -29,11 +32,15 @@ public class StateShadow : PlayerState
 
     void Movement()
     {
-        transform.position += position * pInfo.characterData.speed * Time.deltaTime * pInfo.characterData.speedRatio;
+        if (!inHack)
+            transform.position += position * pInfo.characterData.speed * Time.deltaTime * pInfo.characterData.speedRatio;
+        else
+            transform.position = hackEnemy.transform.position;
     }
 
     void MoveCheck()
     {
+
         position.x = Input.GetAxis("Horizontal");
         position.y = Input.GetAxis("Vertical");
     }
@@ -91,16 +98,20 @@ public class StateShadow : PlayerState
             var enemy = findNearestEnemy();
             if (enemy != null)
             {
+                setAimer(enemy.transform.position);
                 if (Input.GetKeyDown(InputController.instance.kill))
                     Kill(enemy);
                 else if (Input.GetKeyDown(InputController.instance.hack))
                     Hack(enemy);
             }
+            else
+                resetAimer();
         }
     }
 
     void Kill(GameObject enemy)
     {
+        resetAimer();
         Debug.Log("Kill");
         enemy.GetComponent<Enemy>().Dead();
         // 应该要有个瞬移的动画，我这直接瞬移了
@@ -109,6 +120,7 @@ public class StateShadow : PlayerState
 
     void Hack(GameObject enemy)
     {
+        resetAimer();
         inHack = true;
         hackEnemy = enemy;
         // 取消碰撞体积，隐藏角色
@@ -141,6 +153,18 @@ public class StateShadow : PlayerState
     {
         if (inHack)
             LeaveHack();
+        resetAimer();
+    }
+
+    private void setAimer(Vector3 position)
+    {
+        pfAimer.position = position;
+        pfAimer.gameObject.SetActive(true);
+    }
+
+    private void resetAimer()
+    {
+        pfAimer.gameObject.SetActive(false);
     }
     #endregion
 }

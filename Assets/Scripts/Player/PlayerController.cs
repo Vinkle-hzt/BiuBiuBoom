@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     private InfoController pInfo;
 
     [SerializeField]
+    private Transform pfAimer;
+
+    [SerializeField]
     float curTime;
 
     // Start is called before the first frame update
@@ -17,7 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         pInfo = GetComponent<InfoController>();
         hacker = new StateHacker(transform, pInfo);
-        shadow = new StateShadow(transform, pInfo);
+        shadow = new StateShadow(transform, pInfo, pfAimer);
         state = hacker;
         curTime = 0;
     }
