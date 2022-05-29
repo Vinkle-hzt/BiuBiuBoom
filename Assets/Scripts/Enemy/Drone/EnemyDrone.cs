@@ -16,8 +16,7 @@ public class EnemyDrone : Enemy
     private Direction direction = Direction.Point1;
     private Animator anim;
     public Transform target;
-    bool turn = false;
-    public float curTime;
+    public float shootCurTime;
 
     [Header("子弹跟踪时间")]
     public float trackTime;
@@ -56,10 +55,10 @@ public class EnemyDrone : Enemy
             }
         }
 
-        curTime += Time.deltaTime;
-        if (curTime > 1 / eInfo.AttackSpeed)
+        shootCurTime += Time.deltaTime;
+        if (shootCurTime > 1 / eInfo.AttackSpeed)
         {
-            curTime = 0;
+            shootCurTime = 0;
             Attack();
         }
     }

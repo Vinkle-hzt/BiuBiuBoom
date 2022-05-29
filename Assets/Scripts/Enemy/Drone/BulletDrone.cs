@@ -14,7 +14,7 @@ public class BulletDrone : MonoBehaviour
 
     [SerializeField]
     [Header("爆炸效果")]
-    private Transform pfHit;
+    private Transform pfShot;
     public void Setup(Transform shootTarget, InfoController pInfo, float trackTime)
     {
         this.shootTarget = shootTarget;
@@ -43,13 +43,13 @@ public class BulletDrone : MonoBehaviour
         if (collision.CompareTag(collTag))
         {
             pInfo.TakeDamage(pInfo, collision.GetComponent<InfoController>());
-            Instantiate(pfHit, transform.position, Quaternion.identity);
+            Instantiate(pfShot, transform.position, Quaternion.identity);
             Destroy(gameObject);
             return;
         }
         else if (collision.CompareTag("Ground"))
         {
-            Instantiate(pfHit, transform.position, Quaternion.identity);
+            Instantiate(pfShot, transform.position, Quaternion.identity);
             Destroy(gameObject);
             return;
         }
