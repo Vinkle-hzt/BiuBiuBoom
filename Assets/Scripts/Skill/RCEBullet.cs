@@ -31,16 +31,22 @@ public class RCEBullet : MonoBehaviour
     [Header("爆炸效果")]
     private Transform pfHit;
 
+    private bool isMove;
+    private Transform hit;
     public void Initial(Vector3 shootDir)
     {
         state = State.bullet;
         this.shootDir = shootDir;
+        isMove = true;
         Destroy(gameObject, 5f);
     }
 
     private void Update()
     {
-        transform.position += shootDir * shootSpeed * Time.deltaTime;
+        if (isMove)
+        {
+            transform.position += shootDir * shootSpeed * Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,7 +55,8 @@ public class RCEBullet : MonoBehaviour
         {
             if (collision.CompareTag("Ground") || collision.CompareTag("Enemy"))
             {
-                Instantiate(pfHit, transform.position, Quaternion.identity);
+                hit = Instantiate(pfHit, transform.position, Quaternion.identity);
+                isMove = false;
                 //生成圆形范围，存在一定时间
                 StartCoroutine(StartBuffs());
                 //Destroy(gameObject);
@@ -63,6 +70,8 @@ public class RCEBullet : MonoBehaviour
         state = State.buff;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = true;
+        GetComponent<CircleCollider2D>().radius = radius;
+        GetComponent<SpriteRenderer>().enabled = false;
 
         yield return new WaitForSeconds(consistantTime);
 
@@ -79,8 +88,9 @@ public class RCEBullet : MonoBehaviour
     public void ClearBuff(InfoController info)
     {
         //消去buff
-        info.DefenceBuff(deleteDefence);
-        info.SpeedBuff(deleteSpeed);
+        info.DefenceResume();
+        info.SpeedResume();
+        Destroy(hit.gameObject);
         Destroy(transform.gameObject);
     }
 }

@@ -1214,7 +1214,7 @@ MonoBehaviour:
   fire: 323
   kill: 323
   hack: 324
-  skill: 0
+  skill: 101
 --- !u!4 &1377640167
 Transform:
   m_ObjectHideFlags: 0
@@ -1741,6 +1741,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500532186031077431, guid: 834a35d581e037b4eac0580115e16e63,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2500532186031077449, guid: 834a35d581e037b4eac0580115e16e63,
         type: 3}

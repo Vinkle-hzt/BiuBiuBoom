@@ -66,7 +66,7 @@ public class StateShadow : PlayerState
         int num = Physics2D.OverlapCircleNonAlloc(transform.position, pInfo.HackDis, enemies, LayerMask.GetMask("EnemyFall"));
         if (num == 0)
         {
-            Debug.Log("Notfind");
+            //Debug.Log("Notfind");
             return null;
         }
         else
@@ -82,7 +82,7 @@ public class StateShadow : PlayerState
             }
             // 绘制矩形表示选中
             UtilsClass.Debug.DrawRect2D(ret.transform.position, 0.5f, Color.red);
-            Debug.Log("Find, position = " + ret.transform.position);
+            //Debug.Log("Find, position = " + ret.transform.position);
             return ret;
         }
     }
@@ -130,7 +130,7 @@ public class StateShadow : PlayerState
 
     void Control()
     {
-        Debug.Log("control");
+        //Debug.Log("control");
         hackEnemy.GetComponent<Enemy>().Control(Time.deltaTime);
         // 再次按下骇入键，怪物死亡
         if (Input.GetKeyDown(InputController.instance.hack))
@@ -139,7 +139,7 @@ public class StateShadow : PlayerState
 
     void LeaveHack()
     {
-        Debug.Log("leave hack");
+        //Debug.Log("leave hack");
         inHack = false;
         // 角色到怪物位置
         transform.position = hackEnemy.transform.position;
@@ -147,6 +147,9 @@ public class StateShadow : PlayerState
         // 取消碰撞体积，隐藏角色
         transform.GetComponent<CapsuleCollider2D>().enabled = true;
         transform.Find("Body").gameObject.SetActive(true);
+
+        //获取权限
+        transform.GetComponent<PlayerController>().pInfo.GetSkill(hackEnemy.GetComponent<Enemy>().GetSkill());
     }
 
     public override void Leave()

@@ -11,15 +11,15 @@ public class RCE : Skill
     {
         base.level = 2;
         base.GetCoolDown();
-        bullet = Resources.Load<Transform>("/Prefabs/crossed");
-        gunEndPoint = transform.Find("GunEndPointPosition");
+        bullet = Resources.Load<Transform>("Prefabs/crossed");
+        gunEndPoint = transform.GetChild(0).GetChild(1);
     }
 
     public override void SkillActive()
     {
         base.times--;
 
-        Vector3 shootDir = (Input.mousePosition - gunEndPoint.position).normalized;
+        Vector3 shootDir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gunEndPoint.position).normalized;
         Vector3 shootRotation = new Vector3(0, 0, Mathf.Atan2(shootDir.y, shootDir.x) * 180 / Mathf.PI);
         Transform RCEbullet = transform.GetComponent<InstantiateCS>().InstantiateBullet(bullet, gunEndPoint.position, Quaternion.Euler(shootRotation));
 

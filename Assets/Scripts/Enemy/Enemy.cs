@@ -41,6 +41,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public virtual String GetSkill()
+    {
+        return null;
+    }
+
     #region 被控制
     public virtual void Control(float time)
     {

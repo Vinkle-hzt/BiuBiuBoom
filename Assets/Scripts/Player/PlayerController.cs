@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     private PlayerState state;
     private PlayerState hacker;
     private PlayerState shadow;
-    private InfoController pInfo;
+    public InfoController pInfo;
 
     [SerializeField]
     private Transform pfAimer;

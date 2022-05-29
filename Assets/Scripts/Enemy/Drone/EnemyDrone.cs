@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -71,6 +72,11 @@ public class EnemyDrone : Enemy
         Transform bulletTransform = Instantiate(pfBullet, transform.position, Quaternion.identity);
 
         bulletTransform.GetComponent<BulletDrone>().Setup(target, eInfo, trackTime);
+    }
+
+    public override String GetSkill()
+    {
+        return "Flash";
     }
 }
 
