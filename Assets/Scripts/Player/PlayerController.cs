@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private PlayerState state;
+    public PlayerState state;
     private PlayerState hacker;
     private PlayerState shadow;
     public InfoController pInfo;
@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     float curTime;
+
+    public GameObject trail;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
     {
         changeState();
         state.Update();
+
+        TrailControl();
     }
 
     private void FixedUpdate()
@@ -80,5 +84,17 @@ public class PlayerController : MonoBehaviour
     public InfoController GetInfo()
     {
         return pInfo;
+    }
+
+    void TrailControl()
+    {
+        if (state == shadow)
+        {
+            trail.SetActive(true);
+        }
+        else if (state == hacker)
+        {
+            trail.SetActive(false);
+        }
     }
 }

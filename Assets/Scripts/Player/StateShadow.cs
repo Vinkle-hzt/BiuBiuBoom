@@ -170,4 +170,9 @@ public class StateShadow : PlayerState
         pfAimer.gameObject.SetActive(false);
     }
     #endregion
+
+    public override float GetCurSkillTime()
+    {
+        return 0;
+    }
 }

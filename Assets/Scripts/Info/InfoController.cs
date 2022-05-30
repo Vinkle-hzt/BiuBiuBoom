@@ -9,6 +9,7 @@ public class InfoController : MonoBehaviour
     public CharacterInfo characterData;
 
     public Skill skill;
+    public string skill_name;
 
     private float tempDefence;
     private float tempSpeed;
@@ -145,7 +146,8 @@ public class InfoController : MonoBehaviour
 
     public void GetSkill(string skillName)
     {
-        switch (skillName)
+        skill_name = skillName;
+        switch (skill_name)
         {
             case "RCE":
                 skill = new RCE(transform);

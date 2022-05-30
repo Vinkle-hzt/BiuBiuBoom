@@ -173,4 +173,9 @@ public class StateHacker : PlayerState
             curSkillCD -= Time.deltaTime;
         }
     }
+
+    public override float GetCurSkillTime()
+    {
+        return curSkillCD;
+    }
 }
