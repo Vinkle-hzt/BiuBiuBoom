@@ -31,7 +31,7 @@ public class SkillUI : MonoBehaviour
         if (player.GetComponent<PlayerController>().state.GetCurSkillTime() > 0)
         {
             cd.gameObject.SetActive(true);
-            cd.text = ((int)player.GetComponent<PlayerController>().state.GetCurSkillTime()).ToString();
+            cd.text = ((int)player.GetComponent<PlayerController>().state.GetCurSkillTime() + 1).ToString();
 
             for (int i = 1; i < skillNames.Length; i++)
             {
