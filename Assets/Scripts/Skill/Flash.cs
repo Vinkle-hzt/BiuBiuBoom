@@ -36,9 +36,7 @@ public class Flash : Skill
         Vector2 moveTowards = forward * moveDistance;
         Vector2 destination = moveTowards + playerPos;
 
-        transform.gameObject.layer = LayerMask.NameToLayer("Shadow");
         transform.position = destination;
-        transform.gameObject.layer = LayerMask.NameToLayer("Default");
 
         //重启人物图片
         transform.Find("Body").GetComponent<SpriteRenderer>().enabled = true;

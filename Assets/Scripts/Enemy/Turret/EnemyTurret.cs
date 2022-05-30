@@ -44,9 +44,15 @@ public class EnemyTurret : Enemy
         anim = GetComponent<Animator>();
         pfAimLine = Instantiate(pfAimLine, transform.position, Quaternion.identity);
         aimAnim = pfAimLine.GetComponent<Animator>();
+        pfAimLine.gameObject.SetActive(false);
     }
     protected override void NormalAttack()
     {
+        target = findTarget();
+
+        if (target == null)
+            return;
+        
         // note: 攻击时间 = 原始攻击时间 + 瞄准时间 + 瞄准后至射击的时间
         switch (curState)
         {
@@ -92,7 +98,6 @@ public class EnemyTurret : Enemy
 
     void Attack()
     {
-
         Transform bulletTransform = Instantiate(pfBullet, transform.position, Quaternion.identity);
 
         bulletTransform.GetComponent<Bullet>().Setup(shootDir, eInfo);

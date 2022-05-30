@@ -17,7 +17,7 @@ public class StateHacker : PlayerState
 
     private Transform groundCheck1;
     private Transform groundCheck2;
-    private float checkDistance;
+    private float checkDistance = 1f;
     private LayerMask layer;
 
     // 动画相关
@@ -98,10 +98,7 @@ public class StateHacker : PlayerState
 
     void GroundCheck()
     {
-        ray1 = Physics2D.Raycast(groundCheck1.position, Vector2.down, checkDistance, layer);
-        ray2 = Physics2D.Raycast(groundCheck2.position, Vector2.down, checkDistance, layer);
-
-        if (ray1 || ray2)
+        if (Mathf.Abs(rb.velocity.y) < 0.1f)
         {
             isGround = true;
         }
@@ -109,6 +106,18 @@ public class StateHacker : PlayerState
         {
             isGround = false;
         }
+
+        // ray1 = Physics2D.Raycast(groundCheck1.position, Vector2.down, checkDistance, layer);
+        // ray2 = Physics2D.Raycast(groundCheck2.position, Vector2.down, checkDistance, layer);
+
+        // if (ray1 || ray2)
+        // {
+        //     isGround = true;
+        // }
+        // else
+        // {
+        //     isGround = false;
+        // }
         //或者用Physics2D.OverlapBox();
     }
 

@@ -121,6 +121,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    protected Transform findTarget()
+    {
+        var cur = Physics2D.OverlapCircle(transform.position, enemyInfo.PerceptionDis, LayerMask.GetMask("Player"));
+        return cur ? cur.transform : null;
+    }
+
     void Resume()
     {
         spriteRenderer.color = new Color(1, 1, 1, 1);

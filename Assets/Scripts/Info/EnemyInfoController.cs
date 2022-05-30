@@ -7,6 +7,12 @@ public class EnemyInfoController : MonoBehaviour
     public EnemyInfo templateData;
     public EnemyInfo characterData;
 
+    public float PerceptionDis{
+        get{
+            return characterData.perceptionDis;
+        }
+    }
+    
     private void Awake()
     {
         if (templateData != null)

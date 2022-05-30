@@ -140,9 +140,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00713253, y: -0.079648495}
+  m_Offset: {x: 0.021756172, y: -0.079648495}
   serializedVersion: 2
-  m_Radius: 0.1585269
+  m_Radius: 0.35538673
 --- !u!114 &781456377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templateData: {fileID: 11400000, guid: 2d30a271cf6ccc14e8fd6a1230aa1bc0, type: 2}
   characterData: {fileID: 0}
+  skill_name: 
 --- !u!114 &781456375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +187,7 @@ MonoBehaviour:
   eInfo: {fileID: 0}
   enemyInfo: {fileID: 0}
   target: {fileID: 0}
-  curTime: 0
+  shootCurTime: 0
   trackTime: 1
   pfBullet: {fileID: 774726805815932898, guid: cccde2bb16f39d743bea6899a56e3ae6, type: 3}
 --- !u!1 &2111112421712370504
