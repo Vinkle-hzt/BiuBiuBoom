@@ -120,6 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eInfo: {fileID: 0}
   enemyInfo: {fileID: 0}
+  doAimTime: 1
   intervalTime: 0.5
   target: {fileID: 0}
   pfBullet: {fileID: 5508322711988092284, guid: b4c1c35efb1a812488de7cf60f06bd1f,
