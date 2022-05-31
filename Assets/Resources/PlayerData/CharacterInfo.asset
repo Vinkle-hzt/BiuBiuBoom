@@ -16,18 +16,18 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   defence: 0
-  maxEnergy: 10
-  energy: 0
-  energyAttack: 1
-  energyLoss: 0
-  energyGet: 0
-  changeStateEnergy: 3
-  changeStateTime: 0
-  speed: 8
-  speedRatio: 1.2
-  jumpforce: 8
+  maxEnergy: 100
+  energy: 80
+  energyAttack: 5
+  energyLoss: 15
+  energyGet: 2
+  changeStateEnergy: 10
+  changeStateTime: 1
+  speed: 6.5
+  speedRatio: 2.3
+  jumpforce: 20
   attackSpeed: 4
-  shootSpeed: 15
-  damage: 2
+  shootSpeed: 30
+  damage: 3
   canShoot: 1
-  hackDis: 8
+  hackDis: 4
