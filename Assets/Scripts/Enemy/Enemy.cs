@@ -20,6 +20,8 @@ public class Enemy : MonoBehaviour
     protected EnemyState state;
     private SpriteRenderer spriteRenderer;
 
+    bool isDead = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,11 +35,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (state != EnemyState.control)
+        if (!isDead)
         {
-            FallDown();
-            (state == EnemyState.normal ? (Action)NormalMovement : FallDownAttack)();
-            (state == EnemyState.normal ? (Action)NormalAttack : FallDownAttack)();
+            if (state != EnemyState.control)
+            {
+                FallDown();
+                (state == EnemyState.normal ? (Action)NormalMovement : FallDownAttack)();
+                (state == EnemyState.normal ? (Action)NormalAttack : FallDownAttack)();
+            }
         }
     }
 
@@ -59,8 +64,13 @@ public class Enemy : MonoBehaviour
     #region 死亡
     public void Dead()
     {
-        // 死亡动画
+        isDead = true;
         Destroy(gameObject);
+    }
+
+    virtual protected void DeadAnim()
+    {
+
     }
     #endregion
 
@@ -105,6 +115,7 @@ public class Enemy : MonoBehaviour
                 //TODO: 瘫痪的美术表现
                 //用枪消失替代美术表现
                 spriteRenderer.color = UtilsClass.HexToColor("FF8A8AFF");
+                BgmManager.instance.PlayEnemyFallDown();
             }
 
             if (curTime <= 0)

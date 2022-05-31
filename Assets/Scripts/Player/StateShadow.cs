@@ -57,6 +57,7 @@ public class StateShadow : PlayerState
         rb.gravityScale = 0;
         pInfo.characterData.canShoot = false;
         transform.Find("Aim").gameObject.SetActive(false);
+        transform.Find("Body").GetComponent<Animator>().SetBool("Shadow", true);
     }
 
     #region 斩杀和入侵
@@ -168,6 +169,7 @@ public class StateShadow : PlayerState
         if (inHack)
             LeaveHack();
         resetAimer();
+        transform.Find("Body").GetComponent<Animator>().SetBool("Shadow", false);
     }
 
     private void setAimer(Vector3 position)

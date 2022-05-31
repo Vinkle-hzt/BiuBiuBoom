@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     public GameObject trail;
 
     private float gravity;
-
+    bool isDead = false;
+    private float deadTime = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,15 +34,24 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        changeState();
-        state.Update();
+        if (!isDead)
+        {
+            HealthCheck();
+            changeState();
+            state.Update();
 
-        TrailControl();
+            TrailControl();
+        }
+        else
+        {
+            DeadAction();
+        }
     }
 
     private void FixedUpdate()
     {
-        state.FixedUpdate();
+        if (!isDead)
+            state.FixedUpdate();
     }
 
     // TO-DO: 长按改变形态  添加变身相关 animator
@@ -99,5 +109,26 @@ public class PlayerController : MonoBehaviour
         {
             trail.SetActive(false);
         }
+    }
+    void HealthCheck()
+    {
+        if (pInfo.characterData.health <= 0)
+        {
+            Dead();
+        }
+    }
+
+    public void Dead()
+    {
+        isDead = true;
+        curTime = 0;
+    }
+
+    void DeadAction()
+    {
+        transform.Find("Body").GetComponent<Animator>().SetBool("Dead", true);
+        curTime += Time.deltaTime;
+        if (curTime >= deadTime)
+            SceneManage.instance.RestartScene();
     }
 }
