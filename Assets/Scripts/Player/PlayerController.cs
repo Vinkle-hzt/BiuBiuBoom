@@ -17,11 +17,14 @@ public class PlayerController : MonoBehaviour
 
     public GameObject trail;
 
+    private float gravity;
+
     // Start is called before the first frame update
     void Start()
     {
         pInfo = GetComponent<InfoController>();
-        hacker = new StateHacker(transform, pInfo);
+        gravity = GetComponent<Rigidbody2D>().gravityScale;
+        hacker = new StateHacker(transform, pInfo, gravity);
         shadow = new StateShadow(transform, pInfo, pfAimer);
         state = hacker;
         curTime = 0;

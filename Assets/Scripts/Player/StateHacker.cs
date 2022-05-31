@@ -31,7 +31,10 @@ public class StateHacker : PlayerState
 
     private float curSkillCD;
 
-    public StateHacker(Transform transform, InfoController pInfo) : base(transform, pInfo)
+    private float gravity;
+
+    public StateHacker(Transform transform, InfoController pInfo, float gravity) 
+        : base(transform, pInfo)
     {
         rb = transform.GetComponent<Rigidbody2D>();
         groundCheck1 = transform.Find("Body").Find("GroundCheck1");
@@ -46,6 +49,8 @@ public class StateHacker : PlayerState
         groundedID = Animator.StringToHash("Grounded");
         runningID = Animator.StringToHash("Running");
         verticalVelID = Animator.StringToHash("VerticalVel");
+
+        this.gravity = gravity;
     }
 
     public override void FixedUpdate()
@@ -128,7 +133,7 @@ public class StateHacker : PlayerState
 
     public override void Reset()
     {
-        rb.gravityScale = 1;
+        rb.gravityScale = gravity;
         pInfo.characterData.canShoot = true;
         transform.Find("Aim").gameObject.SetActive(true);
     }

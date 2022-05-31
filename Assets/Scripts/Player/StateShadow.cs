@@ -125,6 +125,7 @@ public class StateShadow : PlayerState
         hackEnemy = enemy;
         // 取消碰撞体积，隐藏角色
         transform.GetComponent<CapsuleCollider2D>().enabled = false;
+        transform.GetComponent<BoxCollider2D>().enabled = false;
         transform.Find("Body").gameObject.SetActive(false);
     }
 
@@ -146,6 +147,7 @@ public class StateShadow : PlayerState
         hackEnemy.GetComponent<Enemy>().Dead();
         // 取消碰撞体积，隐藏角色
         transform.GetComponent<CapsuleCollider2D>().enabled = true;
+        transform.GetComponent<BoxCollider2D>().enabled = true;
         transform.Find("Body").gameObject.SetActive(true);
 
         //获取权限

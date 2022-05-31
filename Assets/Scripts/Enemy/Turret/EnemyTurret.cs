@@ -51,8 +51,16 @@ public class EnemyTurret : Enemy
         target = findTarget();
 
         if (target == null)
+        {
+            curState = State.Wait;
+            waitTime = 0;
+            aimTime = 0;
+            shootTime = 0;
+            aimAnim.SetBool("Flash", false);
+            pfAimLine.gameObject.SetActive(false);
             return;
-        
+        }
+
         // note: 攻击时间 = 原始攻击时间 + 瞄准时间 + 瞄准后至射击的时间
         switch (curState)
         {
