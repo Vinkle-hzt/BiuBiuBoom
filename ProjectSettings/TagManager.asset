@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Enemy
   - RCE
+  - ESC
   layers:
   - Default
   - TransparentFX

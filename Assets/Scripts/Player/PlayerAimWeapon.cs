@@ -72,6 +72,7 @@ public class PlayerAimWeapon : MonoBehaviour
                 curTime = 0;
                 Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
                 animator.SetTrigger("Shoot");
+                BgmManager.instance.PlayPlayerShoot();
                 OnShoot?.Invoke(this, new OnShootEventArgs
                 {
                     gunEndPointPosition = aimGunEndPointTransform.position,

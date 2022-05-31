@@ -18,6 +18,8 @@ public class InputController : MonoBehaviour
     public KeyCode hack;
     [Header("使用权限")]
     public KeyCode skill;
+    [Header("esc面板")]
+    public KeyCode esc;
 
     private void Awake()
     {

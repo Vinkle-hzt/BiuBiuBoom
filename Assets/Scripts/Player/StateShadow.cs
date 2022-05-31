@@ -100,9 +100,15 @@ public class StateShadow : PlayerState
             {
                 setAimer(enemy.transform.position);
                 if (Input.GetKeyDown(InputController.instance.kill))
+                {
+                    BgmManager.instance.PlayKill();
                     Kill(enemy);
+                }
                 else if (Input.GetKeyDown(InputController.instance.hack))
+                {
+                    BgmManager.instance.PlayHack();
                     Hack(enemy);
+                }
             }
             else
                 resetAimer();
@@ -134,7 +140,10 @@ public class StateShadow : PlayerState
         hackEnemy.GetComponent<Enemy>().Control(Time.deltaTime);
         // 再次按下骇入键，怪物死亡
         if (Input.GetKeyDown(InputController.instance.hack))
+        {
+            BgmManager.instance.PlayKill();
             LeaveHack();
+        }
     }
 
     void LeaveHack()

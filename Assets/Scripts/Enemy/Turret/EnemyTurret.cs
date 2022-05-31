@@ -52,7 +52,7 @@ public class EnemyTurret : Enemy
 
         if (target == null)
             return;
-        
+
         // note: 攻击时间 = 原始攻击时间 + 瞄准时间 + 瞄准后至射击的时间
         switch (curState)
         {
@@ -77,6 +77,7 @@ public class EnemyTurret : Enemy
                 break;
             case State.Shoot:
                 Shoot();
+                BgmManager.instance.PlayTurretShoot();
                 shootTime += Time.deltaTime;
                 if (shootTime >= intervalTime)
                 {
