@@ -26,7 +26,7 @@ MonoBehaviour:
   speed: 6.5
   speedRatio: 2.3
   jumpforce: 20
-  attackSpeed: 4
+  attackSpeed: 20
   shootSpeed: 30
   damage: 3
   canShoot: 1
