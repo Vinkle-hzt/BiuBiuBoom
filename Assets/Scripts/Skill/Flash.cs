@@ -27,6 +27,7 @@ public class Flash : Skill
     {
         base.times--;
 
+        BgmManager.instance.PlayPlayerFlash();
         //人物图片消失
         transform.Find("Body").GetComponent<SpriteRenderer>().enabled = false;
 
