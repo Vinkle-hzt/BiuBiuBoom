@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private PlayerState state;
+    public PlayerState state;
     private PlayerState hacker;
     private PlayerState shadow;
     public InfoController pInfo;
@@ -15,11 +15,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float curTime;
 
+    public GameObject trail;
+
+    private float gravity;
+    bool isDead = false;
+    private float deadTime = 1f;
     // Start is called before the first frame update
     void Start()
     {
         pInfo = GetComponent<InfoController>();
-        hacker = new StateHacker(transform, pInfo);
+        gravity = GetComponent<Rigidbody2D>().gravityScale;
+        hacker = new StateHacker(transform, pInfo, gravity);
         shadow = new StateShadow(transform, pInfo, pfAimer);
         state = hacker;
         curTime = 0;
@@ -28,13 +34,24 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        changeState();
-        state.Update();
+        if (!isDead)
+        {
+            HealthCheck();
+            changeState();
+            state.Update();
+
+            TrailControl();
+        }
+        else
+        {
+            DeadAction();
+        }
     }
 
     private void FixedUpdate()
     {
-        state.FixedUpdate();
+        if (!isDead)
+            state.FixedUpdate();
     }
 
     // TO-DO: 长按改变形态  添加变身相关 animator
@@ -80,5 +97,38 @@ public class PlayerController : MonoBehaviour
     public InfoController GetInfo()
     {
         return pInfo;
+    }
+
+    void TrailControl()
+    {
+        if (state == shadow)
+        {
+            trail.SetActive(true);
+        }
+        else if (state == hacker)
+        {
+            trail.SetActive(false);
+        }
+    }
+    void HealthCheck()
+    {
+        if (pInfo.characterData.health <= 0)
+        {
+            Dead();
+        }
+    }
+
+    public void Dead()
+    {
+        isDead = true;
+        curTime = 0;
+    }
+
+    void DeadAction()
+    {
+        transform.Find("Body").GetComponent<Animator>().SetBool("Dead", true);
+        curTime += Time.deltaTime;
+        if (curTime >= deadTime)
+            SceneManage.instance.RestartScene();
     }
 }

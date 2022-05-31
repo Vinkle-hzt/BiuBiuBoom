@@ -64,11 +64,17 @@ public class EnemyDrone : Enemy
         {
             shootCurTime = 0;
             Attack();
+            BgmManager.instance.PlayDroneShoot();
         }
     }
 
     void Attack()
     {
+        target = findTarget();
+
+        if (target == null)
+            return;
+
         Transform bulletTransform = Instantiate(pfBullet, transform.position, Quaternion.identity);
 
         bulletTransform.GetComponent<BulletDrone>().Setup(target, eInfo, trackTime);

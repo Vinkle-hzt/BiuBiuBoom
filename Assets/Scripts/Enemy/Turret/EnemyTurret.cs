@@ -44,9 +44,24 @@ public class EnemyTurret : Enemy
         anim = GetComponent<Animator>();
         pfAimLine = Instantiate(pfAimLine, transform.position, Quaternion.identity);
         aimAnim = pfAimLine.GetComponent<Animator>();
+        pfAimLine.gameObject.SetActive(false);
     }
     protected override void NormalAttack()
     {
+        target = findTarget();
+
+        if (target == null)
+        {
+            curState = State.Wait;
+            waitTime = 0;
+            aimTime = 0;
+            shootTime = 0;
+            aimAnim.SetBool("Flash", false);
+            pfAimLine.gameObject.SetActive(false);
+            return;
+        }
+
+
         // note: 攻击时间 = 原始攻击时间 + 瞄准时间 + 瞄准后至射击的时间
         switch (curState)
         {
@@ -71,6 +86,7 @@ public class EnemyTurret : Enemy
                 break;
             case State.Shoot:
                 Shoot();
+                BgmManager.instance.PlayTurretShoot();
                 shootTime += Time.deltaTime;
                 if (shootTime >= intervalTime)
                 {
@@ -92,7 +108,6 @@ public class EnemyTurret : Enemy
 
     void Attack()
     {
-
         Transform bulletTransform = Instantiate(pfBullet, transform.position, Quaternion.identity);
 
         bulletTransform.GetComponent<Bullet>().Setup(shootDir, eInfo);
@@ -120,5 +135,10 @@ public class EnemyTurret : Enemy
 
     void Shoot()
     {
+    }
+
+    protected void DeadAnim()
+    {
+        aimAnim.SetBool("Dead", true);
     }
 }

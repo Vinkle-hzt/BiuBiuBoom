@@ -92,8 +92,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -450443561
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a1fc1786c427341769dba6c83feadde4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -138,11 +138,11 @@ CircleCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00713253, y: -0.079648495}
+  m_Offset: {x: 0.021756172, y: -0.079648495}
   serializedVersion: 2
-  m_Radius: 0.1585269
+  m_Radius: 0.35538673
 --- !u!114 &781456377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templateData: {fileID: 11400000, guid: 2d30a271cf6ccc14e8fd6a1230aa1bc0, type: 2}
   characterData: {fileID: 0}
+  skill_name: 
 --- !u!114 &781456375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +187,7 @@ MonoBehaviour:
   eInfo: {fileID: 0}
   enemyInfo: {fileID: 0}
   target: {fileID: 0}
-  curTime: 0
+  shootCurTime: 0
   trackTime: 1
   pfBullet: {fileID: 774726805815932898, guid: cccde2bb16f39d743bea6899a56e3ae6, type: 3}
 --- !u!1 &2111112421712370504
@@ -274,7 +275,7 @@ Transform:
   m_GameObject: {fileID: 9159350556787239502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1}
   m_Children:
   - {fileID: 4318404648125394473}
   - {fileID: 3620961624578917550}

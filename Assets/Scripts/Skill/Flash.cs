@@ -27,16 +27,17 @@ public class Flash : Skill
     {
         base.times--;
 
+        BgmManager.instance.PlayPlayerFlash();
         //人物图片消失
         transform.Find("Body").GetComponent<SpriteRenderer>().enabled = false;
 
-        Vector3 forward = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-        Vector3 moveTowards = forward * moveDistance;
-        Vector3 destination = moveTowards + transform.position;
+        Vector2 playerPos = new Vector2(transform.position.x, transform.position.y);
+        Vector2 cursorPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+        Vector2 forward = (cursorPos - playerPos).normalized;
+        Vector2 moveTowards = forward * moveDistance;
+        Vector2 destination = moveTowards + playerPos;
 
-        transform.gameObject.layer = LayerMask.NameToLayer("Shadow");
         transform.position = destination;
-        transform.gameObject.layer = LayerMask.NameToLayer("Default");
 
         //重启人物图片
         transform.Find("Body").GetComponent<SpriteRenderer>().enabled = true;

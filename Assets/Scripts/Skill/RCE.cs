@@ -24,5 +24,6 @@ public class RCE : Skill
         Transform RCEbullet = transform.GetComponent<InstantiateCS>().InstantiateBullet(bullet, gunEndPoint.position, Quaternion.Euler(shootRotation));
 
         RCEbullet.GetComponent<RCEBullet>().Initial(shootDir);
+        BgmManager.instance.PlayPlayerShoot();
     }
 }

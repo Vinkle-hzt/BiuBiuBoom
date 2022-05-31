@@ -23,4 +23,7 @@ public class EnemyInfo : ScriptableObject
 
     [Header("重启最低生命百分比")]
     public float minResumePercent;
+
+    [Header("怪物感知玩家的范围")]
+    public float perceptionDis;
 }

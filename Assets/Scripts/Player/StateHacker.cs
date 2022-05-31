@@ -17,7 +17,7 @@ public class StateHacker : PlayerState
 
     private Transform groundCheck1;
     private Transform groundCheck2;
-    private float checkDistance;
+    private float checkDistance = 1f;
     private LayerMask layer;
 
     // 动画相关
@@ -31,7 +31,10 @@ public class StateHacker : PlayerState
 
     private float curSkillCD;
 
-    public StateHacker(Transform transform, InfoController pInfo) : base(transform, pInfo)
+    private float gravity;
+
+    public StateHacker(Transform transform, InfoController pInfo, float gravity) 
+        : base(transform, pInfo)
     {
         rb = transform.GetComponent<Rigidbody2D>();
         groundCheck1 = transform.Find("Body").Find("GroundCheck1");
@@ -46,6 +49,8 @@ public class StateHacker : PlayerState
         groundedID = Animator.StringToHash("Grounded");
         runningID = Animator.StringToHash("Running");
         verticalVelID = Animator.StringToHash("VerticalVel");
+
+        this.gravity = gravity;
     }
 
     public override void FixedUpdate()
@@ -98,10 +103,7 @@ public class StateHacker : PlayerState
 
     void GroundCheck()
     {
-        ray1 = Physics2D.Raycast(groundCheck1.position, Vector2.down, checkDistance, layer);
-        ray2 = Physics2D.Raycast(groundCheck2.position, Vector2.down, checkDistance, layer);
-
-        if (ray1 || ray2)
+        if (Mathf.Abs(rb.velocity.y) < 0.1f)
         {
             isGround = true;
         }
@@ -109,6 +111,18 @@ public class StateHacker : PlayerState
         {
             isGround = false;
         }
+
+        // ray1 = Physics2D.Raycast(groundCheck1.position, Vector2.down, checkDistance, layer);
+        // ray2 = Physics2D.Raycast(groundCheck2.position, Vector2.down, checkDistance, layer);
+
+        // if (ray1 || ray2)
+        // {
+        //     isGround = true;
+        // }
+        // else
+        // {
+        //     isGround = false;
+        // }
         //或者用Physics2D.OverlapBox();
     }
 
@@ -119,7 +133,7 @@ public class StateHacker : PlayerState
 
     public override void Reset()
     {
-        rb.gravityScale = 1;
+        rb.gravityScale = gravity;
         pInfo.characterData.canShoot = true;
         transform.Find("Aim").gameObject.SetActive(true);
     }
@@ -172,5 +186,10 @@ public class StateHacker : PlayerState
         {
             curSkillCD -= Time.deltaTime;
         }
+    }
+
+    public override float GetCurSkillTime()
+    {
+        return curSkillCD;
     }
 }

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e63076e5fcc9fc43bc961e8c16cd36d, type: 3}
   m_Name: EnemyTurretFallDown
   m_EditorClassIdentifier: 
-  fallDownTime: 3
+  fallDownTime: 7
   plusFallDownTime: 1
-  maxFallDownTime: 5
-  resumePercent: 10
+  maxFallDownTime: 15
+  resumePercent: 30
   plusResumePercent: 10
-  minResumePercent: 10
+  minResumePercent: 5
+  perceptionDis: 18

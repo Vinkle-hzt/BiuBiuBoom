@@ -57,6 +57,7 @@ public class StateShadow : PlayerState
         rb.gravityScale = 0;
         pInfo.characterData.canShoot = false;
         transform.Find("Aim").gameObject.SetActive(false);
+        transform.Find("Body").GetComponent<Animator>().SetBool("Shadow", true);
     }
 
     #region 斩杀和入侵
@@ -100,9 +101,15 @@ public class StateShadow : PlayerState
             {
                 setAimer(enemy.transform.position);
                 if (Input.GetKeyDown(InputController.instance.kill))
+                {
+                    BgmManager.instance.PlayKill();
                     Kill(enemy);
+                }
                 else if (Input.GetKeyDown(InputController.instance.hack))
+                {
+                    BgmManager.instance.PlayHack();
                     Hack(enemy);
+                }
             }
             else
                 resetAimer();
@@ -125,6 +132,7 @@ public class StateShadow : PlayerState
         hackEnemy = enemy;
         // 取消碰撞体积，隐藏角色
         transform.GetComponent<CapsuleCollider2D>().enabled = false;
+        transform.GetComponent<BoxCollider2D>().enabled = false;
         transform.Find("Body").gameObject.SetActive(false);
     }
 
@@ -134,7 +142,10 @@ public class StateShadow : PlayerState
         hackEnemy.GetComponent<Enemy>().Control(Time.deltaTime);
         // 再次按下骇入键，怪物死亡
         if (Input.GetKeyDown(InputController.instance.hack))
+        {
+            BgmManager.instance.PlayKill();
             LeaveHack();
+        }
     }
 
     void LeaveHack()
@@ -146,6 +157,7 @@ public class StateShadow : PlayerState
         hackEnemy.GetComponent<Enemy>().Dead();
         // 取消碰撞体积，隐藏角色
         transform.GetComponent<CapsuleCollider2D>().enabled = true;
+        transform.GetComponent<BoxCollider2D>().enabled = true;
         transform.Find("Body").gameObject.SetActive(true);
 
         //获取权限
@@ -157,6 +169,7 @@ public class StateShadow : PlayerState
         if (inHack)
             LeaveHack();
         resetAimer();
+        transform.Find("Body").GetComponent<Animator>().SetBool("Shadow", false);
     }
 
     private void setAimer(Vector3 position)
@@ -170,4 +183,9 @@ public class StateShadow : PlayerState
         pfAimer.gameObject.SetActive(false);
     }
     #endregion
+
+    public override float GetCurSkillTime()
+    {
+        return 0;
+    }
 }
