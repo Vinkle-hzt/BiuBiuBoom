@@ -31,6 +31,8 @@ public class RCEBullet : MonoBehaviour
     [Header("爆炸效果")]
     private Transform pfHit;
 
+    public GameObject circle;
+
     private bool isMove;
     private Transform hit;
     public void Initial(Vector3 shootDir)
@@ -38,6 +40,7 @@ public class RCEBullet : MonoBehaviour
         state = State.bullet;
         this.shootDir = shootDir;
         isMove = true;
+        circle.SetActive(false);
         Destroy(gameObject, 5f);
     }
 
@@ -70,6 +73,7 @@ public class RCEBullet : MonoBehaviour
         state = State.buff;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<CircleCollider2D>().enabled = true;
+        circle.SetActive(true);
         GetComponent<CircleCollider2D>().radius = radius;
         GetComponent<SpriteRenderer>().enabled = false;
 
