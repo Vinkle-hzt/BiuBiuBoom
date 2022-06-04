@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EnemyDrone
   m_EditorClassIdentifier: 
   CharacterTag: Enemy
-  maxHealth: 21
-  health: 21
+  maxHealth: 30
+  health: 30
   defence: 0
   maxEnergy: 0
   energy: 0
@@ -28,6 +28,6 @@ MonoBehaviour:
   jumpforce: 0
   attackSpeed: 0.25
   shootSpeed: 4
-  damage: 2
+  damage: 5
   canShoot: 1
   hackDis: 0

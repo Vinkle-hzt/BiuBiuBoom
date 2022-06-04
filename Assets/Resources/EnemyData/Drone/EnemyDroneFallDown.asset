@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e63076e5fcc9fc43bc961e8c16cd36d, type: 3}
   m_Name: EnemyDroneFallDown
   m_EditorClassIdentifier: 
-  fallDownTime: 6
+  fallDownTime: 8
   plusFallDownTime: 1
   maxFallDownTime: 15
   resumePercent: 20
   plusResumePercent: 10
   minResumePercent: 5
-  perceptionDis: 18
+  perceptionDis: 12

@@ -13,6 +13,21 @@ public class BgmManager : MonoBehaviour
     public AudioSource[] enemyFallDown;
     public AudioSource[] hack;
     public AudioSource[] kill;
+    public AudioSource changeState;
+
+    private bool isTurret;
+    private bool isDrone;
+    private bool isPlayerShoot;
+    private bool isEnemyFallDown;
+    private bool isHack;
+    private bool isKill;
+
+    private int random_turret;
+    private int random_drone;
+    private int random_playerShoot;
+    private int random_enemyFallDown;
+    private int random_hack;
+    private int random_kill;
 
     private void Awake()
     {
@@ -28,24 +43,53 @@ public class BgmManager : MonoBehaviour
             }
         }
         DontDestroyOnLoad(transform.gameObject);
+
+        isTurret = false;
+        isDrone = false;
+        isPlayerShoot = false;
+        isEnemyFallDown = false;
+        isHack = false;
+        isKill = false;
+
+        random_turret = -1;
+        random_drone = -1;
+        random_playerShoot = -1;
+        random_enemyFallDown = -1;
+        random_hack = -1;
+        random_kill = -1;
     }
 
     public void PlayTurretShoot()
     {
-        int random = UnityEngine.Random.Range(0, turret.Length);
-        turret[random].Play();
+        if(isTurret)
+        {
+            turret[random_turret].Stop();
+        }
+        random_turret = UnityEngine.Random.Range(0, turret.Length);
+        turret[random_turret].Play();
+        isTurret = true;
     }
 
     public void PlayDroneShoot()
     {
-        int random = UnityEngine.Random.Range(0, drone.Length);
-        drone[random].Play();
+        if(isDrone)
+        {
+            drone[random_drone].Stop();
+        }
+        random_drone = UnityEngine.Random.Range(0, drone.Length);
+        drone[random_drone].Play();
+        isDrone = true;
     }
 
     public void PlayPlayerShoot()
     {
-        int random = UnityEngine.Random.Range(0, playerShoot.Length);
-        playerShoot[random].Play();
+        if(isPlayerShoot)
+        {
+            playerShoot[random_playerShoot].Stop();
+        }
+        random_playerShoot = UnityEngine.Random.Range(0, playerShoot.Length);
+        playerShoot[random_playerShoot].Play();
+        isPlayerShoot = true;
     }
 
     public void PlayPlayerFlash()
@@ -55,19 +99,39 @@ public class BgmManager : MonoBehaviour
 
     public void PlayEnemyFallDown()
     {
-        int random = UnityEngine.Random.Range(0, enemyFallDown.Length);
-        enemyFallDown[random].Play();
+        if(isEnemyFallDown)
+        {
+            enemyFallDown[random_enemyFallDown].Stop();
+        }
+        random_enemyFallDown = UnityEngine.Random.Range(0, enemyFallDown.Length);
+        enemyFallDown[random_enemyFallDown].Play();
+        isEnemyFallDown = true;
     }
 
     public void PlayHack()
     {
-        int random = UnityEngine.Random.Range(0, hack.Length);
-        hack[random].Play();
+        if(isHack)
+        {
+            hack[random_hack].Stop();
+        }
+        random_hack = UnityEngine.Random.Range(0, hack.Length);
+        hack[random_hack].Play();
+        isHack = true;
     }
 
     public void PlayKill()
     {
-        int random = UnityEngine.Random.Range(0, kill.Length);
-        kill[random].Play();
+        if(isKill)
+        {
+            kill[random_kill].Stop();
+        }
+        random_kill = UnityEngine.Random.Range(0, kill.Length);
+        kill[random_kill].Play();
+        isKill = true;
+    }
+
+    public void PlayChangeState()
+    {
+        changeState.Play();
     }
 }

@@ -43,9 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09e9f515a30b940498f1f8240b8ce1a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jump: 32
-  changState: 304
+  jump: 119
+  changState: 32
   fire: 323
   kill: 323
   hack: 324
-  skill: 101
+  skill: 324
+  esc: 27

@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - RCE
   - ESC
+  - Cinemachine
   layers:
   - Default
   - TransparentFX

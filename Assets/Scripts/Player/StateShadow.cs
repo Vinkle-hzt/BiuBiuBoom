@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BiuBiuBoom.Utils;
+using Cinemachine;
 // TO-DO：完成入侵和处决 (入侵键位 Fire1, 处决键位 Fire2)
 public class StateShadow : PlayerState
 {
@@ -10,6 +11,7 @@ public class StateShadow : PlayerState
     private bool inHack; // 是否在hack
     private GameObject hackEnemy; // hack的对象
     private Transform pfAimer;
+
     public StateShadow(Transform body, InfoController pInfo, Transform pfAimer) : base(body, pInfo)
     {
         rb = transform.GetComponent<Rigidbody2D>();
@@ -57,7 +59,7 @@ public class StateShadow : PlayerState
         rb.gravityScale = 0;
         pInfo.characterData.canShoot = false;
         transform.Find("Aim").gameObject.SetActive(false);
-        transform.Find("Body").GetComponent<Animator>().SetBool("Shadow", true);
+        //transform.Find("Body").GetComponent<Animator>().SetBool("Shadow", true);
     }
 
     #region 斩杀和入侵
@@ -122,7 +124,11 @@ public class StateShadow : PlayerState
         Debug.Log("Kill");
         enemy.GetComponent<Enemy>().Dead();
         // 应该要有个瞬移的动画，我这直接瞬移了
-        transform.position = enemy.transform.position;
+        Vector3 pos = transform.position;
+        pos.x = enemy.transform.position.x;
+        pos.y = enemy.transform.position.y;
+        transform.position = pos;
+        transform.GetComponent<PlayerController>().StartHitTimeScale();
     }
 
     void Hack(GameObject enemy)
@@ -144,6 +150,7 @@ public class StateShadow : PlayerState
         if (Input.GetKeyDown(InputController.instance.hack))
         {
             BgmManager.instance.PlayKill();
+            transform.GetComponent<PlayerController>().StartHitTimeScale();
             LeaveHack();
         }
     }
@@ -153,12 +160,16 @@ public class StateShadow : PlayerState
         //Debug.Log("leave hack");
         inHack = false;
         // 角色到怪物位置
-        transform.position = hackEnemy.transform.position;
+        Vector3 pos = transform.position;
+        pos.x = hackEnemy.transform.position.x;
+        pos.y = hackEnemy.transform.position.y;
+        transform.position = pos;
         hackEnemy.GetComponent<Enemy>().Dead();
         // 取消碰撞体积，隐藏角色
         transform.GetComponent<CapsuleCollider2D>().enabled = true;
         transform.GetComponent<BoxCollider2D>().enabled = true;
         transform.Find("Body").gameObject.SetActive(true);
+        transform.Find("Body").GetComponent<Animator>().Play("PlayIdle");
 
         //获取权限
         transform.GetComponent<PlayerController>().pInfo.GetSkill(hackEnemy.GetComponent<Enemy>().GetSkill());
@@ -169,7 +180,7 @@ public class StateShadow : PlayerState
         if (inHack)
             LeaveHack();
         resetAimer();
-        transform.Find("Body").GetComponent<Animator>().SetBool("Shadow", false);
+        //transform.Find("Body").GetComponent<Animator>().SetBool("Shadow", false);
     }
 
     private void setAimer(Vector3 position)

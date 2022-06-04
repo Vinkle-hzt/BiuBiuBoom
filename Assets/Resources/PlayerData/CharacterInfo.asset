@@ -20,14 +20,14 @@ MonoBehaviour:
   energy: 80
   energyAttack: 5
   energyLoss: 15
-  energyGet: 2
+  energyGet: 8
   changeStateEnergy: 10
   changeStateTime: 1
-  speed: 6.5
-  speedRatio: 2.3
-  jumpforce: 20
-  attackSpeed: 20
-  shootSpeed: 30
+  speed: 7
+  speedRatio: 2
+  jumpforce: 18
+  attackSpeed: 18
+  shootSpeed: 35
   damage: 3
   canShoot: 1
   hackDis: 4

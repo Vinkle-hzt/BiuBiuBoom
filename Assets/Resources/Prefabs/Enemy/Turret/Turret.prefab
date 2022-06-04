@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 7664240104989540620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 2.656, y: 2.656, z: 1.155692}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -450443561
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7880821ae0e694ff185fd812fdbe7efd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -120,8 +120,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eInfo: {fileID: 0}
   enemyInfo: {fileID: 0}
-  doAimTime: 1
-  intervalTime: 0.5
+  doAimTime: 2
+  intervalTime: 1.2
   target: {fileID: 0}
   pfBullet: {fileID: 5508322711988092284, guid: b4c1c35efb1a812488de7cf60f06bd1f,
     type: 3}
@@ -190,6 +190,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00091432035, y: 0.015196323}
-  m_Size: {x: 0.35185876, y: 0.48790073}
+  m_Offset: {x: -0.0007914269, y: 0.013483587}
+  m_Size: {x: 0.36302862, y: 0.491326}
   m_Direction: 0

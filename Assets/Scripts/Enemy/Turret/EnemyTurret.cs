@@ -76,6 +76,7 @@ public class EnemyTurret : Enemy
                 break;
             case State.Aim:
                 Aim();
+                BgmManager.instance.PlayTurretShoot();
                 aimTime += Time.deltaTime;
                 if (aimTime >= doAimTime)
                 {
@@ -86,7 +87,6 @@ public class EnemyTurret : Enemy
                 break;
             case State.Shoot:
                 Shoot();
-                BgmManager.instance.PlayTurretShoot();
                 shootTime += Time.deltaTime;
                 if (shootTime >= intervalTime)
                 {
