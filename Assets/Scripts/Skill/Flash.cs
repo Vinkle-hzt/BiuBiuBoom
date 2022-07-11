@@ -17,7 +17,6 @@ public class Flash : Skill
     public Flash(Transform transform, float moveDistance, float speedUp) : base(transform)
     {
         base.level = 2;
-        base.GetCoolDown();
         this.moveDistance = moveDistance;
         this.speedUp = speedUp;
         speedUpTime = 5;
@@ -25,8 +24,6 @@ public class Flash : Skill
 
     public override void SkillActive()
     {
-        base.times--;
-
         BgmManager.instance.PlayPlayerFlash();
         //人物图片消失
         transform.Find("Body").GetComponent<SpriteRenderer>().enabled = false;

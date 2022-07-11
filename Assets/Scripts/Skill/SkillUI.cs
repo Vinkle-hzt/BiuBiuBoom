@@ -28,41 +28,41 @@ public class SkillUI : MonoBehaviour
     {
         //CD
 
-        if (player.GetComponent<PlayerController>().state.GetCurSkillTime() > 0)
-        {
-            cd.gameObject.SetActive(true);
-            cd.text = ((int)player.GetComponent<PlayerController>().state.GetCurSkillTime() + 1).ToString();
+        // if (player.GetComponent<PlayerController>().state.GetCurSkillTime() > 0)
+        // {
+        //     cd.gameObject.SetActive(true);
+        //     cd.text = ((int)player.GetComponent<PlayerController>().state.GetCurSkillTime() + 1).ToString();
 
-            for (int i = 1; i < skillNames.Length; i++)
-            {
-                if (skillNames[i] == player.GetComponent<PlayerController>().pInfo.skill_name)
-                {
-                    skills[i].GetComponent<Image>().color = new Color(
-                        skills[i].GetComponent<Image>().color.r,
-                        skills[i].GetComponent<Image>().color.g,
-                        skills[i].GetComponent<Image>().color.b,
-                        0.5f
-                    );
-                }
-            }
-        }
-        else
-        {
-            cd.gameObject.SetActive(false);
+        //     for (int i = 1; i < skillNames.Length; i++)
+        //     {
+        //         if (skillNames[i] == player.GetComponent<PlayerController>().pInfo.skill_name)
+        //         {
+        //             skills[i].GetComponent<Image>().color = new Color(
+        //                 skills[i].GetComponent<Image>().color.r,
+        //                 skills[i].GetComponent<Image>().color.g,
+        //                 skills[i].GetComponent<Image>().color.b,
+        //                 0.5f
+        //             );
+        //         }
+        //     }
+        // }
+        // else
+        // {
+        //     cd.gameObject.SetActive(false);
 
-            for (int i = 1; i < skillNames.Length; i++)
-            {
-                if (skillNames[i] == player.GetComponent<PlayerController>().pInfo.skill_name)
-                {
-                    skills[i].GetComponent<Image>().color = new Color(
-                        skills[i].GetComponent<Image>().color.r,
-                        skills[i].GetComponent<Image>().color.g,
-                        skills[i].GetComponent<Image>().color.b,
-                        1f
-                    );
-                }
-            }
-        }
+        //     for (int i = 1; i < skillNames.Length; i++)
+        //     {
+        //         if (skillNames[i] == player.GetComponent<PlayerController>().pInfo.skill_name)
+        //         {
+        //             skills[i].GetComponent<Image>().color = new Color(
+        //                 skills[i].GetComponent<Image>().color.r,
+        //                 skills[i].GetComponent<Image>().color.g,
+        //                 skills[i].GetComponent<Image>().color.b,
+        //                 1f
+        //             );
+        //         }
+        //     }
+        // }
 
         //没有获取技能
         if (player.GetComponent<PlayerController>().pInfo.skill == null)
@@ -79,7 +79,7 @@ public class SkillUI : MonoBehaviour
         else
         {
             //修改次数UI
-            times.text = "x" + player.GetComponent<PlayerController>().pInfo.skill.times.ToString();
+            //times.text = "x" + player.GetComponent<PlayerController>().pInfo.skill.times.ToString();
             times.gameObject.SetActive(true);
 
             for (int i = 1; i < skillNames.Length; i++)

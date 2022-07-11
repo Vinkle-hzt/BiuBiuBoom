@@ -33,7 +33,7 @@ public class StateHacker : PlayerState
 
     private float gravity;
 
-    public StateHacker(Transform transform, InfoController pInfo, float gravity) 
+    public StateHacker(Transform transform, InfoController pInfo, float gravity)
         : base(transform, pInfo)
     {
         rb = transform.GetComponent<Rigidbody2D>();
@@ -64,7 +64,6 @@ public class StateHacker : PlayerState
     {
         MoveCheck();
         UpdateAnim();
-        SkillActive();
     }
 
     void Movement()
@@ -148,48 +147,5 @@ public class StateHacker : PlayerState
         anim.SetBool(groundedID, isGround);
         anim.SetBool(runningID, isRunning);
         anim.SetFloat(verticalVelID, rb.velocity.y);
-    }
-
-    void SkillActive()
-    {
-        if (pInfo.skill == null)
-            return;
-
-        if (pInfo.skill.isFirst)
-        {
-            curSkillCD = pInfo.skill.initialCoolDown;
-            pInfo.skill.isFirst = false;
-        }
-
-        if (curSkillCD <= 0)
-        {
-            if (pInfo.skill != null)
-            {
-                if (Input.GetKeyDown(InputController.instance.skill))
-                {
-                    //还有数用次数
-                    if (pInfo.skill.times > 0)
-                    {
-                        //触发技能
-                        pInfo.skill.SkillActive();
-                        curSkillCD = pInfo.skill.coolDown;
-                    }
-
-                    if (pInfo.skill.times <= 0)
-                    {
-                        pInfo.skill = null;
-                    }
-                }
-            }
-        }
-        else
-        {
-            curSkillCD -= Time.deltaTime;
-        }
-    }
-
-    public override float GetCurSkillTime()
-    {
-        return curSkillCD;
     }
 }

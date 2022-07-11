@@ -20,6 +20,8 @@ public class InputController : MonoBehaviour
     public KeyCode skill;
     [Header("esc面板")]
     public KeyCode esc;
+    [Header("交换权限")]
+    public KeyCode exchange;
 
     private void Awake()
     {
