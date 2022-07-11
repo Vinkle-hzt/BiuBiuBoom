@@ -5,32 +5,45 @@ using UnityEngine;
 public abstract class Skill
 {
     protected int level;
-    public float coolDown;
-    public int times;
-    public float initialCoolDown;
-    public bool isFirst;
+    public float cache;
+    public float coolDownRatio;
     protected Transform transform;
 
     protected Skill(Transform transform)
     {
         this.transform = transform;
-        this.times = 3;
-        this.initialCoolDown = 1f;
-        this.isFirst = true;
+        InitialCoolDownRatio();
+        InitialCache();
     }
 
-    protected void GetCoolDown()
+    protected void InitialCoolDownRatio()
     {
         switch (this.level)
         {
             case 1:
-                this.coolDown = 4f;
+                this.coolDownRatio = 0.06f;
                 break;
             case 2:
-                this.coolDown = 7f;
+                this.coolDownRatio = 0.1f;
                 break;
             case 3:
-                this.coolDown = 15f;
+                this.coolDownRatio = 0.18f;
+                break;
+        }
+    }
+
+    protected void InitialCache()
+    {
+        switch (this.level)
+        {
+            case 1:
+                this.cache = 8f;
+                break;
+            case 2:
+                this.cache = 12f;
+                break;
+            case 3:
+                this.cache = 20f;
                 break;
         }
     }

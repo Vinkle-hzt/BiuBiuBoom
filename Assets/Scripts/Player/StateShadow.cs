@@ -172,7 +172,7 @@ public class StateShadow : PlayerState
         transform.Find("Body").GetComponent<Animator>().Play("PlayIdle");
 
         //获取权限
-        transform.GetComponent<PlayerController>().pInfo.GetSkill(hackEnemy.GetComponent<Enemy>().GetSkill());
+        transform.GetComponent<PermissionController>().GetNewSkill(hackEnemy.GetComponent<Enemy>().GetSkill());
     }
 
     public override void Leave()
@@ -194,9 +194,4 @@ public class StateShadow : PlayerState
         pfAimer.gameObject.SetActive(false);
     }
     #endregion
-
-    public override float GetCurSkillTime()
-    {
-        return 0;
-    }
 }

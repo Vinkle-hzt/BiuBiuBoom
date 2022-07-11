@@ -143,20 +143,4 @@ public class InfoController : MonoBehaviour
     {
         ResumeSpeed();
     }
-
-    public void GetSkill(string skillName)
-    {
-        skill_name = skillName;
-        switch (skill_name)
-        {
-            case "RCE":
-                skill = new RCE(transform);
-                break;
-            case "Flash":
-                skill = new Flash(transform, 5f, 3f);
-                break;
-            default:
-                break;
-        }
-    }
 }
