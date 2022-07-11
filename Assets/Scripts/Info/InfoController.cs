@@ -5,30 +5,66 @@ using UnityEngine;
 
 public class InfoController : MonoBehaviour
 {
-    public CharacterInfo templateData;
-    public CharacterInfo characterData;
+    private CharacterInfo templateData;
+    private CharacterInfo characterData;
+    private CharacterInfo realData; // 实际数据
+    private BuffController buffController = new BuffController();
 
-    public Skill skill;
-    public string skill_name;
+    // TODO: 用 PermissionController 控制技能
+    private PermissionController permissionController = new PermissionController();
+
+    // public Skill skill;
+    // public string skill_name;
 
     private float tempDefence;
     private float tempSpeed;
 
-    public float HackDis { get { return characterData.hackDis; } }
-    public float Speed { get { return characterData.speed; } }
-    public float AttackSpeed { get { return characterData.attackSpeed; } }
-    public float ShootSpeed { get { return characterData.shootSpeed; } }
     private void Awake()
     {
         if (templateData != null)
         {
-            //生成的方法
             characterData = Instantiate(templateData);
+            realData = Instantiate(templateData);
         }
+
         tempDefence = characterData.defence;
         tempSpeed = characterData.speed;
-        skill = null;
+        // skill = null;
     }
+
+    private void Update()
+    {
+        BuffController();
+    }
+
+    private void BuffController()
+    {
+        CharacterInfo temp = Instantiate(characterData);
+        buffController.ApplyBuffs(temp);
+        realData = temp;
+    }
+
+    public void AddBuff(Buff buff)
+    {
+        buffController.AddBuff(buff);
+    }
+
+    #region 数据获取
+    public float HackDis { get { return realData.hackDis; } }
+    public float Speed { get { return realData.speed; } }
+    public float AttackSpeed { get { return realData.attackSpeed; } }
+    public float ShootSpeed { get { return realData.shootSpeed; } }
+    public float MaxHealth { get { return realData.maxHealth; } }
+    public float Health { get { return realData.health; } }
+    public float SpeedRatio { get { return realData.speedRatio; } }
+    public float Energy { get { return realData.energy; } }
+    public float MaxEnergy { get { return realData.maxEnergy; } }
+    public bool CanShoot { get { return realData.canShoot; } set { characterData.canShoot = value; } }
+    public String CharacterTag { get { return realData.characterTag; } }
+    public float Jumpforce { get { return realData.jumpforce; } }
+    public float ChangeStateEnergy { get { return realData.changeStateEnergy; } }
+    public float ChangeStateTime { get { return realData.changeStateTime; } }
+    #endregion
 
     private void AddEnergy(float x)
     {

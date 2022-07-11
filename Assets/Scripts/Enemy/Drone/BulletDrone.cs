@@ -19,7 +19,7 @@ public class BulletDrone : MonoBehaviour
     {
         this.shootTarget = shootTarget;
         this.pInfo = pInfo;
-        this.shootSpeed = pInfo.characterData.shootSpeed;
+        this.shootSpeed = pInfo.ShootSpeed;
         this.trackTime = trackTime;
     }
 
@@ -38,7 +38,7 @@ public class BulletDrone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        string collTag = pInfo.characterData.CharacterTag == "Player" ? "Enemy" : "Player";
+        string collTag = pInfo.CharacterTag == "Player" ? "Enemy" : "Player";
 
         if (collision.CompareTag(collTag))
         {

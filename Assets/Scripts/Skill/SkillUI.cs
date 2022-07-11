@@ -64,32 +64,33 @@ public class SkillUI : MonoBehaviour
         //     }
         // }
 
-        //没有获取技能
-        if (player.GetComponent<PlayerController>().pInfo.skill == null)
-        {
-            for (int i = 1; i < skills.Length; i++)
-            {
-                skills[i].gameObject.SetActive(false);
-            }
+        // TODO: 重新更改 skill 位置
+        // // 没有获取技能
+        // if (player.GetComponent<PlayerController>().pInfo.skill == null)
+        // {
+        //     for (int i = 1; i < skills.Length; i++)
+        //     {
+        //         skills[i].gameObject.SetActive(false);
+        //     }
 
-            times.gameObject.SetActive(false);
-            cd.gameObject.SetActive(false);
-        }
-        //有技能
-        else
-        {
-            //修改次数UI
-            //times.text = "x" + player.GetComponent<PlayerController>().pInfo.skill.times.ToString();
-            times.gameObject.SetActive(true);
+        //     times.gameObject.SetActive(false);
+        //     cd.gameObject.SetActive(false);
+        // }
+        // //有技能
+        // else
+        // {
+        //     //修改次数UI
+        //     //times.text = "x" + player.GetComponent<PlayerController>().pInfo.skill.times.ToString();
+        //     times.gameObject.SetActive(true);
 
-            for (int i = 1; i < skillNames.Length; i++)
-            {
-                skills[i].gameObject.SetActive(false);
-                if (skillNames[i] == player.GetComponent<PlayerController>().pInfo.skill_name)
-                {
-                    skills[i].gameObject.SetActive(true);
-                }
-            }
-        }
+        //     for (int i = 1; i < skillNames.Length; i++)
+        //     {
+        //         skills[i].gameObject.SetActive(false);
+        //         if (skillNames[i] == player.GetComponent<PlayerController>().pInfo.skill_name)
+        //         {
+        //             skills[i].gameObject.SetActive(true);
+        //         }
+        //     }
+        // }
     }
 }

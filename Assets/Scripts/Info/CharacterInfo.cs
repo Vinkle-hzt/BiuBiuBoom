@@ -9,7 +9,7 @@ using UnityEngine;
 public class CharacterInfo : ScriptableObject
 {
     [Header("Tag")]
-    public string CharacterTag;
+    public string characterTag;
 
     [Header("最大生命值")]
     public float maxHealth;

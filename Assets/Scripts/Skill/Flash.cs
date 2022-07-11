@@ -39,7 +39,8 @@ public class Flash : Skill
         //重启人物图片
         transform.Find("Body").GetComponent<SpriteRenderer>().enabled = true;
 
-        transform.Find("BuffController").GetComponent<BuffController>().StartSpeedUp(speedUp, speedUpTime);
+        // TODO: 更改BUFF
+        // transform.Find("BuffController").GetComponent<BuffController>().StartSpeedUp(speedUp, speedUpTime);
     }
 
 }

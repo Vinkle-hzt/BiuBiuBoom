@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
     {
         this.pInfo = pInfo;
         this.shootDir = shootDir;
-        shootSpeed = pInfo.characterData.shootSpeed;
+        shootSpeed = pInfo.ShootSpeed;
         transform.eulerAngles = new Vector3(0, 0, UtilsClass.GetAngleFromVectorFloat(shootDir));
         Destroy(gameObject, 5f);
     }
@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
     // note: 可以调用 pInfo.AddEnergy
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        string collTag = pInfo.characterData.CharacterTag == "Player" ? "Enemy" : "Player";
+        string collTag = pInfo.CharacterTag == "Player" ? "Enemy" : "Player";
 
         if (collision.CompareTag(collTag))
         {

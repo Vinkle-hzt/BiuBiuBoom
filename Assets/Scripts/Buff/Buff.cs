@@ -1,17 +1,21 @@
-public class Buff : BuffDetail
+abstract public class Buff
 {
-    float curTime; // 当前时间
-    Buff(BuffDetail buff) : base(buff)
+    float curTime = 0; // 当前时间
+    public bool BuffTimeOut()
     {
-        curTime = 0;
-    }
-    bool BuffTimeOut()
-    {
-        return curTime >= lastTime;
+        if (curTime >= GetLastTime())
+        {
+            curTime = 0;
+            return true;
+        }
+        return false;
     }
 
     public void AddTime(float time)
     {
         curTime += time;
     }
+
+    abstract public void Apply(CharacterInfo info);
+    public abstract float GetLastTime();
 }

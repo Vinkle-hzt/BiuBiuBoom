@@ -71,12 +71,12 @@ public class PlayerController : MonoBehaviour
         // 检查按键是否按下
         if (Input.GetKeyDown(InputController.instance.changState))
         {
-            if (infoController.characterData.energy >= infoController.characterData.changeStateEnergy
+            if (infoController.Energy >= infoController.ChangeStateEnergy
                 && curTime <= 0
                 && state is StateHacker)
             {
-                curTime = infoController.characterData.changeStateTime; // 进入冷却
-                infoController.characterData.energy -= infoController.characterData.changeStateEnergy; // 减少能量
+                curTime = infoController.ChangeStateTime; // 进入冷却
+                infoController.LossEnergy(infoController.ChangeStateEnergy); // 扣除能量
                 BgmManager.instance.PlayChangeState();
 
                 transform.Find("Body").GetComponent<Animator>().Play("PlayShadow");
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // 能量 <= 0 强制回到骇客模式
-        if (infoController.characterData.energy <= 0 && state is StateShadow)
+        if (infoController.Energy <= 0 && state is StateShadow)
         {
             transform.Find("Body").GetComponent<Animator>().Play("PlayerIdle");
 
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
     }
     void HealthCheck()
     {
-        if (infoController.characterData.health <= 0)
+        if (infoController.Health <= 0)
         {
             Dead();
         }

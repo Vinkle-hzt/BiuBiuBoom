@@ -32,7 +32,7 @@ public class PlayerAimWeapon : MonoBehaviour
         animator = aimTransform.Find("Visual").GetComponent<Animator>();
         bodyTransform = transform.Find("Body");
         pInfo = transform.GetComponent<InfoController>();
-        attackTime = 1.0f / pInfo.characterData.attackSpeed;
+        attackTime = 1.0f / pInfo.AttackSpeed;
         curTime = attackTime;
     }
 
@@ -65,7 +65,7 @@ public class PlayerAimWeapon : MonoBehaviour
     private void HandleShooting()
     {
         curTime += Time.deltaTime;
-        if (pInfo.characterData.canShoot && Input.GetKeyDown(InputController.instance.fire))
+        if (pInfo.CanShoot && Input.GetKeyDown(InputController.instance.fire))
         {
             if (curTime >= attackTime)
             {

@@ -17,7 +17,6 @@ public class StateHacker : PlayerState
 
     private Transform groundCheck1;
     private Transform groundCheck2;
-    private float checkDistance = 1f;
     private LayerMask layer;
 
     // 动画相关
@@ -69,7 +68,7 @@ public class StateHacker : PlayerState
     void Movement()
     {
         if (horizontalMove != 0)
-            rb.velocity = new Vector2(horizontalMove * pInfo.characterData.speed, rb.velocity.y);
+            rb.velocity = new Vector2(horizontalMove * pInfo.Speed, rb.velocity.y);
 
         if (Mathf.Abs(horizontalMove) > 0.1f)
             isRunning = true;
@@ -95,7 +94,7 @@ public class StateHacker : PlayerState
     {
         if (isJump)
         {
-            rb.velocity = new Vector2(rb.velocity.x, pInfo.characterData.jumpforce);
+            rb.velocity = new Vector2(rb.velocity.x, pInfo.Jumpforce);
             isJump = false;
         }
     }
@@ -110,19 +109,6 @@ public class StateHacker : PlayerState
         {
             isGround = false;
         }
-
-        // ray1 = Physics2D.Raycast(groundCheck1.position, Vector2.down, checkDistance, layer);
-        // ray2 = Physics2D.Raycast(groundCheck2.position, Vector2.down, checkDistance, layer);
-
-        // if (ray1 || ray2)
-        // {
-        //     isGround = true;
-        // }
-        // else
-        // {
-        //     isGround = false;
-        // }
-        //或者用Physics2D.OverlapBox();
     }
 
     void RecoveryEnergy()
@@ -133,7 +119,7 @@ public class StateHacker : PlayerState
     public override void Reset()
     {
         rb.gravityScale = gravity;
-        pInfo.characterData.canShoot = true;
+        pInfo.CanShoot = true;
         transform.Find("Aim").gameObject.SetActive(true);
     }
 

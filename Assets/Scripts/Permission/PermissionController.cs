@@ -5,6 +5,8 @@ using System;
 
 public class PermissionController : MonoBehaviour
 {
+    // TODO: 用 BuffController or InfoController 控制Buff
+
     [Header("技能区")]
     public string[] skills;
     public int skillNums;

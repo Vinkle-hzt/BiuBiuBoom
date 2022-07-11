@@ -35,7 +35,7 @@ public class StateShadow : PlayerState
     void Movement()
     {
         if (!inHack)
-            transform.position += position * pInfo.characterData.speed * Time.deltaTime * pInfo.characterData.speedRatio;
+            transform.position += position * pInfo.Speed * Time.deltaTime * pInfo.SpeedRatio;
         else
             transform.position = hackEnemy.transform.position;
     }
@@ -57,7 +57,7 @@ public class StateShadow : PlayerState
         // 重力和速度均设为0
         rb.velocity = Vector3.zero;
         rb.gravityScale = 0;
-        pInfo.characterData.canShoot = false;
+        pInfo.CanShoot = false;
         transform.Find("Aim").gameObject.SetActive(false);
         //transform.Find("Body").GetComponent<Animator>().SetBool("Shadow", true);
     }

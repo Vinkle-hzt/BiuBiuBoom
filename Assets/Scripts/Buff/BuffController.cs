@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuffController
 {
-    ArrayList<Buff> buffs = new ArrayList<Buff>();
+    ArrayList buffs = new ArrayList();
 
     public void AddBuff(Buff buff)
     {
@@ -41,7 +41,7 @@ public class BuffController
     /// </summary>
     public void clearDebuff()
     {
-        ArrayList<Buff> debuffs = new ArrayList<Buff>();
+        ArrayList debuffs = new ArrayList();
 
         foreach (Buff buff in buffs)
             if (buff is DeBuff)
@@ -50,10 +50,9 @@ public class BuffController
         foreach (Buff buff in debuffs)
             buffs.Remove(buff);
     }
-
     void clearTimeOutBuff()
     {
-        ArrayList<Buff> timeOutBuffs = new ArrayList<Buff>();
+        ArrayList timeOutBuffs = new ArrayList();
 
         foreach (Buff buff in buffs)
             if (buff.BuffTimeOut())

@@ -1,4 +1,7 @@
-abstract public class DeBuff : BuffDetail
+/// <summary>
+/// 减益 buff
+/// </summary>
+abstract public class DeBuff : Buff
 {
 
 }

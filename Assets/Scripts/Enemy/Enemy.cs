@@ -144,7 +144,7 @@ public class Enemy : MonoBehaviour
         // 更改 layer(用于实现斩杀和骇入)
         UtilsClass.ChangeLayer(transform, LayerMask.NameToLayer("Enemy"));
         enemyInfo.Resume();
-        eInfo.Resume(eInfo.characterData.maxHealth * enemyInfo.characterData.resumePercent);
+        eInfo.Resume(eInfo.MaxHealth * enemyInfo.characterData.resumePercent);
     }
     #endregion
 }

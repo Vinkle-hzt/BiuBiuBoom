@@ -137,7 +137,7 @@ public class EnemyTurret : Enemy
     {
     }
 
-    protected void DeadAnim()
+    override protected void DeadAnim()
     {
         aimAnim.SetBool("Dead", true);
     }

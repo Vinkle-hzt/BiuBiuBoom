@@ -15,6 +15,6 @@ public class EnergyBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        energyBar.fillAmount = info.characterData.energy / info.characterData.maxEnergy;
+        energyBar.fillAmount = info.Energy / info.MaxEnergy;
     }
 }
