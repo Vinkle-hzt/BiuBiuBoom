@@ -5,92 +5,119 @@ using UnityEngine.UI;
 
 public class SkillUI : MonoBehaviour
 {
-    Transform[] skills;
-    string[] skillNames;
+    public GameObject[] skills;
+    public GameObject skillCache;
     public GameObject player;
-    public Text cd;
-    public Text times;
+    public GameObject cd;
+    public GameObject ready;
+    public SkillIcons skillIcons;
+    public GameObject overload;
+    public GameObject cache;
+    private Transform cacheFill;
+    private PermissionController permissionController;
 
     // Start is called before the first frame update
     void Start()
     {
-        skills = GetComponentsInChildren<Transform>();
-        skillNames = new string[skills.Length];
-
-        for (int i = 0; i < skills.Length; i++)
-        {
-            skillNames[i] = skills[i].name;
-        }
+        permissionController = player.GetComponent<PermissionController>();
+        cacheFill = cache.transform.Find("Fill");
+        cacheFill.GetComponent<Image>().color = new Color(255, 255, 255, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //CD
+        CheckCache();
+        CheckCD();
+        CheckOverload();
+        CheckSkillIcons();
+        CheckSkillCache();
+    }
 
-        // if (player.GetComponent<PlayerController>().state.GetCurSkillTime() > 0)
-        // {
-        //     cd.gameObject.SetActive(true);
-        //     cd.text = ((int)player.GetComponent<PlayerController>().state.GetCurSkillTime() + 1).ToString();
+    void CheckCD()
+    {
+        if (permissionController.curCoolDownTime <= 0)
+        {
+            cd.SetActive(true);
+            ready.SetActive(false);
+            cd.transform.Find("CDNumber").GetComponent<Text>().text = permissionController.curCoolDownTime.ToString("0.00");
+            cd.transform.Find("CDSilder").GetComponent<Slider>().maxValue = permissionController.maxCoolDownTime;
+            cd.transform.Find("CDSilder").GetComponent<Slider>().value = permissionController.curCoolDownTime / permissionController.maxCoolDownTime;
+        }
+        else
+        {
+            cd.SetActive(false);
+            ready.SetActive(true);
+        }
+    }
 
-        //     for (int i = 1; i < skillNames.Length; i++)
-        //     {
-        //         if (skillNames[i] == player.GetComponent<PlayerController>().pInfo.skill_name)
-        //         {
-        //             skills[i].GetComponent<Image>().color = new Color(
-        //                 skills[i].GetComponent<Image>().color.r,
-        //                 skills[i].GetComponent<Image>().color.g,
-        //                 skills[i].GetComponent<Image>().color.b,
-        //                 0.5f
-        //             );
-        //         }
-        //     }
-        // }
-        // else
-        // {
-        //     cd.gameObject.SetActive(false);
+    void CheckSkillCache()
+    {
+        if (permissionController.cacheSkill != null)
+        {
+            skillCache.SetActive(true);
+            SkillDetails skillDetails = skillIcons.GetSkillDetails(permissionController.cacheSkill);
+            skillCache.GetComponent<Image>().sprite = skillDetails.skillIcon;
+        }
+        else
+        {
+            skillCache.SetActive(false);
+            skillCache.GetComponent<Image>().sprite = null;
+        }
+    }
 
-        //     for (int i = 1; i < skillNames.Length; i++)
-        //     {
-        //         if (skillNames[i] == player.GetComponent<PlayerController>().pInfo.skill_name)
-        //         {
-        //             skills[i].GetComponent<Image>().color = new Color(
-        //                 skills[i].GetComponent<Image>().color.r,
-        //                 skills[i].GetComponent<Image>().color.g,
-        //                 skills[i].GetComponent<Image>().color.b,
-        //                 1f
-        //             );
-        //         }
-        //     }
-        // }
+    void CheckCache()
+    {
+        cache.GetComponent<Slider>().maxValue = permissionController.maxCache;
+        float originValue = cache.GetComponent<Slider>().value;
+        float targetValue = permissionController.cache / permissionController.maxCache > 1 ? 1 : permissionController.cache / permissionController.maxCache;
+        float speed = (originValue - targetValue) / 1.0f;
+        if (originValue != targetValue)
+        {
+            cache.GetComponent<Slider>().value = originValue + speed * Time.deltaTime;
+        }
 
-        // TODO: 重新更改 skill 位置
-        // // 没有获取技能
-        // if (player.GetComponent<PlayerController>().pInfo.skill == null)
-        // {
-        //     for (int i = 1; i < skills.Length; i++)
-        //     {
-        //         skills[i].gameObject.SetActive(false);
-        //     }
+        //控制颜色变化
+        if (originValue >= 0 && originValue <= 0.5)
+        {
+            //改变B通道
+            cacheFill.GetComponent<Image>().color = new Color(
+                cacheFill.GetComponent<Image>().color.r,
+                cacheFill.GetComponent<Image>().color.g,
+                cacheFill.GetComponent<Image>().color.b - 255 * originValue * 2,
+                1
+            );
+        }
+        else if (originValue > 0.5 && originValue <= 1)
+        {
+            //改变G通道
+            cacheFill.GetComponent<Image>().color = new Color(
+                cacheFill.GetComponent<Image>().color.r,
+                cacheFill.GetComponent<Image>().color.g - 255 * (originValue - 0.5f) * 2,
+                cacheFill.GetComponent<Image>().color.b,
+                1
+            );
+        }
+    }
 
-        //     times.gameObject.SetActive(false);
-        //     cd.gameObject.SetActive(false);
-        // }
-        // //有技能
-        // else
-        // {
-        //     //修改次数UI
-        //     //times.text = "x" + player.GetComponent<PlayerController>().pInfo.skill.times.ToString();
-        //     times.gameObject.SetActive(true);
+    void CheckSkillIcons()
+    {
+        for (int i = 0; i < skills.Length; i++)
+        {
+            SkillDetails skillDetails = skillIcons.GetSkillDetails(permissionController.skills[(permissionController.curSkillIndex + i) % permissionController.skillNums]);
+            skills[i].GetComponent<Image>().sprite = skillDetails.skillIcon;
+        }
+    }
 
-        //     for (int i = 1; i < skillNames.Length; i++)
-        //     {
-        //         skills[i].gameObject.SetActive(false);
-        //         if (skillNames[i] == player.GetComponent<PlayerController>().pInfo.skill_name)
-        //         {
-        //             skills[i].gameObject.SetActive(true);
-        //         }
-        //     }
-        // }
+    void CheckOverload()
+    {
+        if (permissionController.isOverload)
+        {
+            overload.SetActive(true);
+        }
+        else
+        {
+            overload.SetActive(false);
+        }
     }
 }

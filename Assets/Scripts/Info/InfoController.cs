@@ -11,7 +11,7 @@ public class InfoController : MonoBehaviour
     private BuffController buffController = new BuffController();
 
     // TODO: 用 PermissionController 控制技能
-    private PermissionController permissionController = new PermissionController();
+    // private PermissionController permissionController = new PermissionController();
 
     // public Skill skill;
     // public string skill_name;

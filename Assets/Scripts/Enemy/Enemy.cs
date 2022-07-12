@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
         normal, fallDown, control
     }
 
+    public bool isElite;   //是否是高级怪
     public InfoController eInfo;
     public EnemyInfoController enemyInfo;
     private bool isFallDown;
@@ -48,6 +49,43 @@ public class Enemy : MonoBehaviour
 
     public virtual String GetSkill()
     {
+        int skillLevel = UnityEngine.Random.Range(0, 100) + 1;
+        if (isElite)
+        {
+            if (skillLevel >= 1 && skillLevel <= 20)
+            {
+                SkillLevelOne skill = new SkillLevelOne();
+                int skillName = UnityEngine.Random.Range(0, System.Enum.GetNames(skill.GetType()).Length);
+                return ((SkillLevelOne)skillName).ToString();
+            }
+            else if (skillLevel >= 21 && skillLevel <= 50)
+            {
+                SkillLevelTwo skill = new SkillLevelTwo();
+                int skillName = UnityEngine.Random.Range(0, System.Enum.GetNames(skill.GetType()).Length);
+                return ((SkillLevelTwo)skillName).ToString();
+            }
+            else if (skillLevel >= 51 && skillLevel <= 100)
+            {
+                SkillLevelThree skill = new SkillLevelThree();
+                int skillName = UnityEngine.Random.Range(0, System.Enum.GetNames(skill.GetType()).Length);
+                return ((SkillLevelThree)skillName).ToString();
+            }
+        }
+        else
+        {
+            if (skillLevel >= 1 && skillLevel <= 70)
+            {
+                SkillLevelOne skill = new SkillLevelOne();
+                int skillName = UnityEngine.Random.Range(0, System.Enum.GetNames(skill.GetType()).Length);
+                return ((SkillLevelOne)skillName).ToString();
+            }
+            else if (skillLevel >= 71 && skillLevel <= 100)
+            {
+                SkillLevelTwo skill = new SkillLevelTwo();
+                int skillName = UnityEngine.Random.Range(0, System.Enum.GetNames(skill.GetType()).Length);
+                return ((SkillLevelTwo)skillName).ToString();
+            }
+        }
         return null;
     }
 

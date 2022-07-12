@@ -79,10 +79,5 @@ public class EnemyDrone : Enemy
 
         bulletTransform.GetComponent<BulletDrone>().Setup(target, eInfo, trackTime);
     }
-
-    public override String GetSkill()
-    {
-        return "Flash";
-    }
 }
 

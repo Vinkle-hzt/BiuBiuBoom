@@ -26,10 +26,11 @@ public class PermissionController : MonoBehaviour
 
     [Header("CD")]
     public float curCoolDownTime;
+    public float maxCoolDownTime;
 
     private int count;
     private Skill curSkill;
-    private bool isOverload;
+    public bool isOverload;
 
     // [Header("")]
 
@@ -44,6 +45,12 @@ public class PermissionController : MonoBehaviour
         cache = 0;
         isOverload = false;
         curExchangeCoolDownTime = exchangeCoolDownTime;
+
+        for (int i = 0; i < skillNums; i++)
+        {
+            skills[i] = "InfoBombing";
+        }
+        InitialCurrentSkill();
     }
 
     // Update is called once per frame
@@ -60,23 +67,23 @@ public class PermissionController : MonoBehaviour
 
     public void GetNewSkill(string skillName)
     {
-        if (count < skillNums && count >= 0)
-        {
-            //技能数量没满
-            //添加技能
-            if (count == 0)
-            {
-                curSkillIndex = 0;
-            }
-            skills[count] = skillName;
-            count++;
-            InitialCurrentSkill();
-        }
-        else
-        {
-            //技能满了
-            cacheSkill = skillName;
-        }
+        // if (count < skillNums && count >= 0)
+        // {
+        //     //技能数量没满
+        //     //添加技能
+        //     if (count == 0)
+        //     {
+        //         curSkillIndex = 0;
+        //     }
+        //     skills[count] = skillName;
+        //     count++;
+        //     InitialCurrentSkill();
+        // }
+        // else
+        // {
+        //技能满了
+        cacheSkill = skillName;
+        // }
     }
 
     public void ExchangeCurSkill()
@@ -115,11 +122,12 @@ public class PermissionController : MonoBehaviour
                 skillCache[curSkillIndex] += curSkill.cache;
 
                 curSkill.SkillActive();
-                curSkillIndex = (curSkillIndex + 1) % count;
+                curSkillIndex = (curSkillIndex + 1) % skillNums;
                 InitialCurrentSkill();
 
                 //进入CD
-                curCoolDownTime = cache * curSkill.coolDownRatio;
+                maxCoolDownTime = cache * curSkill.coolDownRatio;
+                curCoolDownTime = maxCoolDownTime;
             }
             else
             {
@@ -138,6 +146,15 @@ public class PermissionController : MonoBehaviour
                 break;
             case "Flash":
                 curSkill = new Flash(transform, 5f, 3f);
+                break;
+            case "InfoBombing":
+                //curSkill = new InfoBombing();
+                break;
+            case "FlowHijack":
+                //curSkill = new FlowHijack();
+                break;
+            case "ForceAuthorization":
+                //curSkill = new ForceAuthorization();
                 break;
             default:
                 break;
