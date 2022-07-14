@@ -1,17 +1,17 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SubAttackSpeed : DeBuff
+public class SubSpeed : DeBuff
 {
     float speedDown = 0;
 
     /// <summary>
     /// 构造函数
     /// </summary>
-    /// <param name="speedDown">减速的速度</param>
+    /// <param name="defenceDown">减少的移速</param>
     /// <param name="time">减速时间</param>
-    public SubAttackSpeed(float speedDown, float time)
+    public SubSpeed(float speedDown, float time)
     {
         this.speedDown = speedDown;
         LastTime = time;
@@ -19,7 +19,7 @@ public class SubAttackSpeed : DeBuff
 
     override public void Apply(CharacterInfo info)
     {
-        //info.attackSpeed -= this.speedDown;
-        info.attackSpeed = Mathf.Max(info.attackSpeed - speedDown, 0);
+        //info.speed -= this.speedDown;
+        info.speed = Mathf.Max(info.speed - this.speedDown, 0);
     }
 }

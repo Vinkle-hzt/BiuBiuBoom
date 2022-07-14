@@ -11,7 +11,7 @@ public class EnemyBuffChck : MonoBehaviour
         if (other.tag == "RCE" && !isBuff)
         {
             isBuff = true;
-            ApplyBuff(other);
+            //ApplyBuff(other);
         }
     }
 
@@ -20,7 +20,7 @@ public class EnemyBuffChck : MonoBehaviour
         if (other.tag == "RCE" && !isBuff)
         {
             isBuff = true;
-            ApplyBuff(other);
+            //ApplyBuff(other);
         }
     }
 
@@ -29,17 +29,7 @@ public class EnemyBuffChck : MonoBehaviour
         if (other.tag == "RCE" && isBuff)
         {
             isBuff = false;
-            ClearBuff(other);
+            //ClearBuff(other);
         }
-    }
-
-    void ApplyBuff(Collider2D coll)
-    {
-        coll.GetComponent<RCEBullet>().ApplyBuff(GetComponent<Enemy>().eInfo);
-    }
-
-    void ClearBuff(Collider2D coll)
-    {
-        coll.GetComponent<RCEBullet>().ClearBuff(GetComponent<Enemy>().eInfo);
     }
 }

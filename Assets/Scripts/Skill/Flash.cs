@@ -41,6 +41,8 @@ public class Flash : Skill
 
         // TODO: 更改BUFF
         // transform.Find("BuffController").GetComponent<BuffController>().StartSpeedUp(speedUp, speedUpTime);
+        AddSpeed addSpeed = new AddSpeed(speedUp, speedUpTime);
+        transform.GetComponent<InfoController>().AddBuff(addSpeed);
     }
 
 }

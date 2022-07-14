@@ -158,10 +158,10 @@ public class InfoController : MonoBehaviour
         SubDefence(defence);
     }
 
-    public void DefenceResume()
-    {
-        ResumeDefence();
-    }
+    // public void DefenceResume()
+    // {
+    //     ResumeDefence();
+    // }
 
     public void SpeedBuff(float speed)
     {
@@ -173,8 +173,8 @@ public class InfoController : MonoBehaviour
         SubSpeed(speed);
     }
 
-    public void SpeedResume()
-    {
-        ResumeSpeed();
-    }
+    // public void SpeedResume()
+    // {
+    //     ResumeSpeed();
+    // }
 }
