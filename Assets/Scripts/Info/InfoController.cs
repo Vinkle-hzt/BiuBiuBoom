@@ -88,9 +88,7 @@ public class InfoController : MonoBehaviour
 
     private void AddSpeed(float x)
     {
-        Debug.Log(characterData.speed);
         characterData.speed += x;
-        Debug.Log(characterData.speed);
     }
 
     private void SubSpeed(float x)
@@ -101,7 +99,6 @@ public class InfoController : MonoBehaviour
     private void ResumeSpeed()
     {
         characterData.speed = tempSpeed;
-        Debug.Log(characterData.speed);
     }
 
     private void AddDefence(float x)

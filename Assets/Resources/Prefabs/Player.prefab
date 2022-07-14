@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2500532186031077449}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &3883766
 TrailRenderer:
@@ -137,49 +137,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!1 &1278094923
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1278094924}
-  - component: {fileID: 1278094925}
-  m_Layer: 9
-  m_Name: BuffController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1278094924
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278094923}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2500532186031077449}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1278094925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278094923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c73eff6a4e3dd604ab782330104902d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &263200475452499741
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +166,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2500532186031077449}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &3991021880670833471
 TrailRenderer:
@@ -527,7 +484,6 @@ Transform:
   m_Children:
   - {fileID: 2500532185741901110}
   - {fileID: 2500532186130218721}
-  - {fileID: 1278094924}
   - {fileID: 3883765}
   - {fileID: 3354955188843928366}
   m_Father: {fileID: 0}
@@ -545,9 +501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1c7631c7e90ac47bf86aa6a9715e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  templateData: {fileID: 11400000, guid: 1b3b2fe156b0e4648a257e5f9b8bc1b1, type: 2}
-  characterData: {fileID: 0}
-  skill_name: 
 --- !u!114 &2500532186031077450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,11 +541,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f7df0e55cb6e14e84ef1718285b157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pInfo: {fileID: 0}
+  infoController: {fileID: 0}
   pfAimer: {fileID: 8388337709695252409, guid: f3fce8f9c5f888f47bf49442130d4866, type: 3}
   curTime: 0
   trail: {fileID: 3883764}
   trail_eye: {fileID: 263200475452499741}
+  mainCamera: {fileID: 0}
 --- !u!114 &7080259962559804068
 MonoBehaviour:
   m_ObjectHideFlags: 0

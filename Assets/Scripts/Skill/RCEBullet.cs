@@ -66,8 +66,12 @@ public class RCEBullet : MonoBehaviour
                 return;
             }
         }
+        if(state == State.buff)
+        {
+            //TODO: 新的加buff方法
+        }
     }
-
+    
     IEnumerator StartBuffs()
     {
         state = State.buff;
@@ -82,19 +86,19 @@ public class RCEBullet : MonoBehaviour
         GetComponent<CircleCollider2D>().enabled = false;
     }
 
-    public void ApplyBuff(InfoController info)
-    {
-        //施加buff
-        info.DefenceDebuff(deleteDefence);
-        info.SpeedDebuff(deleteSpeed);
-    }
+    // public void ApplyBuff(InfoController info)
+    // {
+    //     //施加buff
+    //     info.DefenceDebuff(deleteDefence);
+    //     info.SpeedDebuff(deleteSpeed);
+    // }
 
-    public void ClearBuff(InfoController info)
-    {
-        //消去buff
-        info.DefenceResume();
-        info.SpeedResume();
-        Destroy(hit.gameObject);
-        Destroy(transform.gameObject);
-    }
+    // public void ClearBuff(InfoController info)
+    // {
+    //     //消去buff
+    //     info.DefenceResume();
+    //     info.SpeedResume();
+    //     Destroy(hit.gameObject);
+    //     Destroy(transform.gameObject);
+    // }
 }
