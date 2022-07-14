@@ -127,6 +127,14 @@ public class InfoController : MonoBehaviour
         attacker.AddEnergy(attacker.characterData.energyAttack);
     }
 
+    public void TakeDamageBySkill(InfoController attacker, InfoController defender)
+    {
+        //被攻击者血量减少
+        float damage = attacker.characterData.damage - defender.characterData.defence;
+        damage = damage <= 0 ? 0 : damage;
+        defender.SubHealth(damage);
+    }
+
     public void LossEnergy(float deltaTime)
     {
         SubEnergy(characterData.energyLoss * deltaTime);
