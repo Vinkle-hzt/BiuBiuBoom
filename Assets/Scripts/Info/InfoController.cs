@@ -64,6 +64,7 @@ public class InfoController : MonoBehaviour
     public float Jumpforce { get { return realData.jumpforce; } }
     public float ChangeStateEnergy { get { return realData.changeStateEnergy; } }
     public float ChangeStateTime { get { return realData.changeStateTime; } }
+    public bool IsStagger { get { return realData.isStagger; } }
     #endregion
 
     private void AddEnergy(float x)

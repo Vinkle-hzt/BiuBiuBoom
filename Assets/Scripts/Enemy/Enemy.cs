@@ -41,8 +41,22 @@ public class Enemy : MonoBehaviour
             if (state != EnemyState.control)
             {
                 FallDown();
-                (state == EnemyState.normal ? (Action)NormalMovement : FallDownAttack)();
-                (state == EnemyState.normal ? (Action)NormalAttack : FallDownAttack)();
+                if (state == EnemyState.normal)
+                {
+                    // 检查是否还在硬直状态
+                    if (eInfo.IsStagger)
+                        Stagger();
+                    else
+                    {
+                        NormalMovement();
+                        NormalAttack();
+                    }
+                }
+                else
+                {
+                    FallDownAttack();
+                    FallDownAttack();
+                }
             }
         }
     }
@@ -89,6 +103,13 @@ public class Enemy : MonoBehaviour
         return null;
     }
 
+    #region 硬直状态
+    protected virtual void Stagger()
+    {
+
+    }
+    #endregion
+
     #region 被控制
     public virtual void Control(float time)
     {
@@ -115,25 +136,20 @@ public class Enemy : MonoBehaviour
     #region 移动
     virtual protected void NormalMovement()
     {
-        //AI移动
-        //不同敌人有不同的移动方法，此处为父类，实现为空方法
     }
 
     virtual protected void FallDownMovement()
     {
-        //TODO:瘫痪统一不能移动
     }
     #endregion
 
     #region 攻击
     virtual protected void NormalAttack()
     {
-        //同移动为空方法
     }
 
     virtual protected void FallDownAttack()
     {
-        //同瘫痪移动
     }
     #endregion
 
@@ -150,8 +166,7 @@ public class Enemy : MonoBehaviour
                 state = EnemyState.fallDown;
                 // 更改 layer(用于实现斩杀和骇入)
                 UtilsClass.ChangeLayer(transform, LayerMask.NameToLayer("EnemyFall"));
-                //TODO: 瘫痪的美术表现
-                //用枪消失替代美术表现
+                // 更改颜色表示瘫痪
                 spriteRenderer.color = UtilsClass.HexToColor("FF8A8AFF");
                 BgmManager.instance.PlayEnemyFallDown();
             }
