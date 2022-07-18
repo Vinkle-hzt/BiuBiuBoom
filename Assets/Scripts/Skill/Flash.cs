@@ -17,6 +17,8 @@ public class Flash : Skill
     public Flash(Transform transform, float moveDistance, float speedUp) : base(transform)
     {
         base.level = 2;
+        base.InitialCoolDownRatio();
+        base.InitialCache();
         this.moveDistance = moveDistance;
         this.speedUp = speedUp;
         speedUpTime = 5;

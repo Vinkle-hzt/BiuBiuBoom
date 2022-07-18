@@ -9,6 +9,8 @@ public class ForceAuthorization : Skill
     public ForceAuthorization(Transform transform) : base(transform)
     {
         base.level = 3;
+        base.InitialCoolDownRatio();
+        base.InitialCache();
         prefab = Resources.Load<Transform>("Prefabs/ForceAuthorization");
     }
 

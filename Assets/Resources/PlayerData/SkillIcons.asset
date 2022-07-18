@@ -14,17 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skills:
   - skillName: RCE
-    skillIcons: {fileID: 2517352650371915575, guid: cf77b234c5ad3de419b734f410a090ca,
-      type: 3}
+    skillIcon: {fileID: 21300000, guid: 5889f3968634a8542a9d9b69ab53de31, type: 3}
   - skillName: Flash
-    skillIcons: {fileID: 5768793971998178050, guid: cf77b234c5ad3de419b734f410a090ca,
-      type: 3}
-  - skillName: InfoBombing
-    skillIcons: {fileID: -563938868860876397, guid: cf77b234c5ad3de419b734f410a090ca,
-      type: 3}
-  - skillName: FlowHijack
-    skillIcons: {fileID: -4611623146673323040, guid: cf77b234c5ad3de419b734f410a090ca,
-      type: 3}
+    skillIcon: {fileID: 21300000, guid: ae08e8b80e376fc4fbce986bc31cc122, type: 3}
+  - skillName: InformationBombing
+    skillIcon: {fileID: 21300000, guid: ec02013256c3e0c40b06d46162f1108a, type: 3}
+  - skillName: TrafficHijacking
+    skillIcon: {fileID: 21300000, guid: 575f0768799e8504a929d65ae3bc2c28, type: 3}
   - skillName: ForceAuthorization
-    skillIcons: {fileID: -4408572785833581383, guid: cf77b234c5ad3de419b734f410a090ca,
-      type: 3}
+    skillIcon: {fileID: 21300000, guid: 54240df153d2a504c881cd6d40d2b829, type: 3}

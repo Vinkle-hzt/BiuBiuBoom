@@ -10,6 +10,8 @@ public class RCE : Skill
     public RCE(Transform transform) : base(transform)
     {
         base.level = 2;
+        base.InitialCoolDownRatio();
+        base.InitialCache();
         bullet = Resources.Load<Transform>("Prefabs/crossed");
         gunEndPoint = transform.GetChild(0).GetChild(1);
     }

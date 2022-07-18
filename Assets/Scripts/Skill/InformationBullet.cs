@@ -20,7 +20,7 @@ public class InformationBullet : MonoBehaviour
     private bool isMove;
     private Transform hit;
     private Transform player;
-    public void Initial(Vector3 shootDir, Transform transform)
+    public void Initial(Vector2 shootDir, Transform transform)
     {
         this.shootDir = shootDir;
         isMove = true;

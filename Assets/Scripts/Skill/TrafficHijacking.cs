@@ -9,6 +9,8 @@ public class TrafficHijacking : Skill
     public TrafficHijacking(Transform transform) : base(transform)
     {
         base.level = 1;
+        base.InitialCoolDownRatio();
+        base.InitialCache();
         pfBullet = Resources.Load<Transform>("Prefabs/Skill/TrafficHijackingBullet");
     }
 

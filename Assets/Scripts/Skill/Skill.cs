@@ -12,8 +12,6 @@ public abstract class Skill
     protected Skill(Transform transform)
     {
         this.transform = transform;
-        InitialCoolDownRatio();
-        InitialCache();
     }
 
     protected void InitialCoolDownRatio()

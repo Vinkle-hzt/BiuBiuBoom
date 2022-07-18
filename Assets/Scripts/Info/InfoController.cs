@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class InfoController : MonoBehaviour
 {
+    [SerializeField]
     private CharacterInfo templateData;
     private CharacterInfo characterData;
     private CharacterInfo realData; // 实际数据

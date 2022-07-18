@@ -461,6 +461,7 @@ GameObject:
   - component: {fileID: 2500532186031077451}
   - component: {fileID: 2500532186031077452}
   - component: {fileID: 7080259962559804068}
+  - component: {fileID: 7003476758223002482}
   - component: {fileID: 995553883}
   - component: {fileID: 995553882}
   - component: {fileID: 1350615307}
@@ -501,6 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1c7631c7e90ac47bf86aa6a9715e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  templateData: {fileID: 0}
 --- !u!114 &2500532186031077450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,6 +561,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5248db9365237ec4ca8f34140adc6728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7003476758223002482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2500532186031077431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6808d70c6d420d145a38aa91574c0cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skills: []
+  skillNums: 3
+  curSkillIndex: 0
+  cacheSkill: 
+  exchangeCoolDownTime: 0
+  cache: 0
+  maxCache: 100
+  curCoolDownTime: 0
+  maxCoolDownTime: 0
+  isOverload: 0
 --- !u!50 &995553883
 Rigidbody2D:
   serializedVersion: 4

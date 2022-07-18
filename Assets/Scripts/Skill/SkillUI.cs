@@ -20,7 +20,7 @@ public class SkillUI : MonoBehaviour
     void Start()
     {
         permissionController = player.GetComponent<PermissionController>();
-        cacheFill = cache.transform.Find("Fill");
+        cacheFill = cache.transform.Find("Fill Area").Find("Fill");
         cacheFill.GetComponent<Image>().color = new Color(255, 255, 255, 1);
     }
 
@@ -36,13 +36,13 @@ public class SkillUI : MonoBehaviour
 
     void CheckCD()
     {
-        if (permissionController.curCoolDownTime <= 0)
+        if (permissionController.curCoolDownTime > 0)
         {
             cd.SetActive(true);
             ready.SetActive(false);
             cd.transform.Find("CDNumber").GetComponent<Text>().text = permissionController.curCoolDownTime.ToString("0.00");
-            cd.transform.Find("CDSilder").GetComponent<Slider>().maxValue = permissionController.maxCoolDownTime;
-            cd.transform.Find("CDSilder").GetComponent<Slider>().value = permissionController.curCoolDownTime / permissionController.maxCoolDownTime;
+            cd.transform.Find("CDSlider").GetComponent<Slider>().maxValue = 1;
+            cd.transform.Find("CDSlider").GetComponent<Slider>().value = permissionController.curCoolDownTime / permissionController.maxCoolDownTime;
         }
         else
         {
@@ -68,33 +68,33 @@ public class SkillUI : MonoBehaviour
 
     void CheckCache()
     {
-        cache.GetComponent<Slider>().maxValue = permissionController.maxCache;
+        cache.GetComponent<Slider>().maxValue = 1;
         float originValue = cache.GetComponent<Slider>().value;
         float targetValue = permissionController.cache / permissionController.maxCache > 1 ? 1 : permissionController.cache / permissionController.maxCache;
-        float speed = (originValue - targetValue) / 1.0f;
+        float speed = (targetValue - originValue) / 0.5f;
         if (originValue != targetValue)
         {
             cache.GetComponent<Slider>().value = originValue + speed * Time.deltaTime;
         }
 
         //控制颜色变化
-        if (originValue >= 0 && originValue <= 0.5)
+        if (cache.GetComponent<Slider>().value >= 0 && cache.GetComponent<Slider>().value <= 0.5)
         {
             //改变B通道
             cacheFill.GetComponent<Image>().color = new Color(
-                cacheFill.GetComponent<Image>().color.r,
-                cacheFill.GetComponent<Image>().color.g,
-                cacheFill.GetComponent<Image>().color.b - 255 * originValue * 2,
+                1,
+                1,
+                1 - cache.GetComponent<Slider>().value * 2,
                 1
             );
         }
-        else if (originValue > 0.5 && originValue <= 1)
+        else if (cache.GetComponent<Slider>().value > 0.5 && cache.GetComponent<Slider>().value <= 1)
         {
             //改变G通道
             cacheFill.GetComponent<Image>().color = new Color(
-                cacheFill.GetComponent<Image>().color.r,
-                cacheFill.GetComponent<Image>().color.g - 255 * (originValue - 0.5f) * 2,
-                cacheFill.GetComponent<Image>().color.b,
+                1,
+                1 - (cache.GetComponent<Slider>().value - 0.5f) * 2,
+                0,
                 1
             );
         }

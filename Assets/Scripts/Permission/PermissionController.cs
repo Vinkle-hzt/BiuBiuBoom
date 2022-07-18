@@ -40,15 +40,16 @@ public class PermissionController : MonoBehaviour
         skills = new string[skillNums];
         skillCache = new float[skillNums];
         count = 0;
-        curSkillIndex = -1;
-        cacheSkill = null;
+        curSkillIndex = 0;
+        cacheSkill = "Flash";
         cache = 0;
         isOverload = false;
         curExchangeCoolDownTime = exchangeCoolDownTime;
+        maxCoolDownTime = 0;
 
         for (int i = 0; i < skillNums; i++)
         {
-            skills[i] = "InfoBombing";
+            skills[i] = "InformationBombing";
         }
         InitialCurrentSkill();
     }
@@ -90,7 +91,7 @@ public class PermissionController : MonoBehaviour
     {
         if (cacheSkill != null)
         {
-            if (Input.GetKeyDown(InputController.instance.exchange))
+            if (Input.GetKey(InputController.instance.exchange))
             {
                 if (curExchangeCoolDownTime <= 0)
                 {
@@ -114,10 +115,13 @@ public class PermissionController : MonoBehaviour
     public void UseSkill()
     {
         //触发技能
-        if (Input.GetKeyDown(InputController.instance.skill))
+
+        if (curCoolDownTime <= 0)
         {
-            if (curCoolDownTime <= 0)
+            if (Input.GetKeyDown(InputController.instance.skill))
             {
+                Debug.Log(curSkill.cache);
+                Debug.Log(curSkill.coolDownRatio);
                 //增加缓存
                 skillCache[curSkillIndex] += curSkill.cache;
 
@@ -129,10 +133,10 @@ public class PermissionController : MonoBehaviour
                 maxCoolDownTime = cache * curSkill.coolDownRatio;
                 curCoolDownTime = maxCoolDownTime;
             }
-            else
-            {
-                curCoolDownTime -= Time.deltaTime;
-            }
+        }
+        else
+        {
+            curCoolDownTime -= Time.deltaTime;
         }
     }
 
@@ -147,14 +151,14 @@ public class PermissionController : MonoBehaviour
             case "Flash":
                 curSkill = new Flash(transform, 5f, 3f);
                 break;
-            case "InfoBombing":
-                //curSkill = new InfoBombing();
+            case "InformationBombing":
+                curSkill = new InformationBombing(transform);
                 break;
             case "FlowHijack":
-                //curSkill = new FlowHijack();
+                curSkill = new TrafficHijacking(transform);
                 break;
             case "ForceAuthorization":
-                //curSkill = new ForceAuthorization();
+                curSkill = new ForceAuthorization(transform);
                 break;
             default:
                 break;

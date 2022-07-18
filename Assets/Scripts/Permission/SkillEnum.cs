@@ -1,6 +1,6 @@
 ﻿public enum SkillLevelOne
 {
-    InfoBombing, FlowHijack
+    InformationBombing, TrafficHijacking
 }
 
 public enum SkillLevelTwo
