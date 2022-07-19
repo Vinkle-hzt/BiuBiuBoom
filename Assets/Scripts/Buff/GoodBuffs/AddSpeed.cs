@@ -19,6 +19,6 @@ public class AddSpeed : GoodBuff
 
     override public void Apply(CharacterInfo info)
     {
-        info.attackSpeed += this.speedUp;
+        info.speed += this.speedUp;
     }
 }

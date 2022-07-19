@@ -22,7 +22,7 @@ public class TrafficHijackingBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += shootDir * shootSpeed * Time.deltaTime;
+        transform.position += shootDir.normalized * shootSpeed * Time.deltaTime;
         transform.localScale += new Vector3(scaleRate, scaleRate, 0) * Time.deltaTime;
     }
 

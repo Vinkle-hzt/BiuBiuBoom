@@ -16,4 +16,9 @@ public class AuthorizationEffect : MonoBehaviour
             other.GetComponent<InfoController>().AddBuff(stagger);
         }
     }
+
+    public void Finish()
+    {
+        Destroy(this.gameObject);
+    }
 }

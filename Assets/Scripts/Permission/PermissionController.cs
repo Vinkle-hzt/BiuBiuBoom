@@ -5,8 +5,6 @@ using System;
 
 public class PermissionController : MonoBehaviour
 {
-    // TODO: 用 BuffController or InfoController 控制Buff
-
     [Header("技能区")]
     public string[] skills;
     public int skillNums;
@@ -28,7 +26,6 @@ public class PermissionController : MonoBehaviour
     public float curCoolDownTime;
     public float maxCoolDownTime;
 
-    private int count;
     private Skill curSkill;
     public bool isOverload;
 
@@ -39,9 +36,8 @@ public class PermissionController : MonoBehaviour
     {
         skills = new string[skillNums];
         skillCache = new float[skillNums];
-        count = 0;
         curSkillIndex = 0;
-        cacheSkill = "Flash";
+        cacheSkill = null;
         cache = 0;
         isOverload = false;
         curExchangeCoolDownTime = exchangeCoolDownTime;
@@ -49,7 +45,8 @@ public class PermissionController : MonoBehaviour
 
         for (int i = 0; i < skillNums; i++)
         {
-            skills[i] = "InformationBombing";
+            //skills[i] = "InformationBombing";
+            skills[i] = "TrafficHijacking";
         }
         InitialCurrentSkill();
     }

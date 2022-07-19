@@ -41,15 +41,16 @@ public class RCEBullet : MonoBehaviour
         this.shootDir = shootDir;
         isMove = true;
         circle.SetActive(false);
+        GetComponent<BoxCollider2D>().enabled = true;
+        GetComponent<CircleCollider2D>().enabled = false;
     }
 
     private void Update()
     {
         if (isMove)
         {
-            transform.position += shootDir * shootSpeed * Time.deltaTime;
+            transform.position += shootDir.normalized * shootSpeed * Time.deltaTime;
         }
-
         if (state == State.buff)
         {
             //新的加buff方法
@@ -71,6 +72,7 @@ public class RCEBullet : MonoBehaviour
     {
         if (state == State.bullet)
         {
+            Debug.Log(collision.tag);
             if (collision.CompareTag("Ground") || collision.CompareTag("Enemy"))
             {
                 hit = Instantiate(pfHit, transform.position, Quaternion.identity);

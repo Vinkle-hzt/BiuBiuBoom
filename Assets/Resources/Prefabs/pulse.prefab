@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 488547216527755918}
   - component: {fileID: 7971999279379654740}
   - component: {fileID: 7873854055709435216}
-  m_Layer: 0
+  - component: {fileID: -2761872206597736986}
+  m_Layer: 13
   m_Name: pulse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +118,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   radius: 6
-  damage: 2
   shootSpeed: 30
   pfHit: {fileID: 6857327924405774266, guid: 6b572aec6f14d534884429d8b53b81f6, type: 3}
 --- !u!61 &7873854055709435216
@@ -146,3 +146,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.63, y: 0.26539546}
   m_EdgeRadius: 0
+--- !u!50 &-2761872206597736986
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488547216527755917}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

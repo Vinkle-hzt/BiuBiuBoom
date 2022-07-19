@@ -31,7 +31,7 @@ public class InformationBullet : MonoBehaviour
     {
         if (isMove)
         {
-            transform.position += shootDir * shootSpeed * Time.deltaTime;
+            transform.position += shootDir.normalized * shootSpeed * Time.deltaTime;
         }
     }
 
@@ -55,6 +55,13 @@ public class InformationBullet : MonoBehaviour
                     coll.GetComponent<InfoController>().AddBuff(stagger);
                 }
             }
+            Destroy(this.gameObject);
         }
     }
+
+    // private void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawSphere(transform.position, radius);
+    // }
 }

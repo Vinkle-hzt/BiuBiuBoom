@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         string collTag = pInfo.CharacterTag == "Player" ? "Enemy" : "Player";
-
+        Debug.Log(collision.tag);
         if (collision.CompareTag(collTag))
         {
             pInfo.TakeDamage(pInfo, collision.GetComponent<InfoController>());

@@ -18,7 +18,7 @@ public class RCE : Skill
 
     public override void SkillActive()
     {
-        Vector3 shootDir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gunEndPoint.position).normalized;
+        Vector2 shootDir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - gunEndPoint.position).normalized;
         Vector3 shootRotation = new Vector3(0, 0, Mathf.Atan2(shootDir.y, shootDir.x) * 180 / Mathf.PI);
         Transform RCEbullet = transform.GetComponent<InstantiateCS>().InstantiateBullet(bullet, gunEndPoint.position, Quaternion.Euler(shootRotation));
 

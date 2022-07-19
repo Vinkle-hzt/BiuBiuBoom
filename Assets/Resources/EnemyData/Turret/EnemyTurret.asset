@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00e8103fac330747988ef472eabd628, type: 3}
   m_Name: EnemyTurret
   m_EditorClassIdentifier: 
-  CharacterTag: Enemy
+  characterTag: Enemy
   maxHealth: 30
   health: 30
   defence: 1
@@ -31,3 +31,4 @@ MonoBehaviour:
   damage: 8
   canShoot: 1
   hackDis: 0
+  isStagger: 0

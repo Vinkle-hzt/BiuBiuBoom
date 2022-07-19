@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00e8103fac330747988ef472eabd628, type: 3}
   m_Name: EnemyDrone
   m_EditorClassIdentifier: 
-  CharacterTag: Enemy
+  characterTag: Enemy
   maxHealth: 30
   health: 30
   defence: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
   energyGet: 0
   changeStateEnergy: 0
   changeStateTime: 0
-  speed: 1.5
+  speed: 3
   speedRatio: 0
   jumpforce: 0
   attackSpeed: 0.25
@@ -31,3 +31,4 @@ MonoBehaviour:
   damage: 5
   canShoot: 1
   hackDis: 0
+  isStagger: 0

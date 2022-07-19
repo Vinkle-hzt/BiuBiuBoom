@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00e8103fac330747988ef472eabd628, type: 3}
   m_Name: CharacterInfo
   m_EditorClassIdentifier: 
-  CharacterTag: Player
+  characterTag: Player
   maxHealth: 100
   health: 100
   defence: 0
@@ -31,3 +31,4 @@ MonoBehaviour:
   damage: 3
   canShoot: 1
   hackDis: 4
+  isStagger: 0

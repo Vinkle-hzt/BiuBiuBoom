@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6472281872167254818}
   - component: {fileID: 7843983926940798513}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1657491183015298853}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 3.1}
+  m_LocalScale: {x: 6.3, y: 6.3, z: 6.3}
   m_Children: []
   m_Father: {fileID: 3210945295422607667}
   m_RootOrder: 0
@@ -95,7 +95,8 @@ GameObject:
   - component: {fileID: 2592172048076596792}
   - component: {fileID: 4470228998406065770}
   - component: {fileID: 5838950580190751492}
-  m_Layer: 0
+  - component: {fileID: -3554451115050464149}
+  m_Layer: 13
   m_Name: crossed
   m_TagString: RCE
   m_Icon: {fileID: 0}
@@ -198,10 +199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbc928f5a25df54c93d4facbe80c748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 1
   radius: 4
   deleteDefence: 10
-  deleteSpeed: 8
+  deleteSpeed: 2
   consistantTime: 5
   layer:
     serializedVersion: 2
@@ -251,3 +252,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2
+--- !u!50 &-3554451115050464149
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3210945295422607664}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
