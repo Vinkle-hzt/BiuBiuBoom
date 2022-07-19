@@ -19,7 +19,7 @@ public class TrafficHijacking : Skill
         Vector3 mouseWorldPosition = UtilsClass.GetMouseWorldPosition();
         Vector3 aimDirection = (mouseWorldPosition - transform.position).normalized;
 
-        Transform bulletTransform = Object.Instantiate(pfBullet, transform.position, Quaternion.identity);
+        Transform bulletTransform = GameObject.Instantiate(pfBullet, transform.position, Quaternion.identity);
 
         bulletTransform.GetComponent<TrafficHijackingBullet>().Setup(aimDirection);
     }

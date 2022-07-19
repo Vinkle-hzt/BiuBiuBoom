@@ -73,7 +73,7 @@ public class InfoController : MonoBehaviour
         characterData.energy = Mathf.Min(characterData.maxEnergy, characterData.energy + x);
     }
 
-    private void SubEnergy(float x)
+    public void SubEnergy(float x)
     {
         characterData.energy = Mathf.Max(0, characterData.energy - x);
     }

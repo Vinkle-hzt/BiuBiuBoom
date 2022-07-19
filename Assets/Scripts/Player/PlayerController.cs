@@ -76,9 +76,8 @@ public class PlayerController : MonoBehaviour
                 && state is StateHacker)
             {
                 curTime = infoController.ChangeStateTime; // 进入冷却
-                infoController.LossEnergy(infoController.ChangeStateEnergy); // 扣除能量
+                infoController.SubEnergy(infoController.ChangeStateEnergy); // 扣除能量
                 BgmManager.instance.PlayChangeState();
-
                 transform.Find("Body").GetComponent<Animator>().Play("PlayShadow");
 
                 state.Leave();

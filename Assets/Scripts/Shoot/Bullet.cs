@@ -27,6 +27,12 @@ public class Bullet : MonoBehaviour
         transform.position += shootDir * shootSpeed * Time.deltaTime;
     }
 
+    public void boom()
+    {
+        Instantiate(pfHit, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+
     // TO-DO: 当打击到怪物时更新pInfo中的能量
     // note: 可以调用 pInfo.AddEnergy
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,14 +42,12 @@ public class Bullet : MonoBehaviour
         if (collision.CompareTag(collTag))
         {
             pInfo.TakeDamage(pInfo, collision.GetComponent<InfoController>());
-            Instantiate(pfHit, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            boom();
             return;
         }
         else if (collision.CompareTag("Ground"))
         {
-            Instantiate(pfHit, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            boom();
             return;
         }
     }

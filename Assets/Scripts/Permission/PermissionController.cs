@@ -151,7 +151,7 @@ public class PermissionController : MonoBehaviour
             case "InformationBombing":
                 curSkill = new InformationBombing(transform);
                 break;
-            case "FlowHijack":
+            case "TrafficHijacking":
                 curSkill = new TrafficHijacking(transform);
                 break;
             case "ForceAuthorization":

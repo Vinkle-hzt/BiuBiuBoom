@@ -95,8 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ba594f574e8a14d8f2706af4e20beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootSpeed: 25
   scaleRate: 1
-  stillTime: 0
+  stillTime: 1
 --- !u!68 &4610136741016101025
 EdgeCollider2D:
   m_ObjectHideFlags: 0
