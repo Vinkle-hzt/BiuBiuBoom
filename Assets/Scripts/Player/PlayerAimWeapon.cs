@@ -86,7 +86,7 @@ public class PlayerAimWeapon : MonoBehaviour
     // 使人物和鼠标方向相同
     private void setPlayerLookAt(Vector3 position)
     {
-        float lookAtDir = (position.x - bodyTransform.position.x) < 0 ? -1 : 1;
+        float lookAtDir = (position.x - bodyTransform.position.x) < 0 ? 1 : -1;
         Vector3 localScale = bodyTransform.localScale;
 
 
