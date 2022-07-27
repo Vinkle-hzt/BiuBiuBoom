@@ -22,18 +22,26 @@ public class ProductionDepartmentStaff : Enemy
     private State curState = State.Move;
     private float moveDistance;
     private float moveDir;
+    private Animator anim;
+    private void Awake() 
+    {
+        anim = GetComponent<Animator>();
+    }
+
     protected override void NormalMovement()
     {
-        target = findTarget();
+        if (curState == State.Move)
+            target = findTarget();
 
         if (target != null)
         {
             switch (curState)
             {
                 case State.Move:
+                    moveDir = target.position.x - transform.position.x > 0 ? 1 : -1;
+                    transform.localScale = new Vector3(moveDir * Mathf.Abs(transform.localScale.x),transform.localScale.y, transform.localScale.z);
                     if (Vector3.Distance(transform.position, target.position) > attackDistance)
                     {
-                        moveDir = target.position.x - transform.position.x > 0 ? 1 : -1;
                         transform.position += new Vector3(moveDir * eInfo.Speed * Time.deltaTime, 0, 0);
                     }
                     else
@@ -48,6 +56,7 @@ public class ProductionDepartmentStaff : Enemy
                     {
                         moveDistance = flashDistance;
                         curState = State.Attack;
+                        anim.Play("CloseAttack");
                         // TODO: 蓄力动画，蓄力音效
                     }
                     break;
@@ -57,6 +66,7 @@ public class ProductionDepartmentStaff : Enemy
                     {
                         curState = State.Move;
                         chargeTime = 0;
+                        anim.Play("CloseIdle");
                     }
                     break;
             }
@@ -65,10 +75,19 @@ public class ProductionDepartmentStaff : Enemy
 
     void Attack()
     {
-        float curMove = Mathf.Min(moveDir * eInfo.Speed * Time.deltaTime * 10, moveDistance);
+        float curMove = Mathf.Min(moveDir * eInfo.Speed * Time.deltaTime * 5, moveDistance);
         moveDistance -= Mathf.Abs(curMove);
         transform.position += new Vector3(curMove, 0, 0);
         // TODO: 攻击动画，攻击音效
         // TODO: 攻击判定
+    }
+
+    public void Hit(InfoController player)
+    {
+        Debug.Log("被攻击");
+        if (curState == State.Attack)
+        {
+            eInfo.TakeDamage(eInfo, player);
+        }
     }
 }

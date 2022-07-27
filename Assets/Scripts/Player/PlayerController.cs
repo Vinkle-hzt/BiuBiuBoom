@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
             {
                 curTime = infoController.ChangeStateTime; // 进入冷却
                 infoController.SubEnergy(infoController.ChangeStateEnergy); // 扣除能量
-                BgmManager.instance.PlayChangeState();
+                // BgmManager.instance.PlayChangeState();
                 transform.Find("Body").GetComponent<Animator>().Play("PlayShadow");
 
                 state.Leave();

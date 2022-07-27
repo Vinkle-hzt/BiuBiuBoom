@@ -15,6 +15,7 @@ public class FinanceDepartmentStaff : Enemy
     private Transform point2;
     private Direction direction = Direction.Point1;
     public Transform target;
+    private Animator anim;
     public float shootCurTime;
 
     // TODO：更改子弹
@@ -26,6 +27,7 @@ public class FinanceDepartmentStaff : Enemy
         point1 = transform.Find("Point1");
         point2 = transform.Find("Point2");
         body = transform.Find("Body");
+        anim = body.GetComponent<Animator>();
     }
 
     override protected void NormalMovement()
@@ -36,7 +38,8 @@ public class FinanceDepartmentStaff : Enemy
             if (Vector3.Distance(body.position, point2.position) < 0.1f)
             {
                 direction = Direction.Point2;
-                // TODO 动画
+                if (target == null)
+                    body.localScale = new Vector3(-body.localScale.x, body.localScale.y, body.localScale.z);
             }
         }
         else
@@ -45,8 +48,14 @@ public class FinanceDepartmentStaff : Enemy
             if (Vector3.Distance(body.position, point1.position) < 0.1f)
             {
                 direction = Direction.Point1;
-                // TODO 动画
+                if (target == null)
+                    body.localScale = new Vector3(-body.localScale.x, body.localScale.y, body.localScale.z);
             }
+        }
+        if (target != null)
+        {
+            float dir = target.position.x - body.position.x > 0 ? 1 : -1;
+            body.localScale = new Vector3(dir * Mathf.Abs(body.localScale.x), body.localScale.y, body.localScale.z);
         }
     }
 
@@ -67,7 +76,6 @@ public class FinanceDepartmentStaff : Enemy
 
         if (target == null)
             return;
-
         Vector3 shootDir = (target.position - body.position).normalized;
 
         // 向三个方向发射子弹
@@ -94,6 +102,7 @@ public class FinanceDepartmentStaff : Enemy
         Transform bullet2 = Instantiate(pfBullet, body.position, Quaternion.identity);
         Transform bullet3 = Instantiate(pfBullet, body.position, Quaternion.identity);
 
+        anim.SetTrigger("Attack");
         bullet1.GetComponent<Bullet>().Setup(new Vector3(dir1.x, dir1.y, 0), eInfo);
         bullet2.GetComponent<Bullet>().Setup(new Vector3(dir2.x, dir2.y, 0), eInfo);
         bullet3.GetComponent<Bullet>().Setup(shootDir, eInfo);
