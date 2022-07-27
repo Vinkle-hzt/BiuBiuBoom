@@ -124,6 +124,7 @@ public class Enemy : MonoBehaviour
     public void Dead()
     {
         isDead = true;
+        EventHandler.CallEnemyDeathEvent();
         Destroy(gameObject);
     }
 
