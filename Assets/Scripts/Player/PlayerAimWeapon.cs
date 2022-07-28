@@ -25,6 +25,8 @@ public class PlayerAimWeapon : MonoBehaviour
     [SerializeField] private float curTime;
     private InfoController pInfo;
 
+    private Rigidbody2D rb;
+
     private void Start()
     {
         aimTransform = transform.Find("Aim");
@@ -34,13 +36,13 @@ public class PlayerAimWeapon : MonoBehaviour
         pInfo = transform.GetComponent<InfoController>();
         attackTime = 1.0f / pInfo.AttackSpeed;
         curTime = attackTime;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
         HandleAiming();
         HandleShooting();
-
     }
 
     private void HandleAiming()
@@ -89,8 +91,13 @@ public class PlayerAimWeapon : MonoBehaviour
         float lookAtDir = (position.x - bodyTransform.position.x) < 0 ? 1 : -1;
         Vector3 localScale = bodyTransform.localScale;
 
-
         if (localScale.x * lookAtDir < 0)
             bodyTransform.localScale = new Vector3(localScale.x * -1, localScale.y, localScale.z);
+
+
+        if (rb.velocity.x * bodyTransform.localScale.x >= 0)
+            EventHandler.CallAnimationReversePlay(true);
+        else
+            EventHandler.CallAnimationReversePlay(false);
     }
 }

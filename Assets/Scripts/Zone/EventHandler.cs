@@ -45,4 +45,10 @@ public class EventHandler : MonoBehaviour
     {
         EnemyDeathEvent?.Invoke();
     }
+
+    public static event Action<bool> AnimationReversePlay;
+    public static void CallAnimationReversePlay(bool isReverse)
+    {
+        AnimationReversePlay?.Invoke(isReverse);
+    }
 }

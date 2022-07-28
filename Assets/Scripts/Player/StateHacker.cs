@@ -24,6 +24,7 @@ public class StateHacker : PlayerState
     int groundedID;
     int runningID;
     int verticalVelID;
+    float reverse;
 
     private float horizontalMove;
     private float faceDirection;
@@ -50,6 +51,9 @@ public class StateHacker : PlayerState
         verticalVelID = Animator.StringToHash("VerticalVel");
 
         this.gravity = gravity;
+
+        reverse = 1;
+        EventHandler.AnimationReversePlay += OnAnimationReversePlay;
     }
 
     public override void FixedUpdate()
@@ -63,6 +67,22 @@ public class StateHacker : PlayerState
     {
         MoveCheck();
         UpdateAnim();
+    }
+
+    private void OnAnimationReversePlay(bool isReverse)
+    {
+        Debug.Log("call");
+        if (isReverse && isGround)
+        {
+            //anim.speed = -1;
+            reverse = -1;
+            Debug.Log("reverse");
+        }
+        else
+        {
+            //anim.speed = 1;
+            reverse = 1;
+        }
     }
 
     void Movement()
@@ -132,6 +152,7 @@ public class StateHacker : PlayerState
     {
         anim.SetBool(groundedID, isGround);
         anim.SetBool(runningID, isRunning);
+        anim.SetFloat("isReverse", reverse);
         anim.SetFloat(verticalVelID, rb.velocity.y);
     }
 }

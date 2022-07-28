@@ -18,6 +18,7 @@ public class Bullet : MonoBehaviour
         this.pInfo = pInfo;
         this.shootDir = shootDir;
         shootSpeed = pInfo.ShootSpeed;
+        this.damageRate = 1;
         transform.eulerAngles = new Vector3(0, 0, UtilsClass.GetAngleFromVectorFloat(shootDir));
         Destroy(gameObject, 5f);
     }
