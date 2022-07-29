@@ -46,7 +46,7 @@ public class PermissionController : MonoBehaviour
         for (int i = 0; i < skillNums; i++)
         {
             //skills[i] = "InformationBombing";
-            skills[i] = "TrafficHijacking";
+            skills[i] = "RCE";
         }
         InitialCurrentSkill();
     }

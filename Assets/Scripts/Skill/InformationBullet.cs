@@ -59,9 +59,9 @@ public class InformationBullet : MonoBehaviour
         }
     }
 
-    // private void OnDrawGizmos()
-    // {
-    //     Gizmos.color = Color.red;
-    //     Gizmos.DrawSphere(transform.position, radius);
-    // }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, radius);
+    }
 }
