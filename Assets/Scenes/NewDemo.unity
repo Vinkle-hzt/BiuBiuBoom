@@ -705,7 +705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentZone: {fileID: 0}
-  currentRounds: 0
+  currentRounds: 1
   loadNextRoundTime: 180
 --- !u!4 &519051851
 Transform:

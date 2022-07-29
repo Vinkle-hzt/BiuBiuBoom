@@ -67,7 +67,6 @@ public class ZoneController : MonoBehaviour
     private void GetCurrentZoneChildren()
     {
         enemyRounds = new Transform[currentRounds];
-
         for (int i = 0; i < currentRounds; i++)
         {
             enemyRounds[i] = currentZone.GetChild(i);

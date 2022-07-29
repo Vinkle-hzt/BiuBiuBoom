@@ -29,6 +29,8 @@ public class PermissionController : MonoBehaviour
     private Skill curSkill;
     public bool isOverload;
 
+    private InfoController pInfo;
+
     // [Header("")]
 
     // Start is called before the first frame update
@@ -42,6 +44,7 @@ public class PermissionController : MonoBehaviour
         isOverload = false;
         curExchangeCoolDownTime = exchangeCoolDownTime;
         maxCoolDownTime = 0;
+        pInfo = GetComponent<InfoController>();
 
         for (int i = 0; i < skillNums; i++)
         {
@@ -115,7 +118,7 @@ public class PermissionController : MonoBehaviour
 
         if (curCoolDownTime <= 0)
         {
-            if (Input.GetKeyDown(InputController.instance.skill))
+            if (pInfo.CanShoot && Input.GetKeyDown(InputController.instance.skill))
             {
                 Debug.Log(curSkill.cache);
                 Debug.Log(curSkill.coolDownRatio);
