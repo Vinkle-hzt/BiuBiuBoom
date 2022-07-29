@@ -99,9 +99,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7649166505350583369}
-  - component: {fileID: 1695487985279128932}
-  - component: {fileID: 8197144632181345402}
-  - component: {fileID: 2819542361584642132}
   m_Layer: 10
   m_Name: RemoteEnemy
   m_TagString: Enemy
@@ -126,51 +123,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1695487985279128932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7649166505350585270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a1c7631c7e90ac47bf86aa6a9715e39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  templateData: {fileID: 11400000, guid: 2d30a271cf6ccc14e8fd6a1230aa1bc0, type: 2}
---- !u!114 &8197144632181345402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7649166505350585270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 961b975fd3815d84ab54605f5d6fb5a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  templateData: {fileID: 11400000, guid: 6c882a66c1c188f4299ef655d05f655e, type: 2}
-  characterData: {fileID: 0}
---- !u!114 &2819542361584642132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7649166505350585270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8500d33ba185d0641987e87f998856bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isElite: 0
-  eInfo: {fileID: 0}
-  enemyInfo: {fileID: 0}
-  target: {fileID: 0}
-  shootCurTime: 0
-  pfBullet: {fileID: 0}
 --- !u!1 &8380394316880850082
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +136,9 @@ GameObject:
   - component: {fileID: 1408720931980284956}
   - component: {fileID: 196371582542350276}
   - component: {fileID: 23595867127306034}
+  - component: {fileID: 4769074715232357178}
+  - component: {fileID: 5082072721969854537}
+  - component: {fileID: 4700865091194639858}
   m_Layer: 10
   m_Name: Body
   m_TagString: Enemy
@@ -312,3 +267,49 @@ CapsuleCollider2D:
   m_Offset: {x: 0.15245819, y: -0.06149578}
   m_Size: {x: 0.6720886, y: 1.4082336}
   m_Direction: 0
+--- !u!114 &4769074715232357178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380394316880850082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8500d33ba185d0641987e87f998856bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isElite: 0
+  eInfo: {fileID: 0}
+  enemyInfo: {fileID: 0}
+  target: {fileID: 0}
+  shootCurTime: 0
+  pfBullet: {fileID: 5497587629904014710, guid: 769bc1b1b8de6ae48b883350441f2a2f,
+    type: 3}
+--- !u!114 &5082072721969854537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380394316880850082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961b975fd3815d84ab54605f5d6fb5a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  templateData: {fileID: 11400000, guid: 6c882a66c1c188f4299ef655d05f655e, type: 2}
+  characterData: {fileID: 0}
+--- !u!114 &4700865091194639858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380394316880850082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a1c7631c7e90ac47bf86aa6a9715e39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  templateData: {fileID: 11400000, guid: 2d30a271cf6ccc14e8fd6a1230aa1bc0, type: 2}

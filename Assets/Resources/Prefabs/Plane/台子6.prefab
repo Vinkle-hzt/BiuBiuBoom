@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1888422991421925111}
   - component: {fileID: 1888422991421925110}
   - component: {fileID: 1888422991421925105}
+  - component: {fileID: 3012108394057103269}
   m_Layer: 0
   m_Name: "\u53F0\u5B506"
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,3 +117,24 @@ PolygonCollider2D:
       - {x: 0.16289377, y: 0.450809}
       - {x: 0.2775, y: 0.445}
       - {x: 0.2775, y: 0.765}
+--- !u!50 &3012108394057103269
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888422991421925104}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

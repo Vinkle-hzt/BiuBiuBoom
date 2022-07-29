@@ -24,9 +24,9 @@ public class FinanceDepartmentStaff : Enemy
     private Transform pfBullet;
     private void Awake()
     {
-        point1 = transform.Find("Point1");
-        point2 = transform.Find("Point2");
-        body = transform.Find("Body");
+        point1 = transform.parent.Find("Point1");
+        point2 = transform.parent.Find("Point2");
+        body = transform;
         anim = body.GetComponent<Animator>();
     }
 

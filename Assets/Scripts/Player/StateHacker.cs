@@ -94,10 +94,22 @@ public class StateHacker : PlayerState
             isRunning = true;
         else
             isRunning = false;
-
+        ChangeFaceAt();
         Jump();
     }
-
+    void ChangeFaceAt()
+    {
+        if (horizontalMove > 0)
+        {
+            faceDirection = -1;
+            transform.localScale = new Vector3(faceDirection * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else if (horizontalMove < 0)
+        {
+            faceDirection = 1;
+            transform.localScale = new Vector3(faceDirection * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+    }
     void MoveCheck()
     {
         horizontalMove = Input.GetAxis("Horizontal");
