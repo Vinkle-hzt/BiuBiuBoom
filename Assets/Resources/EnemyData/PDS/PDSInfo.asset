@@ -15,7 +15,7 @@ MonoBehaviour:
   characterTag: 
   maxHealth: 10
   health: 10
-  defence: 3
+  defence: 1
   maxEnergy: 0
   energy: 0
   energyAttack: 0
