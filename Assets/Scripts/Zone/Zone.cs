@@ -20,7 +20,6 @@ public class Zone : MonoBehaviour
 
     private void OnZoneClearEvent()
     {
-        isClear = true;
         transform.Find("Edge").gameObject.SetActive(false);
     }
 

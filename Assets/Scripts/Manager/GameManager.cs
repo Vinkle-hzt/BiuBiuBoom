@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject door;
+    //public GameObject door;
 
     private void OnEnable()
     {
@@ -25,6 +25,6 @@ public class GameManager : MonoBehaviour
         }
 
         //TODO: 通关的门可以交互
-        door.GetComponent<Collider2D>().enabled = true;
+        //door.GetComponent<Collider2D>().enabled = true;
     }
 }

@@ -22,7 +22,7 @@ public class ZoneController : MonoBehaviour
         GetCurrentZoneChildren();
 
         //初始化
-        isFight = false;
+        isFight = true;
         fightRound = 1;
         enemyNumbers = enemyRounds[fightRound - 1].childCount;
         currentLoadNextRoundTime = loadNextRoundTime;
@@ -56,11 +56,12 @@ public class ZoneController : MonoBehaviour
     private void OnZoneActiveEvent(string zoneName, int rounds)
     {
         //获取当前区域的波次
-        currentZone = transform.Find(zoneName).transform;
+        currentZone = GameObject.Find(zoneName).transform;
         currentRounds = rounds;
         GetCurrentZoneChildren();
         currentLoadNextRoundTime = loadNextRoundTime;
         fightRound = 1;
+        isFight = true;
         enemyNumbers = enemyRounds[fightRound - 1].childCount;
     }
 
@@ -72,6 +73,7 @@ public class ZoneController : MonoBehaviour
             enemyRounds[i] = currentZone.GetChild(i);
             //隐藏后面的波次
             if (i != 0) enemyRounds[i].gameObject.SetActive(false);
+            else enemyRounds[i].gameObject.SetActive(true);
         }
     }
 
@@ -90,9 +92,10 @@ public class ZoneController : MonoBehaviour
             //最后一波打完了
             else
             {
-                isFight = false;
+                currentZone.GetComponent<Zone>().isClear = true;
                 currentZone = null;
                 EventHandler.CallZoneClearEvent();
+                isFight = false;
             }
         }
         //如果为最后一个波次则不再倒计时
