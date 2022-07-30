@@ -28,10 +28,10 @@ public class EventHandler : MonoBehaviour
         LockCameraPosition?.Invoke(targetPos);
     }
 
-    public static event Action ZoneClearEvent;
-    public static void CallZoneClearEvent()
+    public static event Action<string> ZoneClearEvent;
+    public static void CallZoneClearEvent(string zoneName)
     {
-        ZoneClearEvent?.Invoke();
+        ZoneClearEvent?.Invoke(zoneName);
     }
 
     public static event Action<string, int> ZoneActiveEvent;
@@ -50,5 +50,11 @@ public class EventHandler : MonoBehaviour
     public static void CallAnimationReversePlay(bool isReverse)
     {
         AnimationReversePlay?.Invoke(isReverse);
+    }
+
+    public static event Action GameOverEvent;
+    public static void CallGameOverEvent()
+    {
+        GameOverEvent?.Invoke();
     }
 }

@@ -11,13 +11,13 @@ public class MainCam : MonoBehaviour
     private void OnEnable()
     {
         //EventHandler.LockCameraPosition += OnLockCameraPosition;
-        EventHandler.ZoneClearEvent += OnZoneClearEvent;
+        //EventHandler.ZoneClearEvent += OnZoneClearEvent;
     }
 
     private void OnDisable()
     {
         //EventHandler.LockCameraPosition -= OnLockCameraPosition;
-        EventHandler.ZoneClearEvent -= OnZoneClearEvent;
+        //EventHandler.ZoneClearEvent -= OnZoneClearEvent;
     }
 
     // private void OnLockCameraPosition(Vector2 targetPos)
@@ -26,8 +26,8 @@ public class MainCam : MonoBehaviour
     //     this.transform.position = targetPos;
     // }
 
-    private void OnZoneClearEvent()
-    {
-        cinemachineVirtualCamera.Follow = player.transform;
-    }
+    // private void OnZoneClearEvent()
+    // {
+    //     cinemachineVirtualCamera.Follow = player.transform;
+    // }
 }
