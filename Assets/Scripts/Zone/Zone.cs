@@ -21,14 +21,17 @@ public class Zone : MonoBehaviour
     private void OnZoneClearEvent()
     {
         isClear = true;
+        transform.Find("Edge").gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !isClear)
         {
-            if (isLock)
-                EventHandler.CallLockCameraPosition(transform.position);
+            // if (isLock)
+            //     EventHandler.CallLockCameraPosition(transform.position);
+            GetComponent<Collider2D>().enabled = false;
+            transform.Find("Edge").gameObject.SetActive(true);
             EventHandler.CallZoneActiveEvent(transform.name, rounds);
         }
     }

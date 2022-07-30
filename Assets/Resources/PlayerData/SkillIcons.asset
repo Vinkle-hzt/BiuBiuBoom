@@ -16,10 +16,10 @@ MonoBehaviour:
   - skillName: RCE
     skillIcon: {fileID: 21300000, guid: 8626cc0157961104baf1512200d4806c, type: 3}
   - skillName: Flash
-    skillIcon: {fileID: 21300000, guid: ae08e8b80e376fc4fbce986bc31cc122, type: 3}
+    skillIcon: {fileID: 21300000, guid: 3007307d0a27939438687714f8eb2818, type: 3}
   - skillName: InformationBombing
     skillIcon: {fileID: 21300000, guid: d085e20dbd6cea74eb21539d71468b8b, type: 3}
   - skillName: TrafficHijacking
     skillIcon: {fileID: 21300000, guid: 32f46122d5df4b444a315dd80f6b5c84, type: 3}
   - skillName: ForceAuthorization
-    skillIcon: {fileID: 21300000, guid: 54240df153d2a504c881cd6d40d2b829, type: 3}
+    skillIcon: {fileID: 21300000, guid: 6778fecf3e442cd46aa29e46bb32edf7, type: 3}

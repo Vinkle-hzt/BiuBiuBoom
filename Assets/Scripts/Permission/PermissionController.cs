@@ -120,8 +120,6 @@ public class PermissionController : MonoBehaviour
         {
             if (pInfo.CanShoot && Input.GetKeyDown(InputController.instance.skill))
             {
-                Debug.Log(curSkill.cache);
-                Debug.Log(curSkill.coolDownRatio);
                 //增加缓存
                 skillCache[curSkillIndex] += curSkill.cache;
 

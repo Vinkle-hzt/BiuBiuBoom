@@ -71,12 +71,10 @@ public class StateHacker : PlayerState
 
     private void OnAnimationReversePlay(bool isReverse)
     {
-        Debug.Log("call");
         if (isReverse && isGround)
         {
             //anim.speed = -1;
             reverse = -1;
-            Debug.Log("reverse");
         }
         else
         {

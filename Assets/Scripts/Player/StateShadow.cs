@@ -121,7 +121,6 @@ public class StateShadow : PlayerState
     void Kill(GameObject enemy)
     {
         resetAimer();
-        Debug.Log("Kill");
         enemy.GetComponent<Enemy>().Dead();
         // 应该要有个瞬移的动画，我这直接瞬移了
         Vector3 pos = transform.position;

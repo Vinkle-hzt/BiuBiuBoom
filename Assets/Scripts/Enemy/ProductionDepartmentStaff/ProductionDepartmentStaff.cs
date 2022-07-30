@@ -23,7 +23,7 @@ public class ProductionDepartmentStaff : Enemy
     private float moveDistance;
     private float moveDir;
     private Animator anim;
-    private void Awake() 
+    private void Awake()
     {
         anim = GetComponent<Animator>();
     }
@@ -39,7 +39,7 @@ public class ProductionDepartmentStaff : Enemy
             {
                 case State.Move:
                     moveDir = target.position.x - transform.position.x > 0 ? 1 : -1;
-                    transform.localScale = new Vector3(moveDir * Mathf.Abs(transform.localScale.x),transform.localScale.y, transform.localScale.z);
+                    transform.localScale = new Vector3(moveDir * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                     if (Vector3.Distance(transform.position, target.position) > attackDistance)
                     {
                         transform.position += new Vector3(moveDir * eInfo.Speed * Time.deltaTime, 0, 0);
@@ -84,7 +84,6 @@ public class ProductionDepartmentStaff : Enemy
 
     public void Hit(InfoController player)
     {
-        Debug.Log("被攻击");
         if (curState == State.Attack)
         {
             eInfo.TakeDamage(eInfo, player);
