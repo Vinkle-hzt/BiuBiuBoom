@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     protected EnemyState state;
     private SpriteRenderer spriteRenderer;
 
-    bool isDead = false;
+    protected bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -121,7 +121,7 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region 死亡
-    public void Dead()
+    public virtual void Dead()
     {
         isDead = true;
         EventHandler.CallEnemyDeathEvent();

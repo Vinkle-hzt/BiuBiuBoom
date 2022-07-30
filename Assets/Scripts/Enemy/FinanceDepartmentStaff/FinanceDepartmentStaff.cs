@@ -107,4 +107,11 @@ public class FinanceDepartmentStaff : Enemy
         bullet2.GetComponent<Bullet>().Setup(new Vector3(dir2.x, dir2.y, 0), eInfo);
         bullet3.GetComponent<Bullet>().Setup(shootDir, eInfo);
     }
+
+    public override void Dead()
+    {
+        isDead = true;
+        EventHandler.CallEnemyDeathEvent();
+        Destroy(transform.parent.gameObject);
+    }
 }
