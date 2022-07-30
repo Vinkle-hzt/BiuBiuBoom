@@ -23,7 +23,7 @@ MonoBehaviour:
   energyGet: 0
   changeStateEnergy: 0
   changeStateTime: 0
-  speed: 0
+  speed: 2
   speedRatio: 0
   jumpforce: 0
   attackSpeed: 0.5

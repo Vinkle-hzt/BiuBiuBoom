@@ -98,7 +98,6 @@ public class EnemyTurret : Enemy
                 }
                 break;
         }
-        anim.SetFloat("FaceAngle", angle);
     }
 
     protected override void FallDownAttack()
