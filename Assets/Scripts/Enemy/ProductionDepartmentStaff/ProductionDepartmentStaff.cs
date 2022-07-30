@@ -38,7 +38,9 @@ public class ProductionDepartmentStaff : Enemy
             switch (curState)
             {
                 case State.Move:
-                    moveDir = target.position.x - transform.position.x > 0 ? 1 : -1;
+                    float diff = target.position.x - transform.position.x;
+                    if (Mathf.Abs(diff) > 0.01f)
+                        moveDir = diff > 0 ? 1 : -1;
                     transform.localScale = new Vector3(moveDir * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                     if (Vector3.Distance(transform.position, target.position) > attackDistance)
                     {
