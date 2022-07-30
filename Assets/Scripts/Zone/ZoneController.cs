@@ -93,8 +93,8 @@ public class ZoneController : MonoBehaviour
             else
             {
                 currentZone.GetComponent<Zone>().isClear = true;
+                EventHandler.CallZoneClearEvent(currentZone.name);
                 currentZone = null;
-                EventHandler.CallZoneClearEvent();
                 isFight = false;
             }
         }

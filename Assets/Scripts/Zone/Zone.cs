@@ -18,7 +18,7 @@ public class Zone : MonoBehaviour
         EventHandler.ZoneClearEvent -= OnZoneClearEvent;
     }
 
-    private void OnZoneClearEvent()
+    private void OnZoneClearEvent(string zoneName)
     {
         transform.Find("Edge").gameObject.SetActive(false);
     }

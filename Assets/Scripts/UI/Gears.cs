@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class Gears : MonoBehaviour
 {
-    //public GameObject door;
+    public Sprite rightGear;
+
+    private Transform gear;
 
     private void OnEnable()
     {
@@ -18,12 +20,8 @@ public class GameManager : MonoBehaviour
 
     private void OnZoneClearEvent(string zoneName)
     {
-        foreach (var zone in FindObjectsOfType<Zone>())
-        {
-            if (!zone.isClear)
-                return;
-        }
-
-        EventHandler.CallGameOverEvent();
+        gear = transform.Find(zoneName + "Gear");
+        if (gear != null)
+            gear.GetComponent<SpriteRenderer>().sprite = rightGear;
     }
 }
