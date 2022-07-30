@@ -77,18 +77,17 @@ public class PlayerController : MonoBehaviour
                 curTime = infoController.ChangeStateTime; // 进入冷却
                 infoController.SubEnergy(infoController.ChangeStateEnergy); // 扣除能量
                 // BgmManager.instance.PlayChangeState();
-                transform.Find("Body").GetComponent<Animator>().Play("PlayShadow");
 
+                transform.Find("Body").GetComponent<Animator>().Play("PlayShadow");
                 state.Leave();
                 state = shadow;
                 state.Reset();
             }
             else if (state is StateShadow)
             {
-                transform.Find("Body").GetComponent<Animator>().Play("PlayerIdle");
-
                 state.Leave();
                 state = hacker;
+                transform.Find("Body").GetComponent<Animator>().Play("PlayerIdle");
                 state.Reset();
             }
         }
