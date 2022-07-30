@@ -23,12 +23,12 @@ MonoBehaviour:
   energyGet: 8
   changeStateEnergy: 10
   changeStateTime: 1
-  speed: 7
+  speed: 6
   speedRatio: 2
-  jumpforce: 18
+  jumpforce: 16
   attackSpeed: 18
   shootSpeed: 35
   damage: 3
   canShoot: 1
-  hackDis: 4
+  hackDis: 3
   isStagger: 0
