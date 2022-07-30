@@ -18,4 +18,4 @@ MonoBehaviour:
   resumePercent: 40
   plusResumePercent: 10
   minResumePercent: 20
-  perceptionDis: 5
+  perceptionDis: 10

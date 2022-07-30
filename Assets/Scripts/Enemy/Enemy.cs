@@ -166,7 +166,7 @@ public class Enemy : MonoBehaviour
                 isFallDown = true;
                 state = EnemyState.fallDown;
                 // 更改 layer(用于实现斩杀和骇入)
-                UtilsClass.ChangeLayer(transform, LayerMask.NameToLayer("EnemyFall"));
+                UtilsClass.ChangeLayer(transform, LayerMask.NameToLayer("Enemy"), LayerMask.NameToLayer("EnemyFall"));
                 // 更改颜色表示瘫痪
                 spriteRenderer.color = UtilsClass.HexToColor("FF8A8AFF");
                 BgmManager.instance.PlayEnemyFallDown();
@@ -196,7 +196,7 @@ public class Enemy : MonoBehaviour
     {
         spriteRenderer.color = new Color(1, 1, 1, 1);
         // 更改 layer(用于实现斩杀和骇入)
-        UtilsClass.ChangeLayer(transform, LayerMask.NameToLayer("Enemy"));
+        UtilsClass.ChangeLayer(transform, LayerMask.NameToLayer("EnemyFall"), LayerMask.NameToLayer("Enemy"));
         enemyInfo.Resume();
         eInfo.Resume(eInfo.MaxHealth * enemyInfo.characterData.resumePercent);
     }

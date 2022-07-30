@@ -61,6 +61,15 @@ namespace BiuBiuBoom.Utils
                 transform.gameObject.layer = layer;
             }
         }
+        public static void ChangeLayer(Transform transform, int baseLayer, int changeLayer)
+        {
+            if (transform.childCount > 0)//如果子物体存在
+                for (int i = 0; i < transform.childCount; i++)//遍历子物体是否还有子物体
+                    ChangeLayer(transform.GetChild(i), baseLayer, changeLayer);//这里是只将最后一个无子物体的对象设置层级
+
+            if (transform.gameObject.layer == baseLayer)
+                transform.gameObject.layer = changeLayer;
+        }
 
         public class Debug
         {
