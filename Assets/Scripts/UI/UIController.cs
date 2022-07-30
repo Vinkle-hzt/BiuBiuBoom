@@ -37,7 +37,7 @@ public class UIController : MonoBehaviour
 
     private IEnumerator GameOverCouroutine()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
 
         gameOver.SetActive(true);
         gameOver.GetComponent<Animator>().Play("finish");
