@@ -72,7 +72,6 @@ public class RCEBullet : MonoBehaviour
     {
         if (state == State.bullet)
         {
-            Debug.Log(collision.tag);
             if (collision.CompareTag("Ground") || collision.CompareTag("Enemy"))
             {
                 hit = Instantiate(pfHit, transform.position, Quaternion.identity);

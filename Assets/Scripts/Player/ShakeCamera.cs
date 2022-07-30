@@ -19,36 +19,34 @@ public class ShakeCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(startShake)
+        if (startShake)
         {
-            Debug.Log("1");
             transform.localPosition = camPOS + Random.insideUnitSphere * quake;
         }
 
-        if(started)
+        if (started)
         {
             StartCoroutine(WaitForSecond(seconds));
             started = false;
         }
     }
 
-        public void ShakeFor(float a, float b)
-        {
-            //if(startShake)
-            //return;
-            Debug.Log("2");
-            seconds = a;
-            started = true;
-            startShake = true;
-            quake = b;
+    public void ShakeFor(float a, float b)
+    {
+        //if(startShake)
+        //return;
+        seconds = a;
+        started = true;
+        startShake = true;
+        quake = b;
 
-        }
+    }
 
-        IEnumerator WaitForSecond(float a) {
-            yield return new WaitForSeconds(a);
-            startShake = false;
-            Debug.Log("3");
-            transform.localPosition = camPOS;
-        }
+    IEnumerator WaitForSecond(float a)
+    {
+        yield return new WaitForSeconds(a);
+        startShake = false;
+        transform.localPosition = camPOS;
+    }
 
 }

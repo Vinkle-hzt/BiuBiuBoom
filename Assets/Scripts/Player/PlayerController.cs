@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     float curTime;
 
     public GameObject trail;
-    public GameObject trail_eye;
 
     private float gravity;
     bool isDead = false;
@@ -115,12 +114,10 @@ public class PlayerController : MonoBehaviour
         if (state == shadow)
         {
             trail.SetActive(true);
-            trail_eye.SetActive(false);
         }
         else if (state == hacker)
         {
             trail.SetActive(false);
-            trail_eye.SetActive(true);
         }
     }
     void HealthCheck()
