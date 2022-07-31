@@ -15,7 +15,7 @@ MonoBehaviour:
   characterTag: Enemy
   maxHealth: 30
   health: 30
-  defence: 0
+  defence: 2
   maxEnergy: 0
   energy: 0
   energyAttack: 0
@@ -23,12 +23,12 @@ MonoBehaviour:
   energyGet: 0
   changeStateEnergy: 0
   changeStateTime: 0
-  speed: 3
+  speed: 2
   speedRatio: 0
   jumpforce: 0
-  attackSpeed: 0.25
-  shootSpeed: 4
-  damage: 5
+  attackSpeed: 0.3
+  shootSpeed: 6
+  damage: 6
   canShoot: 1
   hackDis: 0
   isStagger: 0

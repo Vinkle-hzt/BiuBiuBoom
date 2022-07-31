@@ -251,8 +251,8 @@ MonoBehaviour:
   isElite: 0
   eInfo: {fileID: 0}
   enemyInfo: {fileID: 0}
-  doAimTime: 2
-  intervalTime: 0.2
+  doAimTime: 3
+  intervalTime: 1.5
   target: {fileID: 0}
   pfBullet: {fileID: 1326878126941091125, guid: 756be0682847d104aad02e72f0e96d5f,
     type: 3}

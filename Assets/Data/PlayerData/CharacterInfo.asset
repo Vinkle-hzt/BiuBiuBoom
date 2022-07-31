@@ -19,16 +19,16 @@ MonoBehaviour:
   maxEnergy: 100
   energy: 80
   energyAttack: 5
-  energyLoss: 15
+  energyLoss: 20
   energyGet: 8
-  changeStateEnergy: 10
-  changeStateTime: 1
-  speed: 6
+  changeStateEnergy: 20
+  changeStateTime: 0.5
+  speed: 5
   speedRatio: 2
   jumpforce: 16
   attackSpeed: 18
   shootSpeed: 35
-  damage: 3
+  damage: 10
   canShoot: 1
   hackDis: 3
   isStagger: 0

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: EnemyTurret
   m_EditorClassIdentifier: 
   characterTag: Enemy
-  maxHealth: 30
-  health: 30
-  defence: 1
+  maxHealth: 40
+  health: 40
+  defence: 2
   maxEnergy: 0
   energy: 0
   energyAttack: 0
@@ -26,9 +26,9 @@ MonoBehaviour:
   speed: 2
   speedRatio: 0
   jumpforce: 0
-  attackSpeed: 0.5
+  attackSpeed: 0.2
   shootSpeed: 22
-  damage: 8
+  damage: 6
   canShoot: 1
   hackDis: 0
   isStagger: 0
