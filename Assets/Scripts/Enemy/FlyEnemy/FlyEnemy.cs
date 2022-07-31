@@ -180,4 +180,11 @@ public class FlyEnemy : Enemy
     {
         aimAnim.SetBool("Dead", true);
     }
+
+    public override void Dead()
+    {
+        isDead = true;
+        EventHandler.CallEnemyDeathEvent();
+        Destroy(transform.parent.gameObject);
+    }
 }
