@@ -71,7 +71,6 @@ public class UIController : MonoBehaviour
     {
         zoneStart.SetActive(true);
         zoneStart.transform.Find("Text").Find("Text_2").GetComponent<Text>().text = rounds.ToString() + " Rounds";
-        Debug.Log(zoneStart.transform.Find("Text_1").Find("Text_2").name);
         zoneStart.GetComponent<Animator>().Play("finish");
 
         yield return new WaitForSeconds(2);
