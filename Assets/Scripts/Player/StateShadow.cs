@@ -29,15 +29,18 @@ public class StateShadow : PlayerState
 
     public override void FixedUpdate()
     {
+        FixMovement();
         LossEnergy();
     }
-
     void Movement()
     {
-        if (!inHack)
-            transform.position += position * pInfo.characterData.speed * Time.deltaTime * pInfo.characterData.speedRatio;
-        else
+        if (inHack)
             transform.position = hackEnemy.transform.position;
+    }
+    void FixMovement()
+    {
+        if (!inHack)
+            rb.velocity = pInfo.Speed * pInfo.SpeedRatio * new Vector2( position.x, position.y);
     }
 
     void MoveCheck()
@@ -57,7 +60,7 @@ public class StateShadow : PlayerState
         // 重力和速度均设为0
         rb.velocity = Vector3.zero;
         rb.gravityScale = 0;
-        pInfo.characterData.canShoot = false;
+        pInfo.CanShoot = false;
         transform.Find("Aim").gameObject.SetActive(false);
         //transform.Find("Body").GetComponent<Animator>().SetBool("Shadow", true);
     }
@@ -121,7 +124,6 @@ public class StateShadow : PlayerState
     void Kill(GameObject enemy)
     {
         resetAimer();
-        Debug.Log("Kill");
         enemy.GetComponent<Enemy>().Dead();
         // 应该要有个瞬移的动画，我这直接瞬移了
         Vector3 pos = transform.position;
@@ -155,7 +157,7 @@ public class StateShadow : PlayerState
         }
     }
 
-    void LeaveHack()
+    void LeaveHack(bool isLeave = false)
     {
         //Debug.Log("leave hack");
         inHack = false;
@@ -169,18 +171,20 @@ public class StateShadow : PlayerState
         transform.GetComponent<CapsuleCollider2D>().enabled = true;
         transform.GetComponent<BoxCollider2D>().enabled = true;
         transform.Find("Body").gameObject.SetActive(true);
-        transform.Find("Body").GetComponent<Animator>().Play("PlayIdle");
-
+        
+        if (!isLeave)
+            transform.Find("Body").GetComponent<Animator>().Play("PlayShadow");
+        
         //获取权限
-        transform.GetComponent<PlayerController>().pInfo.GetSkill(hackEnemy.GetComponent<Enemy>().GetSkill());
+        transform.GetComponent<PermissionController>().GetNewSkill(hackEnemy.GetComponent<Enemy>().GetSkill());
     }
 
     public override void Leave()
     {
         if (inHack)
-            LeaveHack();
+            LeaveHack(true);
         resetAimer();
-        //transform.Find("Body").GetComponent<Animator>().SetBool("Shadow", false);
+        transform.Find("Body").GetComponent<Animator>().Play("PlayerIdle");
     }
 
     private void setAimer(Vector3 position)
@@ -194,9 +198,4 @@ public class StateShadow : PlayerState
         pfAimer.gameObject.SetActive(false);
     }
     #endregion
-
-    public override float GetCurSkillTime()
-    {
-        return 0;
-    }
 }

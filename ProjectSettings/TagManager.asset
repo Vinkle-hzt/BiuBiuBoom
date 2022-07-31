@@ -10,6 +10,7 @@ TagManager:
   - RCE
   - ESC
   - Cinemachine
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
@@ -24,8 +25,8 @@ TagManager:
   - Enemy
   - EnemyFall
   - Shadow
-  - 
-  - 
+  - Skill
+  - CameraEdge
   - 
   - 
   - 

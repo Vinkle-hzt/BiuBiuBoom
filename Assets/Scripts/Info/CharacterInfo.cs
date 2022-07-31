@@ -9,7 +9,7 @@ using UnityEngine;
 public class CharacterInfo : ScriptableObject
 {
     [Header("Tag")]
-    public string CharacterTag;
+    public string characterTag;
 
     [Header("最大生命值")]
     public float maxHealth;
@@ -64,4 +64,7 @@ public class CharacterInfo : ScriptableObject
 
     [Header("斩杀和骇入半径")]
     public float hackDis;
+
+    [Header("是否硬直")]
+    public bool isStagger;
 }

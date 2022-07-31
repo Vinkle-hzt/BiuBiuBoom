@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public PlayerState state;
     private PlayerState hacker;
     private PlayerState shadow;
-    public InfoController pInfo;
+    public InfoController infoController;
 
     [SerializeField]
     private Transform pfAimer;
@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     float curTime;
 
     public GameObject trail;
-    public GameObject trail_eye;
 
     private float gravity;
     bool isDead = false;
@@ -28,10 +27,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("Cinemachine");
-        pInfo = GetComponent<InfoController>();
+        infoController = GetComponent<InfoController>();
         gravity = GetComponent<Rigidbody2D>().gravityScale;
-        hacker = new StateHacker(transform, pInfo, gravity);
-        shadow = new StateShadow(transform, pInfo, pfAimer);
+        hacker = new StateHacker(transform, infoController, gravity);
+        shadow = new StateShadow(transform, infoController, pfAimer);
         state = hacker;
         curTime = 0;
     }
@@ -71,32 +70,30 @@ public class PlayerController : MonoBehaviour
         // 检查按键是否按下
         if (Input.GetKeyDown(InputController.instance.changState))
         {
-            if (pInfo.characterData.energy >= pInfo.characterData.changeStateEnergy
+            if (infoController.Energy >= infoController.ChangeStateEnergy
                 && curTime <= 0
                 && state is StateHacker)
             {
-                curTime = pInfo.characterData.changeStateTime; // 进入冷却
-                pInfo.characterData.energy -= pInfo.characterData.changeStateEnergy; // 减少能量
+                curTime = infoController.ChangeStateTime; // 进入冷却
+                infoController.SubEnergy(infoController.ChangeStateEnergy); // 扣除能量
                 BgmManager.instance.PlayChangeState();
 
                 transform.Find("Body").GetComponent<Animator>().Play("PlayShadow");
-
                 state.Leave();
                 state = shadow;
                 state.Reset();
             }
             else if (state is StateShadow)
             {
-                transform.Find("Body").GetComponent<Animator>().Play("PlayerIdle");
-
                 state.Leave();
                 state = hacker;
+                transform.Find("Body").GetComponent<Animator>().Play("PlayerIdle");
                 state.Reset();
             }
         }
 
         // 能量 <= 0 强制回到骇客模式
-        if (pInfo.characterData.energy <= 0 && state is StateShadow)
+        if (infoController.Energy <= 0 && state is StateShadow)
         {
             transform.Find("Body").GetComponent<Animator>().Play("PlayerIdle");
 
@@ -108,7 +105,7 @@ public class PlayerController : MonoBehaviour
 
     public InfoController GetInfo()
     {
-        return pInfo;
+        return infoController;
     }
 
     void TrailControl()
@@ -116,17 +113,15 @@ public class PlayerController : MonoBehaviour
         if (state == shadow)
         {
             trail.SetActive(true);
-            trail_eye.SetActive(false);
         }
         else if (state == hacker)
         {
             trail.SetActive(false);
-            trail_eye.SetActive(true);
         }
     }
     void HealthCheck()
     {
-        if (pInfo.characterData.health <= 0)
+        if (infoController.Health <= 0)
         {
             Dead();
         }

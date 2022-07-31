@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 5497587629904014711}
   - component: {fileID: 5497587629904014708}
   - component: {fileID: -4733233260038425122}
+  - component: {fileID: 4265439387681793216}
+  - component: {fileID: 6132994079818981684}
   m_Layer: 0
   m_Name: spark
-  m_TagString: Untagged
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 933513659
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf9760a2dafc94f97b705a62ec67e9ff, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -115,3 +117,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pfHit: {fileID: 1785098783488566487, guid: 3d3100c1a74551449b82457082f4968a, type: 3}
+--- !u!70 &4265439387681793216
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497587629904014709}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.05135471, y: -0.00616274}
+  m_Size: {x: 0.43690884, y: 0.13699836}
+  m_Direction: 1
+--- !u!50 &6132994079818981684
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497587629904014709}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

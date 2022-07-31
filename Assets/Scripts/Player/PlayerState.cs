@@ -28,6 +28,4 @@ public abstract class PlayerState
     public abstract void Update();
 
     public abstract void FixedUpdate();
-
-    public abstract float GetCurSkillTime();
 }

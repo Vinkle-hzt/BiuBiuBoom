@@ -41,14 +41,30 @@ public class RCEBullet : MonoBehaviour
         this.shootDir = shootDir;
         isMove = true;
         circle.SetActive(false);
-        Destroy(gameObject, 5f);
+        GetComponent<BoxCollider2D>().enabled = true;
+        GetComponent<CircleCollider2D>().enabled = false;
     }
 
     private void Update()
     {
         if (isMove)
         {
-            transform.position += shootDir * shootSpeed * Time.deltaTime;
+            transform.position += shootDir.normalized * shootSpeed * Time.deltaTime;
+        }
+        if (state == State.buff)
+        {
+            //新的加buff方法
+            SubDefence subDefence = new SubDefence(deleteDefence, Time.deltaTime);   //每一帧施加buff，每个buff持续一帧
+            SubSpeed subSpeed = new SubSpeed(deleteSpeed, Time.deltaTime);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
+            foreach (var coll in colliders)
+            {
+                if (coll.gameObject.tag == "Enemy")
+                {
+                    coll.GetComponent<InfoController>().AddBuff(subDefence);
+                    coll.GetComponent<InfoController>().AddBuff(subSpeed);
+                }
+            }
         }
     }
 
@@ -77,24 +93,26 @@ public class RCEBullet : MonoBehaviour
         GetComponent<CircleCollider2D>().radius = radius;
         GetComponent<SpriteRenderer>().enabled = false;
 
+        Destroy(gameObject, consistantTime);
+
         yield return new WaitForSeconds(consistantTime);
 
         GetComponent<CircleCollider2D>().enabled = false;
     }
 
-    public void ApplyBuff(InfoController info)
-    {
-        //施加buff
-        info.DefenceDebuff(deleteDefence);
-        info.SpeedDebuff(deleteSpeed);
-    }
+    // public void ApplyBuff(InfoController info)
+    // {
+    //     //施加buff
+    //     info.DefenceDebuff(deleteDefence);
+    //     info.SpeedDebuff(deleteSpeed);
+    // }
 
-    public void ClearBuff(InfoController info)
-    {
-        //消去buff
-        info.DefenceResume();
-        info.SpeedResume();
-        Destroy(hit.gameObject);
-        Destroy(transform.gameObject);
-    }
+    // public void ClearBuff(InfoController info)
+    // {
+    //     //消去buff
+    //     info.DefenceResume();
+    //     info.SpeedResume();
+    //     Destroy(hit.gameObject);
+    //     Destroy(transform.gameObject);
+    // }
 }

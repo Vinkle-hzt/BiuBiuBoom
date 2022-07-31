@@ -17,7 +17,6 @@ public class StateHacker : PlayerState
 
     private Transform groundCheck1;
     private Transform groundCheck2;
-    private float checkDistance = 1f;
     private LayerMask layer;
 
     // 动画相关
@@ -25,6 +24,7 @@ public class StateHacker : PlayerState
     int groundedID;
     int runningID;
     int verticalVelID;
+    float reverse;
 
     private float horizontalMove;
     private float faceDirection;
@@ -33,7 +33,7 @@ public class StateHacker : PlayerState
 
     private float gravity;
 
-    public StateHacker(Transform transform, InfoController pInfo, float gravity) 
+    public StateHacker(Transform transform, InfoController pInfo, float gravity)
         : base(transform, pInfo)
     {
         rb = transform.GetComponent<Rigidbody2D>();
@@ -51,6 +51,9 @@ public class StateHacker : PlayerState
         verticalVelID = Animator.StringToHash("VerticalVel");
 
         this.gravity = gravity;
+
+        reverse = 1;
+        EventHandler.AnimationReversePlay += OnAnimationReversePlay;
     }
 
     public override void FixedUpdate()
@@ -64,22 +67,47 @@ public class StateHacker : PlayerState
     {
         MoveCheck();
         UpdateAnim();
-        SkillActive();
+    }
+
+    private void OnAnimationReversePlay(bool isReverse)
+    {
+        if (isReverse && isGround)
+        {
+            //anim.speed = -1;
+            reverse = -1;
+        }
+        else
+        {
+            //anim.speed = 1;
+            reverse = 1;
+        }
     }
 
     void Movement()
     {
         if (horizontalMove != 0)
-            rb.velocity = new Vector2(horizontalMove * pInfo.characterData.speed, rb.velocity.y);
+            rb.velocity = new Vector2(horizontalMove * pInfo.Speed, rb.velocity.y);
 
         if (Mathf.Abs(horizontalMove) > 0.1f)
             isRunning = true;
         else
             isRunning = false;
-
+        ChangeFaceAt();
         Jump();
     }
-
+    void ChangeFaceAt()
+    {
+        if (horizontalMove > 0)
+        {
+            faceDirection = -1;
+            transform.localScale = new Vector3(faceDirection * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else if (horizontalMove < 0)
+        {
+            faceDirection = 1;
+            transform.localScale = new Vector3(faceDirection * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+    }
     void MoveCheck()
     {
         horizontalMove = Input.GetAxis("Horizontal");
@@ -96,7 +124,7 @@ public class StateHacker : PlayerState
     {
         if (isJump)
         {
-            rb.velocity = new Vector2(rb.velocity.x, pInfo.characterData.jumpforce);
+            rb.velocity = new Vector2(rb.velocity.x, pInfo.Jumpforce);
             isJump = false;
         }
     }
@@ -111,19 +139,6 @@ public class StateHacker : PlayerState
         {
             isGround = false;
         }
-
-        // ray1 = Physics2D.Raycast(groundCheck1.position, Vector2.down, checkDistance, layer);
-        // ray2 = Physics2D.Raycast(groundCheck2.position, Vector2.down, checkDistance, layer);
-
-        // if (ray1 || ray2)
-        // {
-        //     isGround = true;
-        // }
-        // else
-        // {
-        //     isGround = false;
-        // }
-        //或者用Physics2D.OverlapBox();
     }
 
     void RecoveryEnergy()
@@ -134,7 +149,7 @@ public class StateHacker : PlayerState
     public override void Reset()
     {
         rb.gravityScale = gravity;
-        pInfo.characterData.canShoot = true;
+        pInfo.CanShoot = true;
         transform.Find("Aim").gameObject.SetActive(true);
     }
 
@@ -147,49 +162,7 @@ public class StateHacker : PlayerState
     {
         anim.SetBool(groundedID, isGround);
         anim.SetBool(runningID, isRunning);
+        anim.SetFloat("isReverse", reverse);
         anim.SetFloat(verticalVelID, rb.velocity.y);
-    }
-
-    void SkillActive()
-    {
-        if (pInfo.skill == null)
-            return;
-
-        if (pInfo.skill.isFirst)
-        {
-            curSkillCD = pInfo.skill.initialCoolDown;
-            pInfo.skill.isFirst = false;
-        }
-
-        if (curSkillCD <= 0)
-        {
-            if (pInfo.skill != null)
-            {
-                if (Input.GetKeyDown(InputController.instance.skill))
-                {
-                    //还有数用次数
-                    if (pInfo.skill.times > 0)
-                    {
-                        //触发技能
-                        pInfo.skill.SkillActive();
-                        curSkillCD = pInfo.skill.coolDown;
-                    }
-
-                    if (pInfo.skill.times <= 0)
-                    {
-                        pInfo.skill = null;
-                    }
-                }
-            }
-        }
-        else
-        {
-            curSkillCD -= Time.deltaTime;
-        }
-    }
-
-    public override float GetCurSkillTime()
-    {
-        return curSkillCD;
     }
 }

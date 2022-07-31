@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f2539ebef6a274e9bec680ec440925, type: 3}
+  m_Name: SkillIcons
+  m_EditorClassIdentifier: 
+  skills:
+  - skillName: RCE
+    skillIcon: {fileID: 21300000, guid: 8626cc0157961104baf1512200d4806c, type: 3}
+  - skillName: Flash
+    skillIcon: {fileID: 21300000, guid: 3007307d0a27939438687714f8eb2818, type: 3}
+  - skillName: InformationBombing
+    skillIcon: {fileID: 21300000, guid: d085e20dbd6cea74eb21539d71468b8b, type: 3}
+  - skillName: TrafficHijacking
+    skillIcon: {fileID: 21300000, guid: 32f46122d5df4b444a315dd80f6b5c84, type: 3}
+  - skillName: ForceAuthorization
+    skillIcon: {fileID: 21300000, guid: 6778fecf3e442cd46aa29e46bb32edf7, type: 3}

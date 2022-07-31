@@ -98,7 +98,6 @@ public class EnemyTurret : Enemy
                 }
                 break;
         }
-        anim.SetFloat("FaceAngle", angle);
     }
 
     protected override void FallDownAttack()
@@ -111,11 +110,6 @@ public class EnemyTurret : Enemy
         Transform bulletTransform = Instantiate(pfBullet, transform.position, Quaternion.identity);
 
         bulletTransform.GetComponent<Bullet>().Setup(shootDir, eInfo);
-    }
-
-    public override String GetSkill()
-    {
-        return "RCE";
     }
 
     void Wait()
@@ -137,7 +131,7 @@ public class EnemyTurret : Enemy
     {
     }
 
-    protected void DeadAnim()
+    override protected void DeadAnim()
     {
         aimAnim.SetBool("Dead", true);
     }
