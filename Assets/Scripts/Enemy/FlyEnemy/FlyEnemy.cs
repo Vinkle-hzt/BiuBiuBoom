@@ -129,7 +129,7 @@ public class FlyEnemy : Enemy
                 break;
             case State.Shoot:
                 Shoot();
-                anim.Play("FlyEnemyAttack");
+                anim.Play("RemoteAttack");
                 pfAimLine.position = transform.position;
                 shootTime += Time.deltaTime;
                 if (shootTime >= intervalTime)

@@ -102,7 +102,7 @@ public class FinanceDepartmentStaff : Enemy
         Transform bullet2 = Instantiate(pfBullet, body.position, Quaternion.identity);
         Transform bullet3 = Instantiate(pfBullet, body.position, Quaternion.identity);
 
-        anim.SetTrigger("Attack");
+        anim.Play("FlyEnemyAttack");
         bullet1.GetComponent<Bullet>().Setup(new Vector3(dir1.x, dir1.y, 0), eInfo);
         bullet2.GetComponent<Bullet>().Setup(new Vector3(dir2.x, dir2.y, 0), eInfo);
         bullet3.GetComponent<Bullet>().Setup(shootDir, eInfo);
