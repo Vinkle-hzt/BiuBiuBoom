@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PDSInfo
   m_EditorClassIdentifier: 
   characterTag: 
-  maxHealth: 10
-  health: 10
-  defence: 1
+  maxHealth: 40
+  health: 40
+  defence: 3
   maxEnergy: 0
   energy: 0
   energyAttack: 0
@@ -23,12 +23,12 @@ MonoBehaviour:
   energyGet: 0
   changeStateEnergy: 0
   changeStateTime: 0
-  speed: 3
+  speed: 2.5
   speedRatio: 0
   jumpforce: 0
   attackSpeed: 0.8
   shootSpeed: 0
-  damage: 3
+  damage: 4
   canShoot: 1
   hackDis: 0
   isStagger: 0

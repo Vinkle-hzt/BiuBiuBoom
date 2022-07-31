@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallDownTime: 8
   plusFallDownTime: 1
-  maxFallDownTime: 15
-  resumePercent: 20
+  maxFallDownTime: 20
+  resumePercent: 40
   plusResumePercent: 10
   minResumePercent: 5
   perceptionDis: 12
