@@ -137,6 +137,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -168,9 +170,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -1020,6 +1025,45 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      skill_11: -4611623146673323040
+      skill_21: 8979390676876963190
+      skill_23: 5768793971998178050
+      skill_27: -6194605179319794357
+      skill_1: -1399174383563324466
+      skill_10: 6022537177281832906
+      skill_31: -9030947495926098958
+      skill_35: -5800123127444183845
+      skill_33: 537685461824551976
+      skill_37: 5430327800007569544
+      skill_9: -4210777852187302344
+      skill_2: 6016606674299013149
+      skill_32: -2495074425379925178
+      skill_16: 8840933099563658733
+      skill_28: 2159685394419654624
+      skill_8: -5698540091538369379
+      skill_12: 2517352650371915575
+      skill_26: -2572762608874170523
+      skill_13: -563938868860876397
+      skill_5: -3534014872748746802
+      skill_30: -2006640441013768961
+      skill_6: 7413149650735245414
+      skill_25: 4872440263773113740
+      skill_19: -7568320372885812999
+      skill_0: 1623481048343612374
+      skill_20: -1682987529422969370
+      skill_14: 5558806876722194162
+      skill_22: -6260914311522653570
+      skill_17: 3316941614855409292
+      skill_7: -8059170812381203072
+      skill_3: -4408572785833581383
+      skill_24: 5358741238446919387
+      skill_4: -3691850346281838258
+      skill_36: 1124222611119879965
+      skill_34: 2918974659127243217
+      skill_29: -5930712150132266811
+      skill_15: 2384152884516857273
+      skill_18: 6462059194806518478
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
